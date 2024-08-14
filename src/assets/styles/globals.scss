@@ -1,0 +1,49 @@
+@import "./reset.scss";
+@import "./variables.scss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @extend %roboto_400_18;
+  background-color: rgb(255, 255, 255);
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  // &::-webkit-scrollbar {
+  //   display: block;
+  //   width: 5px;
+  //   overflow: auto;
+  //   height: 5px;
+  //   background-color: rgb(211, 130, 25);
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   background: rgb(255, 211, 153);
+  //   border-radius: 30px;
+  // }
+}
+
+.wrapper {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+[class*="__container"] {
+  max-width: 1728px;
+  margin: 0px auto;
+  padding: 0px 15px;
+  overflow-wrap: break-word;
+}
+
+.MuiBadge-badge {
+  top: 4px !important;
+  right: 3px !important;
+}

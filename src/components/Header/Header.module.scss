@@ -1,0 +1,65 @@
+@import "@/assets/styles/variables.scss";
+
+.header {
+  width: 100%;
+  padding-block: 10px;
+  background-color: rgb(245, 244, 244);
+  position: fixed;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & .header__logo {
+      @extend %roboto_500_21_25;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: clamp(21px, 2.5vw, 20px);
+
+    & svg {
+      cursor: pointer;
+    }
+  }
+
+  &__list_categories {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+    @media (max-width: 870px) {
+      display: none;
+    }
+  }
+
+  &__category {
+    @extend %roboto_400_20_22;
+  }
+
+  &__signup {
+    border: 2px solid black;
+    border-radius: 6px;
+    padding: 4px 10px;
+    transition: all 0.1s ease-in-out;
+    font-weight: 500;
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+
+  &__signin {
+    font-weight: 500;
+  }
+}

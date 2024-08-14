@@ -1,0 +1,13 @@
+%roboto_400_18 {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+%roboto_500_21_25 {
+  font-weight: 600;
+  font-size: clamp(21px, 2.5vw, 25px);
+}
+
+%roboto_400_20_22 {
+  font-size: clamp(20px, 2.5vw, 22px);
+}
