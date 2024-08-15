@@ -3,11 +3,26 @@
   font-size: 18px;
 }
 
-%roboto_500_21_25 {
+%roboto_600_21_25 {
   font-weight: 600;
   font-size: clamp(21px, 2.5vw, 25px);
 }
 
 %roboto_400_20_22 {
   font-size: clamp(20px, 2.5vw, 22px);
+}
+
+%roboto_400_21_25 {
+  font-weight: 400;
+  font-size: clamp(25px, 2.5vw, 30px);
+}
+
+%roboto_500_19_20 {
+  font-weight: 500;
+  font-size: clamp(19px, 2.5vw, 20px);
+}
+
+%roboto_500_19_23 {
+  font-weight: 500;
+  font-size: clamp(22px, 2.5vw, 23px);
 }

@@ -3,27 +3,28 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
   @extend %roboto_400_18;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(245, 244, 244);
 
   overflow-x: hidden;
   overflow-y: auto;
 
-  // &::-webkit-scrollbar {
-  //   display: block;
-  //   width: 5px;
-  //   overflow: auto;
-  //   height: 5px;
-  //   background-color: rgb(211, 130, 25);
-  // }
+  &::-webkit-scrollbar {
+    display: block;
+    width: 3px;
+    overflow: auto;
+    height: 5px;
+    background-color: rgb(145, 145, 145);
+  }
 
-  // &::-webkit-scrollbar-thumb {
-  //   background: rgb(255, 211, 153);
-  //   border-radius: 30px;
-  // }
+  &::-webkit-scrollbar-thumb {
+    background: rgb(219, 219, 219);
+    border-radius: 30px;
+  }
 }
 
 .wrapper {
@@ -46,4 +47,9 @@ main {
 .MuiBadge-badge {
   top: 4px !important;
   right: 3px !important;
+}
+
+// fix bog with twitching inputs, selects
+.MuiInput-root {
+  margin-top: 16px !important;
 }
