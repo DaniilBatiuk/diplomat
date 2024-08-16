@@ -1,0 +1,160 @@
+@import "@/assets/styles/variables.scss";
+
+.product {
+  &__container {
+    margin-top: clamp(20px, 4vw, 70px);
+    display: flex;
+    justify-content: center;
+    gap: clamp(20px, 3vw, 40px);
+    max-width: 1280px;
+
+    @media (max-width: 1307px) {
+      flex-direction: column;
+    }
+  }
+
+  &__name {
+    @extend %roboto_500_23_25;
+  }
+
+  &__img {
+    height: fit-content;
+    @media (max-width: 1307px) {
+      width: 100%;
+    }
+    @media (min-width: 1307px) {
+      position: sticky;
+      top: 64px;
+    }
+  }
+
+  &__swiper {
+    border-radius: 10px;
+    width: clamp(345px, 55vw, 670px);
+    height: clamp(345px, 55vw, 670px);
+
+    @media (max-width: 1307px) {
+      width: 100%;
+    }
+
+    background-color: white;
+
+    & .product__swiper_slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__image_box {
+    @media (max-width: 1307px) {
+      width: clamp(345px, 55vw, 670px);
+      height: clamp(345px, 55vw, 670px);
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__content {
+    margin-top: 30px;
+    @media (max-width: 1307px) {
+      margin-top: 0px;
+    }
+  }
+
+  &__subtitle {
+    margin-block: 5px;
+    color: #bfbfc0;
+  }
+
+  &__price {
+    @extend %roboto_600_21_25;
+  }
+
+  &__about {
+    font-size: 17px;
+  }
+
+  &__characteristics {
+    margin-top: 25px;
+    @extend %roboto_500_19_23;
+  }
+
+  &__list {
+    margin-top: 13px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 7px;
+    font-size: 16px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(189, 188, 188, 0.71);
+
+    &_characteristic {
+      width: 49%;
+      flex-wrap: wrap;
+      color: #adadb1;
+    }
+
+    &_data {
+      width: 49%;
+    }
+
+    &_item {
+      display: flex;
+      column-gap: 10px;
+    }
+  }
+
+  &__field {
+    margin-top: 25px;
+  }
+
+  &__button {
+    margin-top: clamp(15px, 3vw, 20px);
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 6px;
+    padding: 13px 10px;
+    transition: all 0.1s ease-in-out;
+    font-weight: 500;
+    background-color: black;
+    color: white;
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+  }
+
+  &__result {
+    display: flex;
+    align-items: end;
+    column-gap: 20px;
+    @extend %roboto_600_21_25;
+
+    & > p {
+      text-wrap: nowrap;
+    }
+  }
+
+  &__price_status {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+  }
+
+  &__status_ok {
+    color: rgb(0, 194, 0);
+  }
+
+  &__status_middle {
+    color: rgb(255, 145, 0);
+  }
+  &__status_bad {
+    color: rgb(255, 0, 0);
+  }
+}

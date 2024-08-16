@@ -53,3 +53,14 @@ main {
 .MuiInput-root {
   margin-top: 16px !important;
 }
+
+// swiper
+
+.swiper {
+  & > .swiper-button-prev::after,
+  & > .swiper-button-next::after {
+    @media (max-width: 870px) {
+      transform: scale(0.7);
+    }
+  }
+}

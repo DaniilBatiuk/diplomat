@@ -1,12 +1,16 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import image from "../../../assets/images/photo.jpg";
 
 import styles from "./Card.module.scss";
 
 export const Card: React.FC = () => {
+  const router = useRouter();
   return (
-    <figure className={styles.card}>
+    <figure className={styles.card} onClick={() => router.push(`/Product/1`)}>
       <div className={styles.card__img}>
         <Image width={1280} height={1280} priority={true} src={image} alt={`Image`} />
       </div>

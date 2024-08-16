@@ -45,10 +45,6 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 514.98px) {
-      grid-template-columns: repeat(1, 1fr);
-    }
-
     & > .card {
       width: auto;
       min-height: 395px;
