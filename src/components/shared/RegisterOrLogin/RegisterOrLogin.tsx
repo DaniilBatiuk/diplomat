@@ -4,6 +4,8 @@ import { TextField } from "@mui/material";
 import clsx from "clsx";
 import { Dispatch, SetStateAction } from "react";
 
+import { MyButton } from "@/components/ui/MyButton/MyButton";
+
 import { ICONS } from "@/utils/config/icons";
 
 import styles from "./RegisterOrLogin.module.scss";
@@ -67,7 +69,7 @@ export const RegisterOrLogin: React.FC<RegisterOrLoginProp> = ({
                 className={styles.login__field}
               />
             </div>
-            <button className={styles.login__button}>Зареєструватись</button>
+            <MyButton className={styles.login__button}>Зареєструватись</MyButton>
             <div className={styles.login__no_profile}>
               Вже є профіль?{" "}
               <span
@@ -106,7 +108,7 @@ export const RegisterOrLogin: React.FC<RegisterOrLoginProp> = ({
                 className={styles.login__field}
               />
             </div>
-            <button className={styles.login__button}>Увійти</button>
+            <MyButton className={styles.login__button}>Увійти</MyButton>
             <div className={styles.login__no_profile}>
               Немає профілю?{" "}
               <span

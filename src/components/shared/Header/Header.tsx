@@ -7,6 +7,8 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { MyButton } from "@/components/ui/MyButton/MyButton";
+
 import { ICONS } from "@/utils/config/icons";
 
 import { RegisterOrLogin } from "../RegisterOrLogin/RegisterOrLogin";
@@ -66,9 +68,10 @@ export const Header: React.FC = () => {
                 >
                   Увійти
                 </button>
-                <button className="header__signup" onClick={() => setRegisterActive(true)}>
+
+                <MyButton className="header__signup" onClick={() => setRegisterActive(true)}>
                   Зареєструватись
-                </button>
+                </MyButton>
               </>
             )}
           </div>
@@ -83,12 +86,12 @@ export const Header: React.FC = () => {
               <div className="list__item">Картини</div>
             </nav>
             <div className="header__menu-buttons">
-              <button className="header__signin-menu" onClick={() => setLoginActive(true)}>
+              <MyButton className="header__signup-menu" onClick={() => setLoginActive(true)}>
                 Увійти
-              </button>
-              <button className="header__signup-menu" onClick={() => setRegisterActive(true)}>
+              </MyButton>
+              <MyButton className="header__signup-menu" onClick={() => setRegisterActive(true)}>
                 Зареєструватись
-              </button>
+              </MyButton>
             </div>
           </div>
         </div>

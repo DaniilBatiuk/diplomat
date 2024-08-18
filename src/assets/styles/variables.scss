@@ -1,3 +1,5 @@
+$colorPurpleDark: rgb(150, 54, 240);
+
 %roboto_400_18 {
   font-weight: 400;
   font-size: 18px;
@@ -24,6 +26,11 @@
 %roboto_500_19_20 {
   font-weight: 500;
   font-size: clamp(19px, 2.5vw, 20px);
+}
+
+%roboto_600_20_21 {
+  font-weight: 600;
+  font-size: clamp(20px, 2.5vw, 21px);
 }
 
 %roboto_500_17_20 {
@@ -53,4 +60,8 @@
 %roboto_600_23_25 {
   font-weight: 600;
   font-size: clamp(23px, 2.5vw, 25px);
+}
+%roboto_600_23_30 {
+  font-weight: 600;
+  font-size: clamp(23px, 2.5vw, 30px);
 }

@@ -7,15 +7,21 @@
 
   &__plus,
   &__minus {
-    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: clamp(4px, 0.6vw, 5px);
+    padding: clamp(3px, 0.6vw, 4px);
     border-radius: 5px;
-    color: white;
-
     cursor: pointer;
+    border: 1px solid $colorPurpleDark;
+    background-color: rgba(150, 54, 240, 0.2);
+    color: $colorPurpleDark;
+
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      background-color: rgba(150, 54, 240, 0.3);
+      color: $colorPurpleDark;
+    }
   }
 
   &__field {

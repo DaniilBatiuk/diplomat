@@ -38,8 +38,6 @@
       width: 100%;
     }
 
-    background-color: white;
-
     & .product__swiper_slide {
       display: flex;
       align-items: center;
@@ -143,17 +141,7 @@
   &__button {
     margin-top: clamp(15px, 3vw, 20px);
     width: 100%;
-    border: 2px solid black;
-    border-radius: 6px;
-    padding: 13px 10px;
-    transition: all 0.1s ease-in-out;
-    font-weight: 500;
-    background-color: black;
-    color: white;
-    &:hover {
-      background-color: white;
-      color: black;
-    }
+    padding: clamp(10px, 1.8vw, 13px) 10px !important;
   }
 
   &__result {

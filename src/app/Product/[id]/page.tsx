@@ -13,12 +13,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { ICONS } from "@/utils/config/icons";
 
-import image2 from "../../../assets/images/photo2.webp";
-import image3 from "../../../assets/images/photo3.jpg";
-import image from "../../../assets/images/photo.jpg";
+import image2 from "../../../assets/images/ph1.png";
+import image3 from "../../../assets/images/ph.png";
+import image from "../../../assets/images/photo2.webp";
 
 import styles from "./Product.module.scss";
-import { Counter } from "@/components";
+import { Counter, MyButton } from "@/components";
 
 export default function Product() {
   return (
@@ -65,7 +65,7 @@ export default function Product() {
                 />
               </div>
             </SwiperSlide>
-            <SwiperSlide key={3} className={styles.product__swiper_slide}>
+            <SwiperSlide key={2} className={styles.product__swiper_slide}>
               <div className={styles.product__image_box}>
                 <Image
                   width={1280}
@@ -253,7 +253,7 @@ export default function Product() {
             <p>Загалом: 2440 грн</p>
           </div>
 
-          <button className={styles.product__button}>Додати в кошик</button>
+          <MyButton className={styles.product__button}>ДОДАТИ В КОШИК</MyButton>
         </div>
       </div>
     </section>

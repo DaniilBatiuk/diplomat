@@ -36,6 +36,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: clamp(10px, 2vw, 20px);
+    row-gap: clamp(25px, 2vw, 40px);
 
     @media (max-width: 1200.98px) {
       grid-template-columns: repeat(3, 1fr);
