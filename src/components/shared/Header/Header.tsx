@@ -1,5 +1,6 @@
 "use client";
 
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Badge } from "@mui/material";
 import clsx from "clsx";
@@ -14,7 +15,7 @@ import "./Header.scss";
 
 export const Header: React.FC = () => {
   const [menuActive, setMenuActive] = useState<boolean>(false);
-  const [isSignIn, setIsSignIn] = useState<boolean>(false);
+  const [isSignIn, setIsSignIn] = useState<boolean>(true);
 
   const [loginActive, setLoginActive] = useState<boolean>(false);
   const [registerActive, setRegisterActive] = useState<boolean>(false);
@@ -47,9 +48,12 @@ export const Header: React.FC = () => {
           <div className="header__list">
             {isSignIn ? (
               <div className="header__icon">
-                <Badge color="error" badgeContent={1}>
-                  <ShoppingCartOutlinedIcon sx={{ fontSize: 28 }} />
-                </Badge>
+                <Link href="/Basket">
+                  <Badge color="error" badgeContent={1}>
+                    <ShoppingCartOutlinedIcon sx={{ fontSize: 28 }} />
+                  </Badge>
+                </Link>
+                <FavoriteBorderIcon sx={{ fontSize: 28 }} />
               </div>
             ) : (
               <>
@@ -89,11 +93,6 @@ export const Header: React.FC = () => {
           </div>
         </div>
       </header>
-      {/* <Login
-        loginActive={loginActive}
-        setLoginActive={setLoginActive}
-        setRegisterActive={setRegisterActive}
-      /> */}
       <RegisterOrLogin
         registerActive={registerActive}
         setRegisterActive={setRegisterActive}

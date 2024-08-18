@@ -4,6 +4,7 @@
   width: 100%;
   padding-block: 10px;
   background-color: rgb(245, 244, 244);
+  position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
   z-index: 2;
@@ -32,6 +33,7 @@
   &__icon {
     display: flex;
     align-items: center;
+    column-gap: 15px;
     font-weight: 500;
     font-size: clamp(21px, 2.5vw, 20px);
 
@@ -159,6 +161,10 @@
   overflow: hidden;
 }
 
+.open-left {
+  padding-right: 5px;
+}
+
 .open-left body {
   overflow: hidden;
 }
@@ -166,7 +172,7 @@
 .dark {
   position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: rgb(204, 204, 204, 0);
   z-index: -1;
   transition: all 0.3s ease-in-out;

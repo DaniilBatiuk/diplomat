@@ -3,7 +3,7 @@
 
 html {
   scroll-behavior: smooth;
-  scrollbar-gutter: stable;
+  // scrollbar-gutter: stable;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 
   &::-webkit-scrollbar {
     display: block;
-    width: 3px;
+    width: 5px;
     overflow: auto;
     height: 5px;
     background-color: rgb(145, 145, 145);
@@ -31,6 +31,7 @@ body {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 main {

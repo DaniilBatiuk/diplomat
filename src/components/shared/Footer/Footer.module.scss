@@ -1,0 +1,75 @@
+@import "@/assets/styles/variables.scss";
+
+.footer {
+  &__container {
+    margin-top: clamp(30px, 2.5vw, 40px);
+    padding-block: clamp(20px, 2.5vw, 30px);
+    border-top: 1px solid rgba(189, 188, 188, 0.71);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__content {
+    display: flex;
+
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    justify-content: space-around;
+    column-gap: 20px;
+
+    @media (max-width: 850.98px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__logo {
+    width: 170px;
+    height: 121px;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    @media (max-width: 850.98px) {
+      margin-top: 20px;
+    }
+
+    @media (max-width: 621.98px) {
+      flex-direction: column;
+      align-items: center;
+      row-gap: 30px;
+    }
+  }
+  &__column {
+    &_title {
+      @extend %roboto_600_23_25;
+      margin-bottom: clamp(20px, 2.5vw, 40px);
+      text-align: center;
+    }
+    &_list {
+      display: flex;
+      flex-direction: column;
+      row-gap: clamp(10px, 1.8vw, 15px);
+    }
+    &_item {
+      word-wrap: nowrap;
+      color: rgb(134, 134, 134);
+    }
+  }
+
+  &__creator {
+    margin-top: clamp(40px, 2.5vw, 60px);
+  }
+}

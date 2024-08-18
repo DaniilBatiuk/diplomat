@@ -1,0 +1,37 @@
+@import "@/assets/styles/variables.scss";
+
+.counter {
+  display: flex;
+  align-items: center;
+  column-gap: clamp(9px, 1.5vw, 12px);
+
+  &__plus,
+  &__minus {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(4px, 0.6vw, 5px);
+    border-radius: 5px;
+    color: white;
+
+    cursor: pointer;
+  }
+
+  &__field {
+    width: 31px;
+    background-color: inherit;
+    text-align: center;
+    outline: none;
+    /* Скрыть стрелки (спиннеры) в Chrome, Safari, Edge */
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield;
+
+    /* Для Chrome и Safari */
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
