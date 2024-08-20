@@ -1,0 +1,52 @@
+@import "@/assets/styles/variables.scss";
+
+.saved {
+  margin-top: clamp(10px, 2.5vw, 30px);
+
+  &__container {
+    color: black;
+  }
+
+  & h1 {
+    @extend %roboto_500_23_25;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: clamp(20px, 2.5vw, 40px);
+  }
+
+  &__no_data {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: clamp(10px, 2.5vw, 30px);
+
+    & svg {
+      width: clamp(120px, 10.5vw, 157px);
+    }
+    & > p {
+      text-align: center;
+      max-width: 600px;
+    }
+  }
+
+  &__card_list {
+    margin-top: clamp(20px, 2.5vw, 30px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: clamp(10px, 2vw, 20px);
+    row-gap: clamp(25px, 2vw, 40px);
+
+    @media (max-width: 1200.98px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 850.98px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    & > .card {
+      width: auto;
+      min-height: 395px;
+    }
+  }
+}

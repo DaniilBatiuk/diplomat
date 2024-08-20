@@ -3,7 +3,7 @@
 .header {
   width: 100%;
   padding-block: 10px;
-  background-color: rgb(255, 255, 255);
+  background-color: $background;
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
@@ -15,7 +15,29 @@
     align-items: center;
 
     & .header__logo {
-      @extend %roboto_600_21_25;
+      height: 45px;
+      @extend %roboto_600_21_27;
+      color: $primary;
+      color: rgb(220, 42, 28);
+      transition: color 0.1s ease-in-out;
+      font-size: 24px;
+      position: relative;
+
+      & > span {
+        font-size: 37px;
+        padding-right: 3px;
+        position: relative;
+        text-shadow: 3px 3px 0px black;
+      }
+
+      & > span:last-child {
+        top: 13px;
+        left: 0px;
+      }
+
+      &:hover {
+        color: rgb(247, 81, 81);
+      }
     }
   }
 
@@ -59,6 +81,7 @@
     font-size: 18px;
     padding: 4px 10px;
     font-weight: 500;
+    border-radius: 5px;
 
     @media (max-width: 870px) {
       display: none;
@@ -67,10 +90,7 @@
 
   &__signup-menu,
   &__signin-menu {
-    border-radius: 6px;
     padding: 7px 10px;
-    transition: all 0.1s ease-in-out;
-    font-weight: 500;
   }
 
   &__menu-buttons {
@@ -81,19 +101,16 @@
 
   &__signin {
     font-weight: 500;
-
+    color: $primary;
     @media (max-width: 870px) {
-      border: 2px solid $colorPurpleDark;
-      border-radius: 6px;
-      padding: 4px 10px;
+      border: 2px solid $primary;
+      border-radius: 5px;
+      padding: 3px 10px;
       transition: all 0.1s ease-in-out;
-      font-weight: 500;
-      background-color: rgba(150, 54, 240, 0.2);
-      color: $colorPurpleDark;
+      background-color: $colorPurpleOpacity02;
 
       &:hover {
-        background-color: rgba(150, 54, 240, 0.3);
-        color: $colorPurpleDark;
+        background-color: $colorPurpleOpacity03;
       }
     }
   }
@@ -101,7 +118,7 @@
 
 // Header burger
 .menu-open {
-  background-color: white;
+  background-color: $background;
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -137,12 +154,12 @@
 
 .list__item {
   @extend %roboto_400_21_25;
-  border-bottom: 1px solid rgba(150, 54, 240, 0.7);
+  border-bottom: 1px solid $colorPurpleOpacity07;
   padding-block: 10px;
   padding-left: 5px;
   cursor: pointer;
   &:hover {
-    background-color: rgba(150, 54, 240, 0.2);
+    background-color: $colorPurpleOpacity02;
   }
 }
 

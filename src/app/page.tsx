@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 
 import styles from "./Home.module.scss";
-import { Card } from "./components/Card/Card";
+import { Card } from "@/components";
 
 export default function Home() {
   const [sort, setSort] = useState("Дешевше");

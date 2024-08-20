@@ -1,0 +1,44 @@
+@import "@/assets/styles/variables.scss";
+
+.search {
+  &__search {
+    flex: 0 1 1000px;
+    padding-inline: 40px;
+    display: flex;
+
+    & > button {
+      background-color: $primary;
+      color: white;
+      font-size: 16px;
+      padding: clamp(4px, 0.5vw, 6px) 15px;
+      border: 2px solid $primary;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border-left: 0px;
+      transition: background-color 0.1s ease-in-out;
+
+      &:hover {
+        background-color: $colorPurpleOpacity09;
+      }
+    }
+    @media (max-width: 870px) {
+      display: none;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    outline: none;
+    background-color: inherit;
+    border: 2px solid $primary;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: clamp(4px, 0.5vw, 6px) 15px;
+    transition: background-color 0.1s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background-color: $colorPurpleOpacity01;
+    }
+  }
+}

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import styles from "../../Basket.module.scss";
 
-import image from "@/assets/images/ph.png";
+import image from "@/assets/images/nobg.png";
 import { Counter } from "@/components";
 
 export const Item: React.FC = () => {

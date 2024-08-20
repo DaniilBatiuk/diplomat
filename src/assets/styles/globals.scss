@@ -8,7 +8,7 @@ html {
 
 body {
   @extend %roboto_400_18;
-  background-color: rgb(255, 255, 255);
+  background-color: $background;
 
   overflow-x: hidden;
   overflow-y: auto;

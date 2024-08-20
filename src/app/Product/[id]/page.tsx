@@ -13,7 +13,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { ICONS } from "@/utils/config/icons";
 
-import image2 from "../../../assets/images/ph1.png";
+import image2 from "../../../assets/images/nobg.png";
 import image3 from "../../../assets/images/ph.png";
 import image from "../../../assets/images/photo2.webp";
 

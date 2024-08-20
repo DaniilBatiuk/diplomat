@@ -1,4 +1,20 @@
-$colorPurpleDark: rgb(150, 54, 240);
+$colorPurpleOpacity09: rgba(210, 143, 50, 0.9);
+$colorPurpleOpacity07: rgba(210, 143, 50, 0.7);
+$colorPurpleOpacity03: rgba(210, 143, 50, 0.3);
+$colorPurpleOpacity02: rgba(210, 143, 50, 0.2);
+$colorPurpleOpacity01: rgba(210, 143, 50, 0.1);
+$grayLight: rgb(134, 134, 134);
+$grayLight2: rgb(243, 241, 241);
+$red: rgb(247, 0, 0);
+
+$background: rgb(252, 249, 243);
+$secondary: rgb(255, 237, 212);
+$primary: rgb(210, 143, 50);
+
+// $background: rgb(252, 249, 243);
+// $primary: rgb(210, 143, 50);
+// $secondary: rgb(233, 188, 124);
+// $accent: rgb(234, 171, 83);
 
 %roboto_400_18 {
   font-weight: 400;
@@ -8,6 +24,11 @@ $colorPurpleDark: rgb(150, 54, 240);
 %roboto_600_21_25 {
   font-weight: 600;
   font-size: clamp(21px, 2.5vw, 25px);
+}
+
+%roboto_600_21_27 {
+  font-weight: 900;
+  font-size: clamp(27px, 2.5vw, 35px);
 }
 
 %roboto_400_20_22 {
@@ -26,6 +47,11 @@ $colorPurpleDark: rgb(150, 54, 240);
 %roboto_500_19_20 {
   font-weight: 500;
   font-size: clamp(19px, 2.5vw, 20px);
+}
+
+%roboto_500_22_23 {
+  font-weight: 500;
+  font-size: clamp(22px, 2.5vw, 23px);
 }
 
 %roboto_600_20_21 {

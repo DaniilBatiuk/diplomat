@@ -4,7 +4,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import image from "../../../assets/images/ph.png";
+import image from "../../../assets/images/nobg.png";
 
 import styles from "./Card.module.scss";
 import { MyButton } from "@/components";

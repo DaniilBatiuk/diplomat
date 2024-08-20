@@ -46,6 +46,7 @@
   }
 
   &__image_box {
+    background-color: $secondary;
     width: 100%;
     height: 100%;
     @media (max-width: 1307px) {
@@ -75,6 +76,7 @@
   &__accordion {
     background-color: inherit !important;
     box-shadow: none !important;
+    margin: 0px !important;
     &::before {
       opacity: 1 !important;
     }
@@ -113,7 +115,7 @@
 
   &__characteristics {
     margin-top: 25px;
-    @extend %roboto_500_19_23;
+    @extend %roboto_500_22_23;
   }
 
   &__list {

@@ -10,14 +10,16 @@ import { useEffect, useState } from "react";
 import { MyButton } from "@/components/ui/MyButton/MyButton";
 
 import { ICONS } from "@/utils/config/icons";
+import { LINKS } from "@/utils/config/pages-url.config";
 
 import { RegisterOrLogin } from "../RegisterOrLogin/RegisterOrLogin";
+import { Search } from "../Search/Search";
 
 import "./Header.scss";
 
 export const Header: React.FC = () => {
   const [menuActive, setMenuActive] = useState<boolean>(false);
-  const [isSignIn, setIsSignIn] = useState<boolean>(true);
+  const [isSignIn, setIsSignIn] = useState<boolean>(false);
 
   const [loginActive, setLoginActive] = useState<boolean>(false);
   const [registerActive, setRegisterActive] = useState<boolean>(false);
@@ -37,25 +39,30 @@ export const Header: React.FC = () => {
     <>
       <header className="header">
         <div className="header__container">
-          <Link href="/">
-            <p className="header__logo">DIPLOMAT</p>
+          <Link href={LINKS.HOME}>
+            <p className="header__logo">
+              <span>Д</span>иплома<span>Т</span>
+            </p>
           </Link>
-          <nav className="header__list_categories">
+          {/* <nav className="header__list_categories">
             <div className="header__category">Вази</div>
             <div className="header__category">Посуд</div>
             <div className="header__category">Кожа</div>
             <div className="header__category">Картини</div>
-          </nav>
+          </nav> */}
+          <Search />
 
           <div className="header__list">
             {isSignIn ? (
               <div className="header__icon">
-                <Link href="/Basket">
+                <Link href={LINKS.BASKET}>
                   <Badge color="error" badgeContent={1}>
                     <ShoppingCartOutlinedIcon sx={{ fontSize: 28 }} />
                   </Badge>
                 </Link>
-                <FavoriteBorderIcon sx={{ fontSize: 28 }} />
+                <Link href={LINKS.SAVED}>
+                  <FavoriteBorderIcon sx={{ fontSize: 28 }} />
+                </Link>
               </div>
             ) : (
               <>

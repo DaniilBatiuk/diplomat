@@ -13,14 +13,14 @@
     padding: clamp(3px, 0.6vw, 4px);
     border-radius: 5px;
     cursor: pointer;
-    border: 1px solid $colorPurpleDark;
-    background-color: rgba(150, 54, 240, 0.2);
-    color: $colorPurpleDark;
+    border: 1px solid $primary;
+    background-color: $colorPurpleOpacity02;
+    color: $primary;
 
     transition: all 0.1s ease-in-out;
     &:hover {
-      background-color: rgba(150, 54, 240, 0.3);
-      color: $colorPurpleDark;
+      background-color: $colorPurpleOpacity03;
+      color: $primary;
     }
   }
 

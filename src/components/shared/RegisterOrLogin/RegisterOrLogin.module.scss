@@ -1,7 +1,7 @@
 @import "@/assets/styles/variables.scss";
 
 .login {
-  background-color: white;
+  background-color: $background;
   position: fixed;
   width: 400px;
   height: 100vh;
@@ -23,7 +23,7 @@
   }
 
   &__container {
-    background-color: white;
+    background-color: $background;
     flex: 1 1 auto;
     display: flex;
     align-items: center;
@@ -48,8 +48,8 @@
 
   &__header {
     padding: 20px 15px;
-    background-color: rgb(233, 209, 255);
-    color: $colorPurpleDark;
+    background-color: $colorPurpleOpacity02;
+    color: $primary;
     @extend %roboto_500_19_23;
     display: flex;
     align-items: center;
@@ -65,7 +65,7 @@
   }
 
   &__title {
-    color: $colorPurpleDark;
+    color: $primary;
     @extend %roboto_500_19_23;
   }
 

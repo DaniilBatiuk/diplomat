@@ -1,15 +1,15 @@
 @import "@/assets/styles/variables.scss";
 .my_button {
-  border: 2px solid $colorPurpleDark;
+  border: 2px solid $primary;
   border-radius: 6px;
   padding: clamp(5px, 1.4vw, 13px) 10px;
   transition: all 0.1s ease-in-out;
-  background-color: rgba(150, 54, 240, 0.2);
-  color: $colorPurpleDark;
+  background-color: $colorPurpleOpacity02;
+  color: $primary;
 
   @extend %roboto_600_20_21;
   &:hover {
-    background-color: rgba(150, 54, 240, 0.3);
-    color: $colorPurpleDark;
+    background-color: $colorPurpleOpacity03;
+    color: $primary;
   }
 }

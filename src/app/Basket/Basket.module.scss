@@ -17,7 +17,7 @@
       border-radius: 3px;
       width: 0;
       height: 5px;
-      background-color: $colorPurpleDark;
+      background-color: $primary;
       right: 0;
       bottom: -10px;
       transition: 0.3s;
@@ -58,7 +58,8 @@
   &__item {
     height: 100px;
     display: flex;
-    background-color: rgb(243, 241, 241);
+    // background-color: $grayLight2;
+    background-color: rgb(255, 243, 226);
     border-radius: 10px;
     position: relative;
 
@@ -125,7 +126,7 @@
       cursor: pointer;
       transition: color 0.15s ease-in-out;
       &:hover {
-        color: rgb(247, 0, 0);
+        color: $red;
       }
     }
 
@@ -146,9 +147,12 @@
   }
 
   &__img {
+    background-color: $secondary;
     min-width: 100px;
     width: 100px;
     height: 100px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
   }
 
   &__image {
@@ -163,7 +167,7 @@
     margin-top: clamp(15px, 2.5vw, 40px);
     padding-top: clamp(10px, 2.5vw, 20px);
 
-    border-top: 1px solid rgba(150, 54, 240, 0.7);
+    border-top: 1px solid $colorPurpleOpacity07;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -178,9 +182,6 @@
   }
 
   &__button {
-    border: 2px solid rgb(1, 175, 1);
-    background-color: rgb(1, 175, 1, 0.08);
-    color: rgb(1, 175, 1);
     border-radius: 6px;
     padding: 7px 10px;
     transition: all 0.1s ease-in-out;
@@ -188,10 +189,6 @@
     font-size: 20px;
 
     padding: clamp(10px, 1.8vw, 13px) 10px !important;
-
-    &:hover {
-      background-color: rgb(1, 175, 1, 0.2);
-    }
 
     &_div {
       margin-top: clamp(20px, 2.5vw, 40px);
