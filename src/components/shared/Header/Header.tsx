@@ -44,12 +44,6 @@ export const Header: React.FC = () => {
               <span>Д</span>иплома<span>Т</span>
             </p>
           </Link>
-          {/* <nav className="header__list_categories">
-            <div className="header__category">Вази</div>
-            <div className="header__category">Посуд</div>
-            <div className="header__category">Кожа</div>
-            <div className="header__category">Картини</div>
-          </nav> */}
           <Search className="header__search" classNameInput="header__search_input" />
 
           <div className="header__list">

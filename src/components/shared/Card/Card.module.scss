@@ -28,19 +28,9 @@
   &__img {
     background-color: $secondary;
     align-self: center;
-    height: clamp(190px, 27vw, 410px);
-    width: clamp(190px, 27vw, 410px);
+    width: 100%;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
-
-    @media (max-width: 1200.98px) {
-      height: clamp(190px, 32vw, 410px);
-      width: clamp(190px, 32vw, 410px);
-    }
-
-    @media (max-width: 850.98px) {
-      height: clamp(190px, 47vw, 410px);
-      width: clamp(190px, 47vw, 410px);
-    }
   }
 
   & img {

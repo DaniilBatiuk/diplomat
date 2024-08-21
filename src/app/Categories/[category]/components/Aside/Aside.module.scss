@@ -1,0 +1,45 @@
+@import "@/assets/styles/variables.scss";
+
+.aside {
+  flex: 0 0 250px;
+  position: relative;
+
+  &__content {
+    top: 65px;
+    position: sticky;
+  }
+
+  @media (max-width: 870px) {
+    display: none !important;
+  }
+
+  &__price {
+    &_inputs {
+      margin-bottom: 10px;
+      display: flex;
+      column-gap: 10px;
+      justify-content: space-between;
+    }
+
+    &_input {
+      width: 49%;
+      outline: none;
+      background-color: inherit;
+      border: 2px solid $accent;
+      border-radius: 5px;
+      padding: 6px 15px;
+      transition: background-color 0.1s ease-in-out;
+
+      &:hover,
+      &:focus {
+        background-color: $primaryOpacity01;
+      }
+    }
+  }
+
+  &__accordion_no_before {
+    &::after {
+      opacity: 0 !important;
+    }
+  }
+}

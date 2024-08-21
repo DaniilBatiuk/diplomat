@@ -1,5 +1,6 @@
 $primaryOpacity09: rgba(210, 143, 50, 0.9);
 $primaryOpacity07: rgba(210, 143, 50, 0.7);
+$primaryOpacity05: rgba(210, 143, 50, 0.5);
 $primaryOpacity03: rgba(210, 143, 50, 0.3);
 $primaryOpacity02: rgba(210, 143, 50, 0.2);
 $primaryOpacity01: rgba(210, 143, 50, 0.1);
@@ -18,6 +19,19 @@ $hover: rgb(228, 159, 62);
   background-color: $accent;
   color: $background;
   border-color: $accent;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    color: $background;
+    background-color: $hover;
+    border-color: $hover;
+  }
+}
+%buttonStyles2 {
+  background-color: $background;
+  color: $accent;
+  border: 2px solid $accent;
+  transition: all 0.1s ease-in-out;
 
   &:hover {
     color: $background;
@@ -43,6 +57,9 @@ $hover: rgb(228, 159, 62);
 
 %roboto_400_20_22 {
   font-size: clamp(20px, 2.5vw, 22px);
+}
+%roboto_400_19_21 {
+  font-size: clamp(19px, 2.5vw, 21px);
 }
 
 %roboto_400_20_25 {
@@ -71,6 +88,10 @@ $hover: rgb(228, 159, 62);
 
 %roboto_500_17_20 {
   font-weight: 500;
+  font-size: clamp(17px, 2.5vw, 20px);
+}
+%roboto_400_17_20 {
+  font-weight: 400;
   font-size: clamp(17px, 2.5vw, 20px);
 }
 

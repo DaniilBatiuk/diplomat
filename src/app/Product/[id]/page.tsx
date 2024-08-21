@@ -2,7 +2,6 @@
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import clsx from "clsx";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -86,15 +85,8 @@ export default function Product() {
             <h3 className={styles.product__price}>2440 грн</h3>
             <div className={styles.product__status_bad}>Немає в наявності</div>
           </div>
-          <Accordion
-            className={clsx(styles.product__accordion_no_before, styles.product__accordion)}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              className={styles.product__accordion_title}
-            >
-              ОПИС
-            </AccordionSummary>
+          <Accordion className={styles.product__accordion_no_before}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>ОПИС</AccordionSummary>
             <AccordionDetails>
               <p className={styles.product__about}>
                 Ваза Egermann 30 см янтарная 8381 30 28007 85 Ваза Egermann 30 см янтарная 8381 30
@@ -104,13 +96,8 @@ export default function Product() {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion className={styles.product__accordion}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              className={styles.product__accordion_title}
-            >
-              ХАРАКТЕРИСТИКИ
-            </AccordionSummary>
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>ХАРАКТЕРИСТИКИ</AccordionSummary>
             <AccordionDetails>
               <div className={styles.product__list}>
                 <div className={styles.product__list_item}>
@@ -230,13 +217,8 @@ export default function Product() {
               </div>
             </AccordionDetails>
           </Accordion>
-          <Accordion className={styles.product__accordion}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              className={styles.product__accordion_title}
-            >
-              ЗАДАТИ ПИТАННЯ
-            </AccordionSummary>
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>ЗАДАТИ ПИТАННЯ</AccordionSummary>
             <AccordionDetails>
               <p className={styles.product__accordion_subtitle}>
                 Зв'яжіться з менеджером у чаті або за телефоном:

@@ -1,7 +1,7 @@
 @import "@/assets/styles/variables.scss";
 
 .saved {
-  margin-top: clamp(10px, 2.5vw, 30px);
+  margin-top: clamp(15px, 2.5vw, 30px);
 
   &__container {
     color: black;
@@ -33,7 +33,7 @@
     margin-top: clamp(20px, 2.5vw, 30px);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: clamp(10px, 2vw, 20px);
+    grid-gap: clamp(10px, 1.5vw, 20px);
     row-gap: clamp(25px, 2vw, 40px);
 
     @media (max-width: 1200.98px) {

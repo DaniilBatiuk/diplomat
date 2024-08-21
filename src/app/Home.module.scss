@@ -1,107 +1,63 @@
 @import "@/assets/styles/variables.scss";
 
 .home {
-  margin-top: clamp(5px, 2.5vw, 40px);
+  margin-top: clamp(15px, 2.5vw, 30px);
 
   &__container {
     color: black;
   }
 
-  &__filters {
-    display: flex;
-    column-gap: 20px;
-    justify-content: flex-end;
-    align-items: flex-end;
+  &__categories {
+    margin-top: clamp(25px, 3.5vw, 60px);
+    & > h1 {
+      @extend %roboto_500_23_25;
+      text-align: center;
+    }
 
-    @media (max-width: 600px) {
-      flex-direction: column;
-      align-items: normal;
-      row-gap: 15px;
+    &_list {
+      margin: 0 auto;
+      margin-top: clamp(15px, 2.5vw, 30px);
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 20px;
+      max-width: 940px;
+
+      @media (max-width: 830.98px) {
+        gap: 10px;
+      }
     }
   }
+}
 
-  &__filter_button {
-    height: 38px;
-    @extend %buttonStyles;
-    background-color: $background;
-    color: $accent;
-    border: 2px solid $accent;
+.categories {
+  &__item {
+    width: calc(100% / 3 - 40px / 3);
+    padding: clamp(5px, 2.5vw, 10px);
+    background-color: $primaryOpacity01;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    column-gap: clamp(10px, 2.5vw, 20px);
+    @extend %roboto_400_17_20;
+    transition: background-color 0.1s ease-in-out;
 
     &:hover {
-      color: $background;
-      background-color: $hover;
-      border-color: $hover;
+      background-color: $primaryOpacity02;
     }
 
-    padding: 6px 10px;
-    font-weight: 500;
-    border-radius: 5px;
-    display: none;
+    @media (max-width: 830.98px) {
+      width: calc(100% / 2 - 5px);
+      height: clamp(60px, 10vw, 80px);
 
-    @media (max-width: 1000px) {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      column-gap: 15px;
+      & > svg {
+        height: 100%;
+      }
     }
 
-    @media (max-width: 600px) {
-      flex: 1 1 auto;
-    }
-  }
-
-  &__search {
-    flex: 1 1 auto !important;
-    & > input {
-      padding-block: 6px;
-    }
-    @media (min-width: 870px) {
-      display: none !important;
-    }
-  }
-
-  &__selects {
-    display: flex;
-    gap: clamp(15px, 2.5vw, 20px);
-    align-items: flex-end;
-    @media (max-width: 737px) {
-      width: auto;
-    }
-
-    & label {
-      display: none;
-    }
-
-    & div {
-      margin-top: 0px !important;
-    }
-  }
-
-  &__select {
-    width: 50%;
-  }
-
-  &__search {
-  }
-
-  &__card_list {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: clamp(10px, 2vw, 20px);
-    row-gap: clamp(25px, 2vw, 40px);
-
-    @media (max-width: 1200.98px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    @media (max-width: 850.98px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    & > .card {
-      width: auto;
-      min-height: 395px;
+    & > svg {
+      flex: 0 0 clamp(40px, 10vw, 110px);
     }
   }
 }

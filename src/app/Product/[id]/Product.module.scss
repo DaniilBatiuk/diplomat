@@ -67,29 +67,9 @@
     @media (max-width: 1307px) {
       margin-top: 0px;
     }
-
-    & .MuiPaper-root {
-      background-color: inherit;
-    }
   }
 
   &__accordion {
-    background-color: inherit !important;
-    box-shadow: none !important;
-    margin: 0px !important;
-    &::before {
-      background-color: $accent !important;
-      opacity: 1 !important;
-    }
-
-    & svg {
-      color: $primary !important;
-    }
-
-    &_title {
-      font-weight: 500;
-    }
-
     &_contacts {
       margin-top: 10px;
       display: flex;
@@ -100,7 +80,7 @@
   }
 
   &__accordion_no_before {
-    &::before {
+    &::after {
       opacity: 0 !important;
     }
   }

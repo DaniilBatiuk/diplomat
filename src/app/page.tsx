@@ -1,80 +1,39 @@
-"use client";
+import Link from "next/link";
 
-import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import { useState } from "react";
+import { ICONS } from "@/utils/config/icons";
 
 import styles from "./Home.module.scss";
-import { Card, Search, UnderHeader } from "@/components";
+import { UnderHeader } from "@/components";
 
 export default function Home() {
-  const [sort, setSort] = useState("Новинки");
-  const [category, setCategory] = useState("Всі");
-  const categories = ["Вази", "Посуд", "Кожа", "Картини"];
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setSort(event.target.value as string);
-  };
-  const handleChangeCategory = (event: SelectChangeEvent) => {
-    setCategory(event.target.value as string);
-  };
-
   return (
     <>
       <UnderHeader />
-      <div className={styles.home}>
-        <div className={styles.home__container}>
-          <section className={styles.home__filters}>
-            <Search className={styles.home__search} />
-            <div className={styles.home__selects}>
-              <button className={styles.home__filter_button}>
-                <TuneOutlinedIcon /> Фільтр
-              </button>
-              {/* <FormControl
-                variant="standard"
-                sx={{ minWidth: 140 }}
-                className={styles.home__select}
-              >
-                <InputLabel>Фільтрація по категоріям</InputLabel>
-                <Select
-                  value={category}
-                  onChange={handleChangeCategory}
-                  label="Фільтрація по категоріям"
-                >
-                  <MenuItem value={"Всі"}>Всі</MenuItem>
-                  {categories.map(el => (
-                    <MenuItem key={el} value={el}>
-                      {el}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl> */}
-              <FormControl
-                variant="standard"
-                sx={{ minWidth: 140 }}
-                className={styles.home__select}
-              >
-                <InputLabel>Фільтрація по ціні</InputLabel>
-                <Select value={sort} onChange={handleChange} label="Фільтрація по ціні">
-                  <MenuItem value={"Новинки"}>Новинки</MenuItem>
-                  <MenuItem value={"Дешевше"}>Дешевше</MenuItem>
-                  <MenuItem value={"Дорожче"}>Дорожче</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-          </section>
-          <section className={styles.home__card_list}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </section>
-        </div>
+      <div className={styles.home__container}>
+        <section className={styles.home__categories}>
+          <h1>КАТЕГОРІЇ</h1>
+          <div className={styles.home__categories_list}>
+            <Link href="/Categories/Аксесуари" className={styles.categories__item}>
+              {ICONS.flower()} АКСЕСУАРИ
+            </Link>
+
+            <Link href="/Categories/Фігурки ти статуетки" className={styles.categories__item}>
+              {ICONS.rabbit()} ФІГУРКИ ТА СТАТУЕТКИ
+            </Link>
+            <Link href="/Categories/Посуд" className={styles.categories__item}>
+              {ICONS.goblet()} ПОСУД
+            </Link>
+            <Link href="/Categories/Інтер'єр та декор" className={styles.categories__item}>
+              {ICONS.lamp()} ІНТЕР'ЄР ТА ДЕКОР
+            </Link>
+            <Link href="/Categories/Новорічні іграшки" className={styles.categories__item}>
+              {ICONS.christmas()} НОВОРІЧНІ ІГРАШКИ
+            </Link>
+            <Link href="/Categories/Настільні ігри" className={styles.categories__item}>
+              {ICONS.chess()} НАСТІЛЬНІ ІГРИ
+            </Link>
+          </div>
+        </section>
       </div>
     </>
   );

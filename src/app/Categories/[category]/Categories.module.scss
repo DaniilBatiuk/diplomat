@@ -1,0 +1,187 @@
+@import "@/assets/styles/variables.scss";
+
+.categories {
+  margin-top: clamp(15px, 2.5vw, 30px);
+
+  &__container {
+    color: black;
+  }
+
+  &__filters {
+    display: flex;
+    column-gap: 20px;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: normal;
+      row-gap: 15px;
+    }
+  }
+
+  &__filter_button {
+    height: 38px;
+
+    @extend %buttonStyles2;
+
+    padding: 6px 10px;
+    font-weight: 500;
+    border-radius: 5px;
+    display: none;
+
+    @media (max-width: 870px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 15px;
+    }
+
+    @media (max-width: 600px) {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__search {
+    flex: 1 1 auto !important;
+    & > input {
+      padding-block: 6px;
+    }
+    @media (min-width: 870px) {
+      display: none !important;
+    }
+  }
+
+  &__selects {
+    display: flex;
+    gap: clamp(15px, 2.5vw, 20px);
+    align-items: flex-end;
+    @media (max-width: 737px) {
+      width: auto;
+    }
+
+    & label {
+      display: none;
+    }
+
+    & div {
+      margin-top: 0px !important;
+    }
+  }
+
+  &__select {
+    width: 50%;
+  }
+
+  &__search {
+  }
+
+  &__card_list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: clamp(10px, 1.5vw, 20px);
+    row-gap: clamp(25px, 2vw, 40px);
+
+    @media (max-width: 1330.98px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1090.98px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__main {
+    margin-top: 20px;
+    display: flex;
+    column-gap: 20px;
+  }
+
+  &__card_image {
+    background-color: $secondary !important;
+    align-self: center;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    overflow: hidden;
+  }
+
+  &__subcategories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(5px, 2vw, 10px);
+    margin-top: clamp(15px, 2vw, 30px);
+    margin-bottom: clamp(20px, 2vw, 40px);
+
+    &_item {
+      padding: 5px 10px;
+      border-radius: 3px;
+      @extend %buttonStyles2;
+      @extend %roboto_400_19_21;
+      background-color: $primaryOpacity01;
+      cursor: pointer;
+
+      &.active {
+        background-color: $primaryOpacity07;
+        color: $background;
+      }
+
+      &:hover {
+        background-color: $primaryOpacity05;
+      }
+    }
+  }
+
+  &__title {
+    @extend %roboto_500_23_25;
+    text-align: center;
+  }
+}
+
+.open_category {
+  background-color: $background;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: -110%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+
+  overflow: auto;
+  transition: left 0.3s ease-in-out;
+  z-index: 3;
+
+  &.active {
+    left: 0;
+  }
+
+  &__header {
+    padding: 20px 15px;
+    background-color: $primaryOpacity02;
+    color: $primary;
+    @extend %roboto_500_19_23;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    & > svg {
+      cursor: pointer;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    padding-inline: 15px;
+    padding-bottom: 62px;
+
+    & > aside {
+      display: block !important;
+      flex: 1 1 auto !important;
+    }
+  }
+}
