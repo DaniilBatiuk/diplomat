@@ -28,8 +28,8 @@ export default function Product() {
           <Swiper
             style={{
               // @ts-ignore
-              "--swiper-navigation-color": "#000000",
-              "--swiper-pagination-color": "#000000",
+              "--swiper-navigation-color": "rgb(234, 171, 83)",
+              "--swiper-pagination-color": "rgb(234, 171, 83)",
             }}
             slidesPerView={1}
             spaceBetween={30}
@@ -65,7 +65,7 @@ export default function Product() {
                 />
               </div>
             </SwiperSlide>
-            <SwiperSlide key={2} className={styles.product__swiper_slide}>
+            <SwiperSlide key={3} className={styles.product__swiper_slide}>
               <div className={styles.product__image_box}>
                 <Image
                   width={1280}

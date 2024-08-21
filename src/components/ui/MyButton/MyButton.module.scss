@@ -4,12 +4,12 @@
   border-radius: 6px;
   padding: clamp(5px, 1.4vw, 13px) 10px;
   transition: all 0.1s ease-in-out;
-  background-color: $colorPurpleOpacity02;
+  background-color: $primaryOpacity02;
   color: $primary;
 
   @extend %roboto_600_20_21;
   &:hover {
-    background-color: $colorPurpleOpacity03;
+    background-color: $primaryOpacity03;
     color: $primary;
   }
 }

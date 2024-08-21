@@ -10,6 +10,7 @@ export const UnderHeader: React.FC = () => {
         <div className={styles.under__logo}>
           <Image width={682} height={485} priority={true} src={logo} alt={`Image`} />
         </div>
+        <div className={styles.under__line}></div>
         <div className={styles.under__contacts}>
           <ul className={styles.under__left_list}>
             <li>+ 38 (067) 535 05 85</li>

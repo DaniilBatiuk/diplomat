@@ -8,7 +8,7 @@ export default function Saved() {
     <section className={styles.saved}>
       <div className={styles.saved__container}>
         <h1>ЗБЕРЕЖЕНІ</h1>
-        {0 > 2 ? (
+        {0 < 2 ? (
           <div className={styles.saved__no_data}>
             <div className={styles.saved__icon}>{ICONS.savedMenu()}</div>
             <p>

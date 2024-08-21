@@ -18,11 +18,11 @@ body {
     width: 5px;
     overflow: auto;
     height: 5px;
-    background-color: rgb(145, 145, 145);
+    background-color: rgb(210, 143, 50);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgb(219, 219, 219);
+    background: rgb(234, 171, 83);
     border-radius: 30px;
   }
 }
@@ -63,5 +63,28 @@ main {
     @media (max-width: 870px) {
       transform: scale(0.7);
     }
+  }
+}
+
+.MuiInputBase-root {
+  &::before,
+  &::after {
+    border-color: $accent !important;
+
+    &:hover {
+      border-color: $accent !important;
+    }
+  }
+}
+
+.MuiFormLabel-root {
+  color: $accent !important;
+}
+.Mui-selected {
+  background-color: $primaryOpacity02 !important;
+}
+.MuiMenuItem-root {
+  &:hover {
+    background-color: $primaryOpacity03 !important;
   }
 }

@@ -14,12 +14,12 @@
     border-radius: 5px;
     cursor: pointer;
     border: 1px solid $primary;
-    background-color: $colorPurpleOpacity02;
+    background-color: $primaryOpacity02;
     color: $primary;
 
     transition: all 0.1s ease-in-out;
     &:hover {
-      background-color: $colorPurpleOpacity03;
+      background-color: $primaryOpacity03;
       color: $primary;
     }
   }

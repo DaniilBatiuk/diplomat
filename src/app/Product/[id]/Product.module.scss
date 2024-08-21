@@ -78,7 +78,12 @@
     box-shadow: none !important;
     margin: 0px !important;
     &::before {
+      background-color: $accent !important;
       opacity: 1 !important;
+    }
+
+    & svg {
+      color: $primary !important;
     }
 
     &_title {
@@ -102,7 +107,7 @@
 
   &__subtitle {
     margin-block: 5px;
-    color: #bfbfc0;
+    color: $grayLight3;
   }
 
   &__price {
@@ -127,7 +132,7 @@
     &_characteristic {
       width: 49%;
       flex-wrap: wrap;
-      color: #adadb1;
+      color: $grayLight3;
     }
 
     &_data {

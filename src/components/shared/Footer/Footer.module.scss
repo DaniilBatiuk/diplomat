@@ -4,7 +4,7 @@
   &__container {
     margin-top: clamp(30px, 2.5vw, 40px);
     padding-block: clamp(20px, 2.5vw, 30px);
-    border-top: 1px solid rgba(189, 188, 188, 0.71);
+    border-top: 1px solid $accent;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,8 +27,11 @@
   }
 
   &__logo {
-    width: 170px;
-    height: 121px;
+    width: 278px;
+    height: 197px;
+
+    width: clamp(244px, 20vw, 278px);
+    height: clamp(172px, 14vw, 197px);
 
     & > img {
       width: 100%;

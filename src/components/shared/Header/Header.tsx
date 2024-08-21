@@ -50,7 +50,7 @@ export const Header: React.FC = () => {
             <div className="header__category">Кожа</div>
             <div className="header__category">Картини</div>
           </nav> */}
-          <Search />
+          <Search className="header__search" classNameInput="header__search_input" />
 
           <div className="header__list">
             {isSignIn ? (

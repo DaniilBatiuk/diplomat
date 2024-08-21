@@ -1,20 +1,30 @@
-$colorPurpleOpacity09: rgba(210, 143, 50, 0.9);
-$colorPurpleOpacity07: rgba(210, 143, 50, 0.7);
-$colorPurpleOpacity03: rgba(210, 143, 50, 0.3);
-$colorPurpleOpacity02: rgba(210, 143, 50, 0.2);
-$colorPurpleOpacity01: rgba(210, 143, 50, 0.1);
+$primaryOpacity09: rgba(210, 143, 50, 0.9);
+$primaryOpacity07: rgba(210, 143, 50, 0.7);
+$primaryOpacity03: rgba(210, 143, 50, 0.3);
+$primaryOpacity02: rgba(210, 143, 50, 0.2);
+$primaryOpacity01: rgba(210, 143, 50, 0.1);
 $grayLight: rgb(134, 134, 134);
 $grayLight2: rgb(243, 241, 241);
+$grayLight3: rgb(179, 179, 179);
 $red: rgb(247, 0, 0);
 
 $background: rgb(252, 249, 243);
 $secondary: rgb(255, 237, 212);
 $primary: rgb(210, 143, 50);
+$accent: rgb(234, 171, 83);
+$hover: rgb(228, 159, 62);
 
-// $background: rgb(252, 249, 243);
-// $primary: rgb(210, 143, 50);
-// $secondary: rgb(233, 188, 124);
-// $accent: rgb(234, 171, 83);
+%buttonStyles {
+  background-color: $accent;
+  color: $background;
+  border-color: $accent;
+
+  &:hover {
+    color: $background;
+    background-color: $hover;
+    border-color: $hover;
+  }
+}
 
 %roboto_400_18 {
   font-weight: 400;
