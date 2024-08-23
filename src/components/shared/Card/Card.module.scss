@@ -1,4 +1,4 @@
-@import "../../../assets/styles/variables.scss";
+@import "@/assets/styles/variables.scss";
 
 .card {
   cursor: pointer;
@@ -45,7 +45,7 @@
   }
 
   &__title {
-    @extend %roboto_500_19_20;
+    @extend %inter_500_19_20;
     padding-bottom: 1px;
     overflow: hidden;
     white-space: nowrap;
@@ -64,7 +64,7 @@
 
   &__price {
     margin-top: 7px;
-    @extend %roboto_600_21_25;
+    @extend %inter_600_21_25;
     padding-bottom: 1px;
     overflow: hidden;
     white-space: nowrap;

@@ -7,7 +7,7 @@
   background-color: $primaryOpacity02;
   color: $primary;
 
-  @extend %roboto_600_20_21;
+  @extend %inter_600_20_21;
   &:hover {
     background-color: $primaryOpacity03;
     color: $primary;

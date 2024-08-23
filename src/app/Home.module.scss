@@ -5,12 +5,14 @@
 
   &__container {
     color: black;
+    display: flex;
+    flex-direction: column;
+    row-gap: clamp(40px, 10vw, 200px);
   }
 
   &__categories {
-    margin-top: clamp(25px, 3.5vw, 60px);
     & > h1 {
-      @extend %roboto_500_23_25;
+      @extend %inter_700_25_35;
       text-align: center;
     }
 
@@ -18,13 +20,106 @@
       margin: 0 auto;
       margin-top: clamp(15px, 2.5vw, 30px);
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
 
       gap: 20px;
       max-width: 940px;
 
       @media (max-width: 830.98px) {
-        gap: 10px;
+        gap: 5px;
+      }
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: clamp(20px, 6vw, 90px);
+
+    @media (max-width: 992.98px) {
+      flex-direction: column-reverse;
+      row-gap: 40px;
+    }
+
+    &_text {
+      & > h1 {
+        @extend %inter_700_40_68;
+        line-height: 1.2;
+        word-wrap: nowrap;
+      }
+
+      &_welcome {
+        color: $primary;
+      }
+
+      &_name {
+        color: rgb(220, 42, 28);
+      }
+    }
+
+    &_subtitle {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+      margin-top: clamp(20px, 2.5vw, 40px);
+    }
+
+    &_buttons {
+      margin-top: clamp(20px, 2.5vw, 40px);
+      display: flex;
+      column-gap: 20px;
+
+      @media (max-width: 692.98px) {
+        flex-direction: column;
+        row-gap: 10px;
+      }
+    }
+
+    &_how {
+      border-radius: 7px;
+      background-color: $secondary;
+      padding: 17px 27px;
+      transition: background-color 0.1s ease-in-out;
+      text-align: center;
+      @media (max-width: 692.98px) {
+        width: 100%;
+      }
+
+      &:hover {
+        background-color: $secondaryDarker;
+      }
+    }
+
+    &_to_categories {
+      border-radius: 7px;
+      background-color: $accent;
+      padding: 17px 27px;
+      transition: background-color 0.1s ease-in-out;
+
+      @media (max-width: 692.98px) {
+        width: 100%;
+      }
+
+      &:hover {
+        background-color: $hover;
+      }
+    }
+
+    &_logo {
+      width: clamp(292px, 38vw, 524px);
+      height: clamp(206px, 27vw, 373px);
+
+      @media (max-width: 992.98px) {
+        width: clamp(292px, 63vw, 387px);
+        height: clamp(206px, 45vw, 280px);
+      }
+
+      & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   }
@@ -40,7 +135,7 @@
     align-items: center;
     border-radius: 10px;
     column-gap: clamp(10px, 2.5vw, 20px);
-    @extend %roboto_400_17_20;
+    @extend %inter_400_16_20;
     transition: background-color 0.1s ease-in-out;
 
     &:hover {

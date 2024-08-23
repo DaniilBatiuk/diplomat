@@ -5,7 +5,7 @@
     max-width: 1000px;
   }
   &__title {
-    @extend %roboto_500_23_25;
+    @extend %inter_500_23_25;
 
     cursor: pointer;
 
@@ -79,7 +79,7 @@
     }
 
     &__title {
-      @extend %roboto_500_17_20;
+      @extend %inter_500_17_20;
       margin-left: 20px;
       margin-right: clamp(20px, 4.5vw, 50px);
       width: clamp(200px, 43vw, 450px);
@@ -112,7 +112,7 @@
     }
 
     &__price {
-      @extend %roboto_600_18_23;
+      @extend %inter_600_18_23;
       @media (max-width: 672px) {
         max-width: 80px;
         text-align: center;
@@ -173,11 +173,11 @@
     align-items: center;
 
     & > p {
-      @extend %roboto_400_20_25;
+      @extend %inter_400_20_25;
     }
 
     &_sum {
-      @extend %roboto_600_23_30;
+      @extend %inter_600_23_30;
     }
   }
 

@@ -29,7 +29,10 @@ export const Card: React.FC<CardProp> = ({ imgClassName }: CardProp) => {
           <MyButton className={styles.card__button}>КУПИТИ</MyButton>
         </div>
       </figcaption>
-      <FavoriteBorderIcon sx={{ fontSize: 28 }} onClick={e => e.stopPropagation()} />
+      <FavoriteBorderIcon
+        sx={{ fontSize: 28, color: "rgb(234, 171, 83)" }}
+        onClick={e => e.stopPropagation()}
+      />
     </figure>
   );
 };

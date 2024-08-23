@@ -8,8 +8,7 @@
   }
 
   & h1 {
-    @extend %roboto_500_23_25;
-    font-weight: 700;
+    @extend %inter_700_25_35;
     text-align: center;
     margin-bottom: clamp(20px, 2.5vw, 40px);
   }

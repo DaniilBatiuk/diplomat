@@ -4,6 +4,8 @@ $primaryOpacity05: rgba(210, 143, 50, 0.5);
 $primaryOpacity03: rgba(210, 143, 50, 0.3);
 $primaryOpacity02: rgba(210, 143, 50, 0.2);
 $primaryOpacity01: rgba(210, 143, 50, 0.1);
+$secondaryDarker: rgb(255, 225, 184);
+$secondaryOpacity02: rgba(233, 188, 124, 0.2);
 $grayLight: rgb(134, 134, 134);
 $grayLight2: rgb(243, 241, 241);
 $grayLight3: rgb(179, 179, 179);
@@ -40,85 +42,101 @@ $hover: rgb(228, 159, 62);
   }
 }
 
-%roboto_400_18 {
+%inter_400_18 {
   font-weight: 400;
   font-size: 18px;
 }
 
-%roboto_600_21_25 {
+%inter_700_40_68 {
+  font-weight: 700;
+  font-size: clamp(37px, 3vw, 68px);
+}
+
+%inter_700_28_35 {
+  font-weight: 700;
+  font-size: clamp(28px, 2.5vw, 35px);
+}
+
+%inter_600_21_25 {
   font-weight: 600;
   font-size: clamp(21px, 2.5vw, 25px);
 }
 
-%roboto_600_21_27 {
+%inter_600_21_27 {
   font-weight: 900;
   font-size: clamp(27px, 2.5vw, 35px);
 }
 
-%roboto_400_20_22 {
+%inter_400_20_22 {
   font-size: clamp(20px, 2.5vw, 22px);
 }
-%roboto_400_19_21 {
+%inter_400_19_21 {
   font-size: clamp(19px, 2.5vw, 21px);
 }
 
-%roboto_400_20_25 {
+%inter_400_20_25 {
   font-size: clamp(20px, 2.5vw, 25px);
 }
 
-%roboto_400_21_25 {
+%inter_400_21_25 {
   font-weight: 400;
   font-size: clamp(25px, 2.5vw, 30px);
 }
 
-%roboto_500_19_20 {
+%inter_500_19_20 {
   font-weight: 500;
   font-size: clamp(19px, 2.5vw, 20px);
 }
 
-%roboto_500_22_23 {
+%inter_500_22_23 {
   font-weight: 500;
   font-size: clamp(22px, 2.5vw, 23px);
 }
 
-%roboto_600_20_21 {
+%inter_700_25_35 {
+  font-weight: 700;
+  font-size: clamp(25px, 2.5vw, 35px);
+}
+
+%inter_600_20_21 {
   font-weight: 600;
   font-size: clamp(20px, 2.5vw, 21px);
 }
 
-%roboto_500_17_20 {
+%inter_500_17_20 {
   font-weight: 500;
   font-size: clamp(17px, 2.5vw, 20px);
 }
-%roboto_400_17_20 {
+
+%inter_400_16_20 {
   font-weight: 400;
-  font-size: clamp(17px, 2.5vw, 20px);
+  font-size: clamp(16px, 2.5vw, 20px);
 }
 
-%roboto_500_19_23 {
+%inter_500_19_23 {
   font-weight: 500;
   font-size: clamp(22px, 2.5vw, 23px);
 }
 
-%roboto_600_22_23 {
+%inter_600_22_23 {
   font-weight: 600;
   font-size: clamp(22px, 2.5vw, 23px);
 }
 
-%roboto_600_18_23 {
+%inter_600_18_23 {
   font-weight: 600;
   font-size: clamp(18px, 2.5vw, 23px);
 }
 
-%roboto_500_23_25 {
+%inter_500_23_25 {
   font-weight: 500;
   font-size: clamp(23px, 2.5vw, 25px);
 }
-%roboto_600_23_25 {
+%inter_600_23_25 {
   font-weight: 600;
   font-size: clamp(23px, 2.5vw, 25px);
 }
-%roboto_600_23_30 {
+%inter_600_23_30 {
   font-weight: 600;
   font-size: clamp(23px, 2.5vw, 30px);
 }

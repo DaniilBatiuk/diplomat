@@ -14,7 +14,7 @@
   }
 
   &__name {
-    @extend %roboto_500_23_25;
+    @extend %inter_500_23_25;
   }
 
   &__img {
@@ -75,7 +75,7 @@
       display: flex;
       align-items: center;
       column-gap: 30px;
-      @extend %roboto_500_19_20;
+      @extend %inter_500_19_20;
     }
   }
 
@@ -91,7 +91,7 @@
   }
 
   &__price {
-    @extend %roboto_600_21_25;
+    @extend %inter_600_21_25;
   }
 
   &__about {
@@ -100,7 +100,7 @@
 
   &__characteristics {
     margin-top: 25px;
-    @extend %roboto_500_22_23;
+    @extend %inter_500_22_23;
   }
 
   &__list {
@@ -139,7 +139,7 @@
     column-gap: 20px;
 
     & > p {
-      @extend %roboto_600_21_25;
+      @extend %inter_600_21_25;
       text-wrap: nowrap;
     }
   }
@@ -161,4 +161,8 @@
   &__status_bad {
     color: rgb(255, 0, 0);
   }
+}
+
+.sms__container {
+  color: black;
 }

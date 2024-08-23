@@ -117,7 +117,7 @@
       padding: 5px 10px;
       border-radius: 3px;
       @extend %buttonStyles2;
-      @extend %roboto_400_19_21;
+      @extend %inter_400_19_21;
       background-color: $primaryOpacity01;
       cursor: pointer;
 
@@ -133,7 +133,7 @@
   }
 
   &__title {
-    @extend %roboto_500_23_25;
+    @extend %inter_700_25_35;
     text-align: center;
   }
 }
@@ -160,7 +160,7 @@
     padding: 20px 15px;
     background-color: $primaryOpacity02;
     color: $primary;
-    @extend %roboto_500_19_23;
+    @extend %inter_500_19_23;
     display: flex;
     align-items: center;
     justify-content: center;

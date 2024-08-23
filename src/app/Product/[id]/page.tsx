@@ -17,12 +17,13 @@ import image3 from "../../../assets/images/ph.png";
 import image from "../../../assets/images/photo2.webp";
 
 import styles from "./Product.module.scss";
+import { ProductList } from "@/app/components/ProductList/ProductList";
 import { Counter, MyButton } from "@/components";
 
 export default function Product() {
   return (
-    <section className={styles.product}>
-      <div className={styles.product__container}>
+    <div className={styles.product}>
+      <section className={styles.product__container}>
         <div className={styles.product__img}>
           <Swiper
             style={{
@@ -237,7 +238,10 @@ export default function Product() {
 
           <MyButton className={styles.product__button}>ДОДАТИ В КОШИК</MyButton>
         </div>
+      </section>
+      <div className={styles.sms__container}>
+        <ProductList title="СХОЖІ ТОВАРИ" />
       </div>
-    </section>
+    </div>
   );
 }

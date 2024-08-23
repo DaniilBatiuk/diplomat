@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  @extend %roboto_400_18;
+  @extend %inter_400_18;
   background-color: $background;
 
   overflow-x: hidden;
@@ -166,5 +166,39 @@ main {
 
   &.Mui-checked {
     color: $primary !important;
+  }
+}
+
+// swiper fix accomodation
+
+.home__list_item {
+  & > h2 {
+    @extend %inter_700_25_35;
+    margin-bottom: clamp(10px, 2.5vw, 20px);
+  }
+
+  & .swiper-slide {
+    width: calc((100% - 60px) / 4) !important;
+    margin-right: 20px !important;
+
+    @media (max-width: 920px) {
+      width: calc((100% - 30px) / 3) !important;
+      margin-right: 15px !important;
+    }
+
+    @media (max-width: 624px) {
+      width: calc((100% - 15px) / 2) !important;
+    }
+  }
+
+  &_margin {
+    margin-top: clamp(30px, 2.5vw, 40px);
+  }
+
+  & .swiper {
+    & > .swiper-button-prev,
+    & > .swiper-button-next {
+      top: calc((100% - 135px + 22px) / 2) !important;
+    }
   }
 }

@@ -27,7 +27,7 @@
 
     & .header__logo {
       height: 45px;
-      @extend %roboto_600_21_27;
+      @extend %inter_600_21_27;
       color: $primary;
       color: rgb(220, 42, 28);
       transition: color 0.1s ease-in-out;
@@ -85,7 +85,7 @@
   }
 
   &__category {
-    @extend %roboto_400_20_22;
+    @extend %inter_400_20_22;
   }
 
   &__signup {
@@ -173,7 +173,7 @@
 }
 
 .list__item {
-  @extend %roboto_400_21_25;
+  @extend %inter_400_21_25;
   border-bottom: 1px solid $primaryOpacity07;
   padding-block: 10px;
   padding-left: 5px;

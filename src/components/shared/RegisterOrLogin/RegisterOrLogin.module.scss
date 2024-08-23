@@ -50,7 +50,7 @@
     padding: 20px 15px;
     background-color: $primaryOpacity02;
     color: $primary;
-    @extend %roboto_500_19_23;
+    @extend %inter_500_19_23;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,7 +66,7 @@
 
   &__title {
     color: $primary;
-    @extend %roboto_500_19_23;
+    @extend %inter_500_19_23;
   }
 
   &__subtitle {

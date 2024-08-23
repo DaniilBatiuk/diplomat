@@ -1,0 +1,69 @@
+@import "@/assets/styles/variables.scss";
+
+.categories {
+  & > h1 {
+    @extend %inter_700_25_35;
+    text-align: center;
+  }
+
+  &__list {
+    margin-top: clamp(15px, 2.5vw, 30px);
+    min-height: 600px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+
+    @media (max-width: 1245px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 940px) {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+  }
+
+  &__item {
+    background-color: $primaryOpacity05;
+    aspect-ratio: 1 / 1;
+    position: relative;
+
+    & img {
+      user-select: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: slide-in 1s forwards;
+      //   filter: brightness(0.75);
+    }
+    &_big {
+      @media (min-width: 558px) {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+    }
+  }
+
+  &__image_text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    padding: clamp(20px, 2.5vw, 30px);
+    user-select: none;
+    @extend %inter_700_28_35;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

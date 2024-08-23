@@ -42,14 +42,14 @@
   }
 
   &__left_list {
-    @extend %roboto_500_23_25;
+    @extend %inter_500_23_25;
     display: flex;
     flex-direction: column;
     row-gap: 10px;
   }
 
   &__right_list {
-    @extend %roboto_500_19_20;
+    @extend %inter_500_19_20;
     display: flex;
     flex-direction: column;
     row-gap: 10px;
@@ -69,7 +69,7 @@
   }
 
   &__text {
-    @extend %roboto_500_19_20;
+    @extend %inter_500_19_20;
     font-weight: 400;
     margin-top: clamp(10px, 2.5vw, 20px);
     color: $grayLight;

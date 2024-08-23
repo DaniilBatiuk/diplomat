@@ -57,7 +57,7 @@
   }
   &__column {
     &_title {
-      @extend %roboto_600_23_25;
+      @extend %inter_600_23_25;
       margin-bottom: clamp(20px, 2.5vw, 40px);
       text-align: center;
     }
