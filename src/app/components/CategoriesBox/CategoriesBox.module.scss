@@ -22,7 +22,7 @@
   }
 
   &__item {
-    background-color: $primaryOpacity05;
+    background-color: $secondaryDarker;
     aspect-ratio: 1 / 1;
     position: relative;
 
@@ -49,7 +49,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    color: white;
+    color: $accent;
     padding: clamp(20px, 2.5vw, 30px);
     user-select: none;
     @extend %inter_700_28_35;

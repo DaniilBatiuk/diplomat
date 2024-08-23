@@ -17,6 +17,7 @@
   &__title {
     @extend %inter_700_25_35;
   }
+
   &__subtitle {
     margin-top: 20px;
   }
@@ -26,12 +27,22 @@
     display: flex;
     flex-direction: column;
     row-gap: clamp(15px, 1.6vw, 20px);
+
+    @media (max-width: 750.98px) {
+      flex: 0 1 auto;
+    }
+
+    & span {
+      color: #0670eb;
+      cursor: pointer;
+    }
   }
 
   & .MuiPaper-root {
     background-color: $secondaryOpacity02 !important;
     border-radius: 5px;
     padding: clamp(6px, 1.2vw, 20px);
+    line-height: 1.4;
     &::after {
       display: none;
     }

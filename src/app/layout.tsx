@@ -29,7 +29,6 @@ export default function RootLayout({
         <body className={inter.className}>
           <div className="wrapper" id="wrapper">
             <Header />
-
             <main>{children}</main>
             <Footer />
           </div>
