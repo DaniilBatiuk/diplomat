@@ -1,0 +1,137 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    fullName         String
+    email            String            @unique
+    password         String
+    verified         DateTime?
+    role             UserRole          @default(USER)
+    cart             Cart?
+    verificationCode VerificationCode?
+
+    provider   String?
+    providerId String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Category {
+    id            String        @id @default(auto()) @map("_id") @db.ObjectId
+    name          String        @unique
+    subcategories Subcategory[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Subcategory {
+    id       String    @id @default(auto()) @map("_id") @db.ObjectId
+    name     String    @unique
+    products Product[]
+
+    category   Category @relation(fields: [categoryId], references: [id])
+    categoryId String   @db.ObjectId
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Product {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    name        String
+    description String
+    price       Int
+    count       Int
+    imageUrls   String[]
+    orderStatus OrderStatus
+    status      Status      @default(INACTIVE)
+    properties  Property[]
+    cartItem    CartItem[]
+
+    subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
+    subcategoryId String      @db.ObjectId
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Property {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    name  String
+    value String
+
+    product   Product @relation(fields: [productId], references: [id])
+    productId String  @db.ObjectId
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Cart {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    token      String
+    totalPrice Int        @default(0)
+    items      CartItem[]
+
+    user   User?   @relation(fields: [userId], references: [id])
+    userId String? @unique @db.ObjectId
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    quantity Int @default(1)
+
+    product   Product @relation(fields: [productId], references: [id])
+    productId String  @db.ObjectId
+    cart      Cart    @relation(fields: [cartId], references: [id])
+    cartId    String  @db.ObjectId
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model VerificationCode {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    code String
+
+    user   User   @relation(fields: [userId], references: [id])
+    userId String @unique @db.ObjectId
+
+    createdAt DateTime @default(now())
+
+    @@unique([userId, code])
+}
+
+enum OrderStatus {
+    IN_STOCK
+    OUT_OF_STOCK
+    TO_ORDER
+}
+
+enum Status {
+    ACTIVE
+    INACTIVE
+}
+
+enum UserRole {
+    USER
+    ADMIN
+}

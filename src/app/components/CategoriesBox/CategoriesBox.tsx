@@ -12,7 +12,7 @@ export const CategoriesBox: React.FC = () => {
       <h1>КАТЕГОРІЇ</h1>
       <div className={styles.categories__list}>
         <Link
-          href="/Categories/1"
+          href="/categories/1"
           className={clsx(styles.categories__item, styles.categories__item_big)}
           //   onClick={() => {
           //     ScrollUp();
@@ -24,7 +24,7 @@ export const CategoriesBox: React.FC = () => {
         </Link>
 
         <Link
-          href="/Categories/1"
+          href="/categories/1"
           className={styles.categories__item}
           //   key={type._id}
           //   onClick={() => {
@@ -36,7 +36,7 @@ export const CategoriesBox: React.FC = () => {
           <h2 className={styles.categories__image_text}>Посуд</h2>
         </Link>
         <Link
-          href="/Categories/1"
+          href="/categories/1"
           className={styles.categories__item}
           //   key={type._id}
           //   onClick={() => {
@@ -48,7 +48,7 @@ export const CategoriesBox: React.FC = () => {
           <h2 className={styles.categories__image_text}>Інтер'єр та декор</h2>
         </Link>
         <Link
-          href="/Categories/1"
+          href="/categories/1"
           className={styles.categories__item}
           //   key={type._id}
           //   onClick={() => {
@@ -60,7 +60,7 @@ export const CategoriesBox: React.FC = () => {
           <h2 className={styles.categories__image_text}>Фігурки та статуетки</h2>
         </Link>
         <Link
-          href="/Categories/1"
+          href="/categories/1"
           className={styles.categories__item}
           //   key={type._id}
           //   onClick={() => {

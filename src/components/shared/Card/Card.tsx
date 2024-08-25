@@ -17,7 +17,7 @@ type CardProp = {
 export const Card: React.FC<CardProp> = ({ imgClassName }: CardProp) => {
   const router = useRouter();
   return (
-    <figure className={styles.card} onClick={() => router.push(`/Product/1`)}>
+    <figure className={styles.card} onClick={() => router.push(`/product/1`)}>
       <div className={clsx(styles.card__img, imgClassName)}>
         <Image width={1280} height={1280} priority={true} src={image} alt={`Image`} />
       </div>

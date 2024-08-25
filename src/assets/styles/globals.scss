@@ -79,10 +79,18 @@ main {
       border-color: $accent !important;
     }
   }
+
+  &.Mui-error::after {
+    border-bottom-color: #e93939 !important;
+  }
 }
 
 .MuiFormLabel-root {
   color: $accent !important;
+
+  &.Mui-error {
+    color: #e93939 !important;
+  }
 }
 .Mui-selected {
   background-color: $primaryOpacity02 !important;
@@ -201,4 +209,8 @@ main {
       top: calc((100% - 135px + 22px) / 2) !important;
     }
   }
+}
+
+.Toastify__toast {
+  background-color: $background;
 }

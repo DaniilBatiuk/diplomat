@@ -141,4 +141,80 @@ export const ICONS = {
       />
     </svg>
   ),
+  photoUpload: (props?: any) => (
+    <svg
+      width="126"
+      height="126"
+      viewBox="0 0 126 126"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M113 3H13C7.47717 3 3 7.47717 3 13V113C3 118.523 7.47717 123 13 123H113C118.523 123 123 118.523 123 113V13C123 7.47717 118.523 3 113 3Z"
+        stroke="#333333"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M43.0026 59.6673C52.2073 59.6673 59.6693 52.2053 59.6693 43.0007C59.6693 33.796 52.2073 26.334 43.0026 26.334C33.7979 26.334 26.3359 33.796 26.3359 43.0007C26.3359 52.2053 33.7979 59.6673 43.0026 59.6673Z"
+        stroke="#333333"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M123 102.999L86.3333 69.666L53 99.666L29.6667 79.666L3 99.666"
+        stroke="#333333"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+  plusImage: (props?: any) => (
+    <svg
+      width="33"
+      height="32"
+      viewBox="0 0 33 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M17.0393 1L17 31"
+        stroke="#333333"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M1.5 16H31.5"
+        stroke="#333333"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+  deleteImage: (props?: any) => (
+    <svg
+      width="40"
+      height="40"
+      viewBox="0 0 40 40"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <rect width="40" height="40" rx="20" fill="white" />
+      <path
+        d="M29 12L27.7987 28.0172C27.6935 29.42 27.6408 30.1215 27.3 30.6533C26.9999 31.1216 26.5472 31.498 26.0017 31.7331C25.382 32 24.591 32 23.0093 32H16.9907C15.4089 32 14.618 32 13.9983 31.7331C13.4528 31.498 13.0001 31.1216 12.7 30.6533C12.3591 30.1215 12.3065 29.42 12.2013 28.0172L11 12M8 12H32M26 12L25.5941 10.9174C25.2006 9.86833 25.0039 9.34379 24.6391 8.95597C24.3169 8.61351 23.9031 8.34843 23.4357 8.18504C22.9064 8 22.2845 8 21.0404 8H18.9596C17.7155 8 17.0936 8 16.5643 8.18504C16.0969 8.34843 15.6831 8.61351 15.3609 8.95597C14.9961 9.34379 14.7994 9.86833 14.406 10.9174L14 12M23 17.3333V26.6667M17 17.3333V26.6667"
+        stroke="#333333"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
 };

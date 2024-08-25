@@ -1,0 +1,111 @@
+@import "@/assets/styles/variables.scss";
+
+.create {
+  &__container {
+    margin-top: clamp(15px, 2.5vw, 30px);
+  }
+
+  & h1 {
+    @extend %inter_700_25_35;
+    text-align: center;
+    margin-bottom: clamp(20px, 2.5vw, 40px);
+  }
+  & h3 {
+    @extend %inter_600_22_23;
+    align-self: flex-start;
+    margin-top: clamp(40px, 2.5vw, 70px);
+    margin-bottom: 10px;
+  }
+
+  & p {
+    font-size: 16px;
+    align-self: flex-start;
+    margin-block: 10px;
+    & > span {
+      align-self: flex-start;
+      color: #0670eb;
+      cursor: pointer;
+    }
+  }
+
+  &__main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+
+  &__field {
+    width: 100%;
+    margin-top: 10px !important;
+
+    &_button {
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      column-gap: 10px;
+    }
+  }
+
+  &__add,
+  &__minus,
+  &__submit {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 2px;
+    background-color: $accent;
+    color: $background;
+    border: 2px solid $accent;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      color: $accent;
+      background-color: $background;
+      border-color: $accent;
+    }
+  }
+
+  &__minus {
+    flex: 0 0 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__submit {
+    margin-top: 40px;
+    padding: 10px;
+    font-weight: 600;
+
+    background-color: rgba(85, 228, 85, 0.3);
+    color: rgb(6, 114, 6);
+    border: 2px solid rgb(6, 114, 6);
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      background-color: rgba(85, 228, 85);
+      color: rgb(6, 114, 6);
+      border: 2px solid rgb(6, 114, 6);
+    }
+
+    &:disabled {
+      background-color: rgba(85, 228, 85, 0.1);
+      color: rgba(6, 114, 6, 0.5);
+      border: 2px solid rgba(6, 114, 6, 0.5);
+      cursor: not-allowed;
+    }
+  }
+}
+
+.create_category {
+  &_header {
+  }
+
+  &_title {
+    margin-top: 40px;
+    text-align: center;
+    @extend %inter_700_25_35;
+  }
+}

@@ -1,0 +1,111 @@
+@import "@/assets/styles/variables.scss";
+
+.photo {
+  &__content {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-x: hidden;
+
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: block;
+      width: 0px;
+      overflow: auto;
+      height: 0px;
+      background-color: rgb(207, 207, 207);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb(167, 167, 167);
+      border-radius: 30px;
+    }
+
+    & > .renting__title {
+      text-align: start;
+    }
+
+    & > .renting__subtitle {
+      margin-bottom: clamp(30px, 6vw, 60px);
+    }
+  }
+
+  &__add {
+    background-color: $secondary;
+    width: 100%;
+    border-radius: 10px;
+    height: clamp(400px, 30vw, 491px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: clamp(40px, 3vw, 60px);
+
+    & > button {
+      border-radius: 20px;
+      padding: 10px 35px;
+      width: 200px;
+      height: 50px;
+      background-color: $accent;
+
+      &:hover {
+        background-color: $hover;
+      }
+    }
+  }
+
+  &__add-text {
+    align-self: center !important;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1fr);
+    grid-gap: 10px;
+    @media (max-width: 700.98px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &__item {
+    background-color: $secondary;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    position: relative;
+
+    & > .delete {
+      position: absolute;
+      top: clamp(15px, 2.5vw, 20px);
+      right: clamp(15px, 2.5vw, 20px);
+    }
+
+    &-plus {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      row-gap: 10px;
+      border: 2px dashed $primary;
+      color: $primary;
+    }
+
+    &.full-width {
+      grid-column: span 2;
+      aspect-ratio: 1 / 1;
+
+      @media (max-width: 700.98px) {
+        grid-column: span 1;
+      }
+    }
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
