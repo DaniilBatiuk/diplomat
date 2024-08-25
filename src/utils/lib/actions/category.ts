@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "@/prisma/prisma-client";
+import { prisma } from "../../../../prisma/prisma-client";
 
 export async function createCategory({ name }: { name: string }) {
   const categoryExist = await prisma.category.findUnique({

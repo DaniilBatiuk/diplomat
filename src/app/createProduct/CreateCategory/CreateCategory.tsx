@@ -48,6 +48,7 @@ export const CreateCategory: React.FC<CreateCategory> = ({
       queryClient.invalidateQueries({
         queryKey: ["categories"],
       });
+      setActiveModal(false);
     },
     onError: error => {
       toast.error(error.message);

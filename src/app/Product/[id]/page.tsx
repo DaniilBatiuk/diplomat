@@ -2,6 +2,7 @@
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -19,8 +20,16 @@ import image from "../../../assets/images/photo2.webp";
 import styles from "./Product.module.scss";
 import { ProductList } from "@/app/components/ProductList/ProductList";
 import { Counter, MyButton } from "@/components";
+import { ProductsService } from "@/utils/services/products";
 
-export default function Product() {
+export default function Product({ id }: { id: string }) {
+  const { data: product, isFetching } = useQuery({
+    queryKey: ["products"],
+    queryFn: () => ProductsService.getOneProduct(id),
+  });
+
+  console.log(product);
+
   return (
     <div className={styles.product}>
       <section className={styles.product__container}>

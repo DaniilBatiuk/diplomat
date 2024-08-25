@@ -1,7 +1,6 @@
 import { ICONS } from "@/utils/config/icons";
 
 import styles from "./Saved.module.scss";
-import { Card } from "@/components";
 
 export default function Saved() {
   return (
@@ -19,6 +18,7 @@ export default function Saved() {
           </div>
         ) : (
           <div className={styles.saved__card_list}>
+            {/* <Card />
             <Card />
             <Card />
             <Card />
@@ -26,8 +26,7 @@ export default function Saved() {
             <Card />
             <Card />
             <Card />
-            <Card />
-            <Card />
+            <Card /> */}
           </div>
         )}
       </div>

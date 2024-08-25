@@ -21,15 +21,15 @@ import { createProduct } from "@/utils/lib/actions/product";
 
 import { ProductScheme } from "@/utils/lib/validators/product-validator";
 
-import { CreateCategory } from "./CreateCategory/CreateCategory";
-import { CreateSubCategory } from "./CreateSubCategory/CreateSubCategory";
-import { Photo } from "./Photo/Photo";
-import styles from "./createProduct.module.scss";
+import { CreateCategory } from "@/app/createProduct/CreateCategory/CreateCategory";
+import { CreateSubCategory } from "@/app/createProduct/CreateSubCategory/CreateSubCategory";
+import { Photo } from "@/app/createProduct/Photo/Photo";
+import styles from "@/app/createProduct/createProduct.module.scss";
 import { CategoriesService } from "@/utils/services/categories";
 import { PropertiesService } from "@/utils/services/property";
 import { SubcategoriesService } from "@/utils/services/subcategories";
 
-export default function CreateProduct() {
+export default function UpdateProduct() {
   const [categoryId, setCategoryId] = useState("");
   const [photos, setPhotos] = useState<{ id: string; url: string }[]>([]);
   const [activeModalCreateCategory, setActiveModalCreateCategory] = useState(false);

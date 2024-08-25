@@ -36,14 +36,17 @@ model Category {
 
 model Subcategory {
     id       String    @id @default(auto()) @map("_id") @db.ObjectId
-    name     String    @unique
+    name     String
     products Product[]
 
-    category   Category @relation(fields: [categoryId], references: [id])
-    categoryId String   @db.ObjectId
+    category   Category   @relation(fields: [categoryId], references: [id])
+    categoryId String     @db.ObjectId
+    properties Property[]
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@unique([name, categoryId])
 }
 
 model Product {
@@ -72,8 +75,10 @@ model Property {
     name  String
     value String
 
-    product   Product @relation(fields: [productId], references: [id])
-    productId String  @db.ObjectId
+    product       Product     @relation(fields: [productId], references: [id])
+    productId     String      @db.ObjectId
+    subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
+    subcategoryId String      @db.ObjectId
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

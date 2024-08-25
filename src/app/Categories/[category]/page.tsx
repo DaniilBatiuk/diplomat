@@ -1,21 +1,42 @@
 "use client";
 
 import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import {
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ICONS } from "@/utils/config/icons";
 
 import styles from "./Categories.module.scss";
 import { Aside } from "./components/Aside/Aside";
 import { Card, Search } from "@/components";
+import { ProductsService } from "@/utils/services/products";
 
 export default function Categories() {
   const [sort, setSort] = useState("Новинки");
-  const [category, setCategory] = useState("Всі");
+
   const [categoryActive, setCategoryActive] = useState(false);
   const [subCategoryActive, setSubCategoryActive] = useState("Всі");
+  const [products, setProducts] = useState<Product[]>([]);
+
+  const { data, isFetching } = useQuery({
+    queryKey: ["products"],
+    queryFn: ProductsService.getAllActiveProducts,
+  });
+
+  useEffect(() => {
+    if (data) {
+      setProducts(data);
+    }
+  }, [data]);
 
   const categoryOpen = () => {
     setCategoryActive(prev => !prev);
@@ -24,9 +45,6 @@ export default function Categories() {
 
   const handleChange = (event: SelectChangeEvent) => {
     setSort(event.target.value as string);
-  };
-  const handleChangeCategory = (event: SelectChangeEvent) => {
-    setCategory(event.target.value as string);
   };
 
   return (
@@ -114,18 +132,15 @@ export default function Categories() {
           </section>
           <div className={styles.categories__main}>
             <Aside />
-            <section className={styles.categories__card_list}>
-              <Card imgClassName={styles.categories__card_image} />
-              <Card imgClassName={styles.categories__card_image} />
-              <Card imgClassName={styles.categories__card_image} />
-              <Card imgClassName={styles.categories__card_image} />
-              <Card imgClassName={styles.categories__card_image} />
-              <Card imgClassName={styles.categories__card_image} />
-              <Card imgClassName={styles.categories__card_image} />
-              <Card imgClassName={styles.categories__card_image} />
-              <Card imgClassName={styles.categories__card_image} />
-              <Card imgClassName={styles.categories__card_image} />
-            </section>
+            {isFetching ? (
+              <div className="loader">
+                <CircularProgress />
+              </div>
+            ) : (
+              <section className={styles.categories__card_list}>
+                {products && products.map(product => <Card product={product} />)}
+              </section>
+            )}
           </div>
         </div>
       </div>

@@ -48,18 +48,12 @@ export const Header: React.FC = () => {
 
           <div className="header__list">
             {isSignIn ? (
-              <div className="header__icon">
-                <Link href={LINKS.BASKET}>
-                  <Badge color="error" badgeContent={1}>
-                    <ShoppingCartOutlinedIcon sx={{ fontSize: 28 }} />
-                  </Badge>
-                </Link>
-                <Link href={LINKS.SAVED}>
-                  <FavoriteBorderIcon sx={{ fontSize: 28 }} />
-                </Link>
-              </div>
+              <div className="header__icon"></div>
             ) : (
               <>
+                <Link href={LINKS.ADMIN} className="header__admin">
+                  Адмін
+                </Link>
                 <button
                   className="header__signin"
                   onClick={() => {
@@ -73,6 +67,14 @@ export const Header: React.FC = () => {
                 <MyButton className="header__signup" onClick={() => setRegisterActive(true)}>
                   Зареєструватись
                 </MyButton>
+                <Link href={LINKS.BASKET}>
+                  <Badge color="error" badgeContent={1}>
+                    <ShoppingCartOutlinedIcon sx={{ fontSize: 28 }} />
+                  </Badge>
+                </Link>
+                <Link href={LINKS.SAVED}>
+                  <FavoriteBorderIcon sx={{ fontSize: 28 }} />
+                </Link>
               </>
             )}
           </div>

@@ -1,0 +1,75 @@
+@import "@/assets/styles/variables.scss";
+
+.admin {
+  margin-top: clamp(15px, 2.5vw, 30px);
+
+  &__container {
+    color: black;
+  }
+
+  & h1 {
+    @extend %inter_700_25_35;
+    text-align: center;
+    flex: 1 1 auto;
+    margin-bottom: clamp(20px, 2.5vw, 40px);
+  }
+
+  &__no_data {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: clamp(10px, 2.5vw, 30px);
+
+    & svg {
+      width: clamp(120px, 10.5vw, 157px);
+    }
+    & > p {
+      text-align: center;
+      max-width: 600px;
+    }
+  }
+
+  &__card_list {
+    margin-top: clamp(20px, 2.5vw, 30px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: clamp(10px, 1.5vw, 20px);
+    row-gap: clamp(25px, 2vw, 40px);
+
+    @media (max-width: 1200.98px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 850.98px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    & > .card {
+      width: auto;
+      min-height: 395px;
+    }
+  }
+
+  &__card_skeleton {
+    height: 549px !important;
+  }
+
+  &__create {
+    display: inline-block;
+    margin-block: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 600;
+
+    background-color: rgba(85, 228, 85, 0.3);
+    color: rgb(6, 114, 6);
+    border: 2px solid rgb(6, 114, 6);
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      background-color: rgba(85, 228, 85);
+      color: rgb(6, 114, 6);
+      border: 2px solid rgb(6, 114, 6);
+    }
+  }
+}

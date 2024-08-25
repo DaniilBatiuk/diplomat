@@ -57,7 +57,7 @@
     align-items: center;
     column-gap: clamp(13px, 2.5vw, 20px);
     margin-right: 10px;
-    @media (max-width: 870px) {
+    @media (max-width: 1000px) {
       flex: 1 1 auto;
       justify-content: flex-end;
     }
@@ -79,7 +79,7 @@
     display: flex;
     align-items: center;
     column-gap: 30px;
-    @media (max-width: 870px) {
+    @media (max-width: 1000px) {
       display: none;
     }
   }
@@ -96,7 +96,20 @@
 
     @extend %buttonStyles;
 
-    @media (max-width: 870px) {
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  }
+
+  &__admin {
+    font-size: 18px;
+    padding: 10px 10px;
+    font-weight: 500;
+    border-radius: 5px;
+
+    @extend %buttonStyles;
+
+    @media (max-width: 1000px) {
       display: none;
     }
   }
@@ -119,19 +132,8 @@
     &:hover {
       color: $hover;
     }
-    @media (max-width: 870px) {
-      border: 2px solid $primary;
-      border-radius: 5px;
-      padding: 3px 10px;
-      background-color: $accent;
-      color: $background;
-      border-color: $accent;
-
-      &:hover {
-        color: $background;
-        background-color: $primary;
-        border-color: $primary;
-      }
+    @media (max-width: 1000px) {
+      display: none;
     }
   }
 }
@@ -162,7 +164,7 @@
 .icon-menu {
   display: none;
 
-  @media (max-width: 870px) {
+  @media (max-width: 1000px) {
     display: block;
     display: flex;
     justify-content: center;

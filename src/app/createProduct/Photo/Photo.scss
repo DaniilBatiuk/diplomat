@@ -66,9 +66,6 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1fr);
     grid-gap: 10px;
-    @media (max-width: 700.98px) {
-      grid-template-columns: repeat(1, 1fr);
-    }
   }
 
   &__item {
@@ -107,5 +104,25 @@
       height: 100%;
       object-fit: cover;
     }
+  }
+}
+
+.images_upload {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: $secondary;
+  height: clamp(400px, 30vw, 491px);
+  cursor: pointer;
+
+  & > *[data-ut-element="button"] {
+    background-color: $accent;
+  }
+
+  & > *[data-ut-element="button"][data-state="uploading"] {
+    background-color: $primary;
+  }
+
+  & > *[data-ut-element="button"][data-state="uploading"]::after {
+    background-color: $accent;
   }
 }

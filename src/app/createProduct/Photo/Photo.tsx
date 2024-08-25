@@ -1,59 +1,45 @@
-import AddIcon from "@mui/icons-material/Add";
+import { generateUploadDropzone } from "@uploadthing/react";
 import clsx from "clsx";
-import { Dispatch, SetStateAction, useRef } from "react";
+import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
 import { ReactSortable } from "react-sortablejs";
+import { toast } from "react-toastify";
 
 import { ICONS } from "@/utils/config/icons";
 
 import "./Photo.scss";
+import { OurFileRouter } from "@/app/api/uploadthing/core";
 
 type photoProp = {
-  photos: { id: string; file: File }[];
-  setPhotos: Dispatch<SetStateAction<{ id: string; file: File }[]>>;
+  photos: { id: string; url: string }[];
+  setPhotos: Dispatch<SetStateAction<{ id: string; url: string }[]>>;
 };
 
 export const Photo: React.FC<photoProp> = ({ photos, setPhotos }: photoProp) => {
-  const filePicker = useRef<HTMLInputElement>(null);
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!event.target.files) {
-      return;
-    }
+  const UploadDropzone = generateUploadDropzone<OurFileRouter>();
 
-    const files = Array.from(event.target.files);
-
-    const newFiles = files.filter(file => {
-      return !photos.some(photo => photo.file.name === file.name);
-    });
-
-    const newPhotos = newFiles.map(file => ({
-      id: file.name,
-      file: file,
-    }));
-    setPhotos(prevPhotos => [...prevPhotos, ...newPhotos]);
-  };
-
-  const handlerDelete = (photo: { id: string; file: File }) => {
+  const handlerDelete = (photo: { id: string; url: string }) => {
     setPhotos(prev => prev.filter(currentPhoto => currentPhoto.id !== photo.id));
   };
 
   return (
     <div className="photo__content">
-      {photos.length <= 0 && (
-        <div className="photo__add">
-          {ICONS.photoUpload()}
-          <button
-            type="button"
-            onClick={() => {
-              if (filePicker && filePicker.current) {
-                filePicker.current.click();
-              }
-            }}
-          >
-            Додати фото
-          </button>
-        </div>
-      )}
-
+      <UploadDropzone
+        endpoint="imageUploader"
+        className="images_upload"
+        onClientUploadComplete={res => {
+          setPhotos(prev => [
+            ...prev,
+            ...res.map(photo => ({
+              id: photo.key,
+              url: photo.url,
+            })),
+          ]);
+        }}
+        onUploadError={(error: Error) => {
+          toast.error(`ERROR! ${error.message}`);
+        }}
+      />
       {photos.length > 0 && (
         <ReactSortable id="list" list={photos} setList={setPhotos} className="photo__list">
           {photos.map((photo, index) => (
@@ -63,31 +49,12 @@ export const Photo: React.FC<photoProp> = ({ photos, setPhotos }: photoProp) => 
                 ["full-width"]: index === 0,
               })}
             >
-              <img src={URL.createObjectURL(photo.file)} alt={`Photo ${index}`} loading="lazy" />
+              <Image width={1280} height={1280} priority={true} src={photo.url} alt={`Image`} />
               {ICONS.deleteImage({ className: "delete", onClick: () => handlerDelete(photo) })}
             </div>
           ))}
-          <div
-            className="photo__item photo__item-plus"
-            onClick={() => {
-              if (filePicker && filePicker.current) {
-                filePicker.current.click();
-              }
-            }}
-          >
-            <AddIcon sx={{ fontSize: 55 }} />
-            <p className="photo__add-text">Додати фото</p>
-          </div>
         </ReactSortable>
       )}
-      <input
-        ref={filePicker}
-        type="file"
-        accept="image/*,.png,.jpg,.gif,.web,"
-        style={{ display: "none" }}
-        onChange={handleImageUpload}
-        multiple
-      />
     </div>
   );
 };

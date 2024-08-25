@@ -80,7 +80,8 @@ main {
     }
   }
 
-  &.Mui-error::after {
+  &.Mui-error::after,
+  &.Mui-error::before {
     border-bottom-color: #e93939 !important;
   }
 }
@@ -213,4 +214,12 @@ main {
 
 .Toastify__toast {
   background-color: $background;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 100%;
 }
