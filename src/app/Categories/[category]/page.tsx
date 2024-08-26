@@ -1,14 +1,7 @@
 "use client";
 
 import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
-import {
-  CircularProgress,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
@@ -17,7 +10,7 @@ import { ICONS } from "@/utils/config/icons";
 
 import styles from "./Categories.module.scss";
 import { Aside } from "./components/Aside/Aside";
-import { Card, Search } from "@/components";
+import { Card, Search, SkeletonCard } from "@/components";
 import { ProductsService } from "@/utils/services/products";
 
 export default function Categories() {
@@ -132,15 +125,12 @@ export default function Categories() {
           </section>
           <div className={styles.categories__main}>
             <Aside />
-            {isFetching ? (
-              <div className="loader">
-                <CircularProgress />
-              </div>
-            ) : (
-              <section className={styles.categories__card_list}>
-                {products && products.map(product => <Card product={product} />)}
-              </section>
-            )}
+
+            <section className={styles.categories__card_list}>
+              {isFetching
+                ? Array.from({ length: 8 }).map((_, index) => <SkeletonCard key={index} />)
+                : products && products.map(product => <Card product={product} />)}
+            </section>
           </div>
         </div>
       </div>

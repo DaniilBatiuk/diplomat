@@ -10,7 +10,7 @@ import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { breakPoints } from "./constants";
-import { Card } from "@/components";
+import { Card, SkeletonCard } from "@/components";
 import { ProductsService } from "@/utils/services/products";
 
 type ProductListProp = {
@@ -44,6 +44,19 @@ export const ProductList: React.FC<ProductListProp> = ({ title }: ProductListPro
               <Card product={product} />
             </SwiperSlide>
           ))}
+
+        {isFetching
+          ? Array.from({ length: 8 }).map((_, index) => (
+              <SwiperSlide key={index}>
+                <SkeletonCard />
+              </SwiperSlide>
+            ))
+          : products &&
+            products.map(product => (
+              <SwiperSlide key={product.id}>
+                <Card product={product} />
+              </SwiperSlide>
+            ))}
       </Swiper>
     </section>
   );

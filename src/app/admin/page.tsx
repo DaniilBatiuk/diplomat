@@ -1,8 +1,9 @@
 "use client";
 
-import { CircularProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+
+import { SkeletonCard } from "@/components/shared/SkeletonCard/SkeletonCard";
 
 import { ICONS } from "@/utils/config/icons";
 import { LINKS } from "@/utils/config/pages-url.config";
@@ -16,14 +17,6 @@ export default function Admin() {
     queryKey: ["products"],
     queryFn: ProductsService.getAllProducts,
   });
-
-  if (isFetching) {
-    return (
-      <div className="loader">
-        <CircularProgress />
-      </div>
-    );
-  }
 
   return (
     <section className={styles.admin}>
@@ -40,7 +33,9 @@ export default function Admin() {
           </div>
         ) : (
           <div className={styles.admin__card_list}>
-            {products && products.map(product => <Card product={product} />)}
+            {isFetching
+              ? Array.from({ length: 8 }).map((_, index) => <SkeletonCard key={index} />)
+              : products && products.map(product => <Card product={product} />)}
           </div>
         )}
       </div>
