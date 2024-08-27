@@ -2,12 +2,23 @@
 
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import styles from "./Counter.module.scss";
 
-export const Counter: React.FC = () => {
+type CounterProp = {
+  maxCount?: number;
+  onChange?: Dispatch<SetStateAction<number>>;
+};
+
+export const Counter: React.FC<CounterProp> = ({ maxCount, onChange }: CounterProp) => {
   const [state, setState] = useState(1);
+
+  useEffect(() => {
+    if (onChange) {
+      onChange(state);
+    }
+  }, [state]);
   return (
     <div className={styles.counter}>
       <div className={styles.counter__minus}>
@@ -19,7 +30,7 @@ export const Counter: React.FC = () => {
         type="number"
         value={state}
         onChange={e => {
-          if (+e.target.value < 1000) {
+          if (+e.target.value < (maxCount ? maxCount : 1000)) {
             setState(+e.target.value);
           }
           if (+e.target.value === 0) {
@@ -28,7 +39,9 @@ export const Counter: React.FC = () => {
         }}
       />
       <div className={styles.counter__plus}>
-        <AddIcon onClick={() => setState(prev => (prev < 999 ? prev + 1 : prev))} />
+        <AddIcon
+          onClick={() => setState(prev => (prev < (maxCount ? maxCount : 999) ? prev + 1 : prev))}
+        />
       </div>
     </div>
   );

@@ -62,9 +62,11 @@
   }
 
   &__content {
+    min-width: 480px;
     margin-top: 30px;
 
     @media (max-width: 1307px) {
+      min-width: auto;
       margin-top: 0px;
     }
   }
@@ -165,4 +167,44 @@
 
 .sms__container {
   color: black;
+}
+
+.skeleton {
+  &__title {
+    height: clamp(23px, 2.5vw, 25px) !important;
+  }
+  &__category {
+    height: 18px !important;
+    margin-block: 5px;
+    width: 30%;
+
+    @media (max-width: 1307px) {
+      width: 20%;
+    }
+  }
+
+  &__price {
+    height: clamp(21px, 2.5vw, 25px) !important;
+    width: 50%;
+    margin-bottom: 10px;
+
+    @media (max-width: 1307px) {
+      width: 40%;
+    }
+  }
+
+  &__open {
+    height: 45px !important;
+    margin-bottom: 3px;
+  }
+
+  &__count {
+    margin-top: 25px;
+    height: clamp(32px, 2.5vw, 34px) !important;
+  }
+
+  &__button {
+    margin-top: clamp(15px, 3vw, 20px);
+    height: clamp(48px, 2.5vw, 55px) !important;
+  }
 }

@@ -20,7 +20,6 @@ export async function GET(req: NextRequest) {
       distinct: ["name"],
     });
 
-    console.log(allProperties);
     return NextResponse.json(allProperties);
   } catch (error) {
     console.log("Error finding allProperties: ", error);

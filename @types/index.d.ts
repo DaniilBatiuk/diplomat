@@ -12,6 +12,15 @@ type CreateProduct = {
   }[];
 };
 
+type PatchProductStatus = {
+  id: string;
+  status: Status;
+};
+
+type PatchProduct = {
+  id: string;
+} & CreateProduct;
+
 type CreateProperty = {
   name: string;
   value: string;

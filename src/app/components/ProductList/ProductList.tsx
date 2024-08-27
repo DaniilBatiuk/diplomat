@@ -23,6 +23,8 @@ export const ProductList: React.FC<ProductListProp> = ({ title }: ProductListPro
     queryFn: ProductsService.getAllActiveProducts,
   });
 
+  console.log(products);
+
   return (
     <section className={clsx("home__list_item", { ["home__list_item_margin"]: title })}>
       <h2>{title ? title : "РЕКОМЕНДОВАНЕ"}</h2>
@@ -38,13 +40,6 @@ export const ProductList: React.FC<ProductListProp> = ({ title }: ProductListPro
         spaceBetween={30}
         breakpoints={breakPoints}
       >
-        {products &&
-          products.map(product => (
-            <SwiperSlide key={product.id}>
-              <Card product={product} />
-            </SwiperSlide>
-          ))}
-
         {isFetching
           ? Array.from({ length: 8 }).map((_, index) => (
               <SwiperSlide key={index}>

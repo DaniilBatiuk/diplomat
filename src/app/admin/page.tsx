@@ -35,7 +35,7 @@ export default function Admin() {
           <div className={styles.admin__card_list}>
             {isFetching
               ? Array.from({ length: 8 }).map((_, index) => <SkeletonCard key={index} />)
-              : products && products.map(product => <Card product={product} />)}
+              : products && products.map(product => <Card product={product} key={product.id} />)}
           </div>
         )}
       </div>

@@ -9,3 +9,16 @@ export async function createProperty(property: CreateProperty) {
 
   return { newProperty };
 }
+
+export async function deleteAllProperties(productId: string) {
+  try {
+    await prisma.property.deleteMany({
+      where: {
+        productId: productId,
+      },
+    });
+    return { success: true };
+  } catch (error) {
+    return { error };
+  }
+}

@@ -12,7 +12,8 @@ import {
   TextField,
 } from "@mui/material";
 import { OrderStatus } from "@prisma/client";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -34,6 +35,8 @@ export default function CreateProduct() {
   const [photos, setPhotos] = useState<{ id: string; url: string }[]>([]);
   const [activeModalCreateCategory, setActiveModalCreateCategory] = useState(false);
   const [activeModalSubCreateCategory, setActiveModalSubCreateCategory] = useState(false);
+  const router = useRouter();
+  const queryClient = useQueryClient();
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: CategoriesService.getAllCategories,
@@ -118,6 +121,10 @@ export default function CreateProduct() {
     mutationFn: createProduct,
     onSuccess: () => {
       toast.success("Продукт був успішно створений.");
+      queryClient.invalidateQueries({
+        queryKey: ["products"],
+      });
+      router.push(`/admin`);
     },
     onError: error => {
       toast.error(error.message);
