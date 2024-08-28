@@ -21,3 +21,40 @@ export async function createCategory({ name }: { name: string }) {
 
   return { newCategory };
 }
+
+export async function getAllCategories() {
+  const categories = await prisma.category.findMany({
+    select: {
+      id: true,
+      name: true,
+      subcategories: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+  });
+
+  return categories;
+}
+
+export async function getOneCategory(name: string) {
+  const category = await prisma.category.findUnique({
+    where: {
+      name,
+    },
+    select: {
+      id: true,
+      name: true,
+      subcategories: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+  });
+
+  return category;
+}

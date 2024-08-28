@@ -19,14 +19,15 @@ import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-import { createProduct, patchProduct } from "@/utils/lib/actions/product";
+import { patchProduct } from "@/utils/lib/actions/product";
 
 import { ProductScheme } from "@/utils/lib/validators/product-validator";
 
-import { CreateCategory } from "@/app/createProduct/CreateCategory/CreateCategory";
-import { CreateSubCategory } from "@/app/createProduct/CreateSubCategory/CreateSubCategory";
-import { Photo } from "@/app/createProduct/Photo/Photo";
-import styles from "@/app/createProduct/createProduct.module.scss";
+import { CreateCategory } from "../../createProduct/CreateCategory/CreateCategory";
+import { CreateSubCategory } from "../../createProduct/CreateSubCategory/CreateSubCategory";
+import { Photo } from "../../createProduct/Photo/Photo";
+import styles from "../../createProduct/createProduct.module.scss";
+
 import { CategoriesService } from "@/utils/services/categories";
 import { ProductsService } from "@/utils/services/products";
 import { PropertiesService } from "@/utils/services/property";
@@ -185,7 +186,7 @@ export default function UpdateProduct({ params }: { params: { id: string } }) {
   return (
     <div className={styles.create}>
       <div className={styles.create__container}>
-        <h1>СТВОРИТИ ПРОДУКТ</h1>
+        <h1>ЗМІНИТИ ПРОДУКТ</h1>
 
         <form className={styles.create__main} onSubmit={handleSubmit(onSubmit)}>
           <h3>Основні поля</h3>

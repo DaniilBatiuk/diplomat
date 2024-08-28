@@ -12,7 +12,7 @@ export const CategoriesBox: React.FC = () => {
       <h1>КАТЕГОРІЇ</h1>
       <div className={styles.categories__list}>
         <Link
-          href="/categories/1"
+          href="/categories/VIP Подарунки"
           className={clsx(styles.categories__item, styles.categories__item_big)}
           //   onClick={() => {
           //     ScrollUp();
@@ -24,7 +24,7 @@ export const CategoriesBox: React.FC = () => {
         </Link>
 
         <Link
-          href="/categories/1"
+          href="/categories/Посуд"
           className={styles.categories__item}
           //   key={type._id}
           //   onClick={() => {
@@ -36,7 +36,7 @@ export const CategoriesBox: React.FC = () => {
           <h2 className={styles.categories__image_text}>Посуд</h2>
         </Link>
         <Link
-          href="/categories/1"
+          href="/categories/Інтер'єр та декор"
           className={styles.categories__item}
           //   key={type._id}
           //   onClick={() => {
@@ -48,7 +48,7 @@ export const CategoriesBox: React.FC = () => {
           <h2 className={styles.categories__image_text}>Інтер'єр та декор</h2>
         </Link>
         <Link
-          href="/categories/1"
+          href="/categories/Фігурки та статуетки"
           className={styles.categories__item}
           //   key={type._id}
           //   onClick={() => {
@@ -60,7 +60,7 @@ export const CategoriesBox: React.FC = () => {
           <h2 className={styles.categories__image_text}>Фігурки та статуетки</h2>
         </Link>
         <Link
-          href="/categories/1"
+          href="/categories/Настільні ігри"
           className={styles.categories__item}
           //   key={type._id}
           //   onClick={() => {
@@ -69,7 +69,7 @@ export const CategoriesBox: React.FC = () => {
           //   }}
         >
           <Image width={1280} height={1280} priority={true} src={image} alt={`Image`} />
-          <h2 className={styles.categories__image_text}>настільні ігри</h2>
+          <h2 className={styles.categories__image_text}>Настільні ігри</h2>
         </Link>
       </div>
     </section>

@@ -31,9 +31,10 @@ type CreateProperty = {
 type Category = {
   id: string;
   name: string;
-  subcategories: Subcategory[];
-  createdAt: Date;
-  updatedAt: Date;
+  subcategories: {
+    id: string;
+    name: string;
+  }[];
 };
 
 type Subcategory = {
@@ -44,6 +45,11 @@ type Subcategory = {
   categoryId: string;
   createdAt: Date;
   updatedAt: Date;
+};
+
+type SubcategorySearch = {
+  id: string;
+  name: string;
 };
 
 type CreateSubCategory = {
