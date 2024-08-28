@@ -77,5 +77,6 @@ type Product = {
   subcategory: {
     id: string;
     name: string;
+    categoryId: string;
   };
 };

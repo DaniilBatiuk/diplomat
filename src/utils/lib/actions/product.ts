@@ -2,7 +2,7 @@
 
 import { prisma } from "../../../../prisma/prisma-client";
 
-import { createProperty } from "./property";
+import { createProperty, deleteAllProperties } from "./property";
 
 export async function createProduct(product: CreateProduct) {
   const newProduct = await prisma.product.create({
@@ -43,6 +43,16 @@ export async function patchProduct(product: PatchProduct) {
       subcategoryId: product.subcategoryId,
     },
   });
+
+  await deleteAllProperties(product.id);
+
+  const properties = product.properties.map(prop => {
+    return { ...prop, productId: newProduct.id, subcategoryId: product.subcategoryId };
+  });
+
+  for (let property of properties) {
+    await createProperty(property);
+  }
 
   return { newProduct };
 }

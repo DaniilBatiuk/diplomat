@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import {
+  CircularProgress,
   FormControl,
   InputLabel,
   MenuItem,
@@ -12,12 +13,13 @@ import {
   TextField,
 } from "@mui/material";
 import { OrderStatus } from "@prisma/client";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-import { createProduct } from "@/utils/lib/actions/product";
+import { createProduct, patchProduct } from "@/utils/lib/actions/product";
 
 import { ProductScheme } from "@/utils/lib/validators/product-validator";
 
@@ -26,14 +28,24 @@ import { CreateSubCategory } from "@/app/createProduct/CreateSubCategory/CreateS
 import { Photo } from "@/app/createProduct/Photo/Photo";
 import styles from "@/app/createProduct/createProduct.module.scss";
 import { CategoriesService } from "@/utils/services/categories";
+import { ProductsService } from "@/utils/services/products";
 import { PropertiesService } from "@/utils/services/property";
 import { SubcategoriesService } from "@/utils/services/subcategories";
 
-export default function UpdateProduct() {
+export default function UpdateProduct({ params }: { params: { id: string } }) {
   const [categoryId, setCategoryId] = useState("");
   const [photos, setPhotos] = useState<{ id: string; url: string }[]>([]);
   const [activeModalCreateCategory, setActiveModalCreateCategory] = useState(false);
   const [activeModalSubCreateCategory, setActiveModalSubCreateCategory] = useState(false);
+  const [ready, setReady] = useState<boolean>(false);
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const { data: product, isSuccess } = useQuery({
+    queryKey: ["product"],
+    queryFn: () => ProductsService.getOneProduct(params.id),
+  });
+
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: CategoriesService.getAllCategories,
@@ -51,6 +63,28 @@ export default function UpdateProduct() {
 
   useEffect(() => {
     refetch();
+    if (isSuccess && product && !ready) {
+      reset({
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        count: product.count,
+        imageUrls: product.imageUrls,
+        orderStatus: product.orderStatus,
+        properties: product.properties,
+        subcategoryId: product.subcategory.id,
+      });
+
+      setPhotos(prev => [
+        ...prev,
+        ...product.imageUrls.map((photo, index) => ({
+          id: index.toString(),
+          url: photo,
+        })),
+      ]);
+
+      setReady(true);
+    }
   }, [categoryId]);
 
   const handleChangeCategory = (event: SelectChangeEvent) => {
@@ -62,6 +96,7 @@ export default function UpdateProduct() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
     watch,
   } = useForm<CreateProduct>({
     defaultValues: {
@@ -87,10 +122,12 @@ export default function UpdateProduct() {
   useEffect(() => {
     if (subcategoriesProperties && subcategoriesProperties.length > 0) {
       for (let data of subcategoriesProperties) {
-        propertyAppend({
-          name: data.name,
-          value: "",
-        });
+        if (!product?.properties.map(el => el.name).includes(data.name)) {
+          propertyAppend({
+            name: data.name,
+            value: "",
+          });
+        }
       }
     }
   }, [subcategoriesProperties]);
@@ -106,23 +143,44 @@ export default function UpdateProduct() {
       toast.error("Має бути як мінімум 1 фото.");
       return;
     }
+    const id = product!.id;
     const res = {
+      id,
       ...data,
       imageUrls: photos.map(photo => photo.url),
       properties: data.properties.filter(el => el.value !== ""),
     };
+
     mutate(res);
   };
 
   const { isPending, mutate } = useMutation({
-    mutationFn: createProduct,
+    mutationFn: patchProduct,
     onSuccess: () => {
-      toast.success("Продукт був успішно створений.");
+      toast.success("Продукт був успішно змінений.");
+      queryClient.invalidateQueries({
+        queryKey: ["products"],
+      });
+      router.push(`/admin`);
     },
     onError: error => {
       toast.error(error.message);
     },
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      setCategoryId(product.subcategory.categoryId);
+    }
+  }, [product]);
+
+  if (!ready) {
+    return (
+      <div className="loader">
+        <CircularProgress />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.create}>
@@ -279,7 +337,7 @@ export default function UpdateProduct() {
             <AddIcon sx={{ fontSize: 36 }} />
           </button>
           <button type="submit" className={styles.create__submit} disabled={isPending}>
-            Створити
+            Змінити
           </button>
         </form>
       </div>
