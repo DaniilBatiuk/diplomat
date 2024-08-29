@@ -1,5 +1,8 @@
 "use server";
 
+import { Status } from "@prisma/client";
+import { redirect } from "next/navigation";
+
 import { prisma } from "../../../../prisma/prisma-client";
 
 import { createProperty, deleteAllProperties } from "./property";
@@ -68,4 +71,42 @@ export async function patchProductStatus(product: PatchProductStatus) {
   });
 
   return { newProduct };
+}
+
+export async function getAllActiveProducts(): Promise<Product[]> {
+  try {
+    const allProducts = await prisma.product.findMany({
+      where: {
+        status: Status.ACTIVE,
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        count: true,
+        imageUrls: true,
+        orderStatus: true,
+        price: true,
+        status: true,
+        properties: {
+          select: {
+            id: true,
+            name: true,
+            value: true,
+          },
+        },
+        subcategory: {
+          select: {
+            id: true,
+            name: true,
+            categoryId: true,
+          },
+        },
+      },
+    });
+    return allProducts;
+  } catch (error) {
+    console.log("Error fetching Products: ", error);
+    redirect("/not-found");
+  }
 }

@@ -18,7 +18,7 @@ export const Search: React.FC<SearchProp> = ({ className, classNameInput }: Sear
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (inputRef.current && pathname !== "/categories") {
+    if (inputRef.current && !pathname.includes("/category")) {
       inputRef.current.value = "";
     }
   }, [pathname]);
@@ -35,9 +35,7 @@ export const Search: React.FC<SearchProp> = ({ className, classNameInput }: Sear
       className={clsx(styles.search__search, className)}
       onSubmit={e => {
         e.preventDefault();
-        router.push(
-          `/categories/Всі?search_text=${inputRef.current ? inputRef.current.value : ""}`,
-        );
+        router.push(`/category/Всі?search_text=${inputRef.current ? inputRef.current.value : ""}`);
       }}
     >
       <input

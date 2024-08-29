@@ -112,6 +112,7 @@
     gap: clamp(5px, 2vw, 10px);
     margin-top: clamp(15px, 2vw, 30px);
     margin-bottom: clamp(20px, 2vw, 40px);
+    height: clamp(33px, 2.5vw, 35px);
 
     &_item {
       padding: 5px 10px;
@@ -128,6 +129,17 @@
 
       &:hover {
         background-color: $primaryOpacity05;
+      }
+
+      &_close {
+        padding: 0px 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & svg {
+          font-size: clamp(25px, 2.5vw, 28px);
+        }
       }
     }
   }

@@ -1,5 +1,7 @@
 "use server";
 
+import { redirect } from "next/navigation";
+
 import { prisma } from "../../../../prisma/prisma-client";
 
 export async function createCategory({ name }: { name: string }) {
@@ -23,38 +25,47 @@ export async function createCategory({ name }: { name: string }) {
 }
 
 export async function getAllCategories() {
-  const categories = await prisma.category.findMany({
-    select: {
-      id: true,
-      name: true,
-      subcategories: {
-        select: {
-          id: true,
-          name: true,
+  try {
+    const categories = await prisma.category.findMany({
+      select: {
+        id: true,
+        name: true,
+        subcategories: {
+          select: {
+            id: true,
+            name: true,
+          },
         },
       },
-    },
-  });
-
-  return categories;
+    });
+    return categories;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    redirect("/not-found");
+  }
 }
 
 export async function getOneCategory(name: string) {
-  const category = await prisma.category.findUnique({
-    where: {
-      name,
-    },
-    select: {
-      id: true,
-      name: true,
-      subcategories: {
-        select: {
-          id: true,
-          name: true,
+  try {
+    const category = await prisma.category.findUnique({
+      where: {
+        name,
+      },
+      select: {
+        id: true,
+        name: true,
+        subcategories: {
+          select: {
+            id: true,
+            name: true,
+          },
         },
       },
-    },
-  });
+    });
 
-  return category;
+    return category;
+  } catch (error) {
+    console.error("Error fetching category:", error);
+    redirect("/not-found");
+  }
 }
