@@ -27,10 +27,12 @@ export async function GET(req: NextRequest) {
           select: {
             id: true,
             name: true,
+            categoryId: true,
           },
         },
       },
     });
+
     return NextResponse.json(allProducts);
   } catch (error) {
     console.log("Error finding allProducts: ", error);

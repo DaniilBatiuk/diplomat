@@ -8,16 +8,19 @@ import { ICONS } from "@/utils/config/icons";
 import styles from "../../CategoriesAndSearch.module.scss";
 import { Aside } from "../Aside/Aside";
 
-import { Card, Search } from "@/components";
+import { Card, Search, SkeletonCard } from "@/components";
 
 type FiltersAndListProp = {
-  product: Product[];
+  products: Product[];
+  isFetching: boolean;
 };
 
-export const FiltersAndList: React.FC<FiltersAndListProp> = ({ product }: FiltersAndListProp) => {
+export const FiltersAndList: React.FC<FiltersAndListProp> = ({
+  products,
+  isFetching,
+}: FiltersAndListProp) => {
   const [sort, setSort] = useState("Новинки");
   const [categoryActive, setCategoryActive] = useState(false);
-  const [products, setProducts] = useState<Product[]>(product);
 
   const handleChange = (event: SelectChangeEvent) => {
     setSort(event.target.value as string);
@@ -51,10 +54,23 @@ export const FiltersAndList: React.FC<FiltersAndListProp> = ({ product }: Filter
       </section>
       <div className={styles.categories__main}>
         <Aside />
-
-        <section className={styles.categories__card_list}>
-          {products && products.map(product => <Card product={product} key={product.id} />)}
-        </section>
+        {!isFetching && products.length <= 0 ? (
+          <div className={styles.categories__card_list_no_data}>
+            На жаль, зараз товару з такою назвою немає.
+          </div>
+        ) : products.length > 0 ? (
+          <section className={styles.categories__card_list}>
+            {products.map(product => (
+              <Card product={product} key={product.id} />
+            ))}
+          </section>
+        ) : (
+          <section className={styles.categories__card_list}>
+            {Array.from({ length: 8 }).map((_, index) => (
+              <SkeletonCard key={index} />
+            ))}
+          </section>
+        )}
       </div>
       <div className={clsx(styles.open_category, { [styles.active]: categoryActive })}>
         <div className={styles.open_category__header}>

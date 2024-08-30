@@ -1,5 +1,6 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import clsx from "clsx";
+import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 
 import styles from "../../CategoriesAndSearch.module.scss";
@@ -19,7 +20,8 @@ export const SubCategoriesList: React.FC<SubCategoriesListProp> = ({
 }: SubCategoriesListProp) => {
   return (
     <>
-      <div
+      <Link
+        href={`/category/Всі`}
         className={clsx(
           styles.categories__subcategories_item,
           styles.categories__subcategories_item_close,
@@ -27,7 +29,7 @@ export const SubCategoriesList: React.FC<SubCategoriesListProp> = ({
         onClick={() => setCategorySelected(null)}
       >
         <ArrowBackIcon sx={{ fontSize: 19 }} />
-      </div>
+      </Link>
       <div
         className={clsx(styles.categories__subcategories_item, {
           [styles.active]: subCategorySelected === null,

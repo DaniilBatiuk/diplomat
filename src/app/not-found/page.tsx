@@ -11,7 +11,6 @@ export default function NotFound() {
   return (
     <section className={styles.error__container}>
       <div className={styles.error__left}>
-        <h1 className={styles.error__title}>404</h1>
         <h2 className={styles.error__subtitle}>Щось пішло не так...</h2>
         <Link href="/">
           <MyButton>На головну</MyButton>

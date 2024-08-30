@@ -81,6 +81,17 @@
     grid-template-columns: repeat(4, 1fr);
     grid-gap: clamp(10px, 1.5vw, 20px);
     row-gap: clamp(25px, 2vw, 40px);
+    flex: 1 1 auto;
+
+    &_no_data {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+      width: 100%;
+      text-align: center;
+      @extend %inter_500_19_20;
+    }
 
     @media (max-width: 1330.98px) {
       grid-template-columns: repeat(3, 1fr);
