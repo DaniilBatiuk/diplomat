@@ -9,18 +9,18 @@ import styles from "../../CategoriesAndSearch.module.scss";
 import { Aside } from "../Aside/Aside";
 
 import { Card, Search, SkeletonCard } from "@/components";
+import { useProductFilterStore } from "@/utils/lib/store/products";
 
 type FiltersAndListProp = {
-  products: Product[];
   isFetching: boolean;
 };
 
 export const FiltersAndList: React.FC<FiltersAndListProp> = ({
-  products,
   isFetching,
 }: FiltersAndListProp) => {
   const [sort, setSort] = useState("Новинки");
   const [categoryActive, setCategoryActive] = useState(false);
+  const fullFilteredProducts = useProductFilterStore(state => state.fullFilteredProducts);
 
   const handleChange = (event: SelectChangeEvent) => {
     setSort(event.target.value as string);
@@ -54,13 +54,13 @@ export const FiltersAndList: React.FC<FiltersAndListProp> = ({
       </section>
       <div className={styles.categories__main}>
         <Aside />
-        {!isFetching && products.length <= 0 ? (
+        {!isFetching && fullFilteredProducts.length <= 0 ? (
           <div className={styles.categories__card_list_no_data}>
             На жаль, зараз товару з такою назвою немає.
           </div>
-        ) : products.length > 0 ? (
+        ) : !isFetching ? (
           <section className={styles.categories__card_list}>
-            {products.map(product => (
+            {fullFilteredProducts.map(product => (
               <Card product={product} key={product.id} />
             ))}
           </section>

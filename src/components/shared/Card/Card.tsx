@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import { patchProductStatus } from "@/utils/lib/actions/product";
 
 import styles from "./Card.module.scss";
+import { rgbDataURL } from "./helpers/photoHelper";
 import { MyButton } from "@/components";
 import { ProductsService } from "@/utils/services/products";
 
@@ -21,19 +22,6 @@ type CardProp = {
   imgClassName?: string;
   product: Product;
 };
-
-const keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-
-const triplet = (e1: number, e2: number, e3: number) =>
-  keyStr.charAt(e1 >> 2) +
-  keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
-  keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
-  keyStr.charAt(e3 & 63);
-
-const rgbDataURL = (r: number, g: number, b: number) =>
-  `data:image/gif;base64,R0lGODlhAQABAPAA${
-    triplet(0, r, g) + triplet(b, 255, 255)
-  }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
 
 export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) => {
   const router = useRouter();

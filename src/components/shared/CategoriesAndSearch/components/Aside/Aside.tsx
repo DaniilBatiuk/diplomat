@@ -9,35 +9,71 @@ import {
   FormControlLabel,
   Slider,
 } from "@mui/material";
-import { useState } from "react";
+import { useDebounceCallback } from "@siberiacancode/reactuse";
+import { useEffect, useState } from "react";
 
 import styles from "./Aside.module.scss";
+import { useProductFilterStore } from "@/utils/lib/store/products";
 
 const minDistance = 1;
-const minPrice = 10;
-const maxPrice = 1000;
+
 function valuetext(value: number) {
   return `${value}`;
 }
 
 export const Aside: React.FC = () => {
-  const [price, setPrice] = useState<number[]>([minPrice, maxPrice]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [price, setPrice] = useState<number[]>([0, 0]);
+
+  const setFullFilteredProducts = useProductFilterStore(state => state.setFullFilteredProducts);
+  const filteredProductsByCategoryAndSub = useProductFilterStore(
+    state => state.filteredProductsByCategoryAndSub,
+  );
+
+  const filterProducts = () => {
+    setFullFilteredProducts(
+      filteredProductsByCategoryAndSub.filter(
+        product => product.price >= price[0] && product.price <= price[1],
+      ),
+    );
+  };
+
+  const debouncedPrice = useDebounceCallback(filterProducts, 500);
+
+  useEffect(() => {
+    debouncedPrice();
+  }, [price]);
+
+  useEffect(() => {
+    if (filteredProductsByCategoryAndSub.length > 0) {
+      setPrice([
+        Math.min(...filteredProductsByCategoryAndSub.map(product => product.price)),
+        Math.max(...filteredProductsByCategoryAndSub.map(product => product.price)),
+      ]);
+      setMinPrice(Math.min(...filteredProductsByCategoryAndSub.map(product => product.price)));
+      setMaxPrice(Math.max(...filteredProductsByCategoryAndSub.map(product => product.price)));
+    }
+  }, [filteredProductsByCategoryAndSub]);
 
   const [manufacturer, setManufacturer] = useState({
     "Виробник 1": false,
     "Виробник 2 длинный очень и очень длинный название": false,
     "Виробник 3": false,
   });
+
   const [manufacturerCountry, setManufacturerCountry] = useState({
     Китай: false,
     Україна: false,
     США: false,
   });
+
   const [materials, setMaterials] = useState({
     Скло: false,
     Пісок: false,
     Цемент: false,
   });
+
   const [quantityInTheSet, setQuantityInTheSet] = useState({
     1: false,
     2: false,
