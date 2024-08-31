@@ -66,6 +66,7 @@ export default function CreateProduct() {
     handleSubmit,
     formState: { errors },
     watch,
+    getValues,
   } = useForm<CreateProduct>({
     defaultValues: {
       name: "",
@@ -88,7 +89,11 @@ export default function CreateProduct() {
   }, [subcategoryId]);
 
   useEffect(() => {
-    if (subcategoriesProperties && subcategoriesProperties.length > 0) {
+    if (
+      getValues("subcategoryId") !== "" &&
+      subcategoriesProperties &&
+      subcategoriesProperties.length > 0
+    ) {
       for (let data of subcategoriesProperties) {
         propertyAppend({
           name: data.name,

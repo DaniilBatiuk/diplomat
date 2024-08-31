@@ -22,6 +22,7 @@ export const CategoriesList: React.FC<CategoriesListProp> = ({
   return (
     <>
       <Link
+        scroll={false}
         href={`/category/Всі?search_text=${search ?? ""}`}
         className={clsx(styles.categories__subcategories_item, {
           [styles.active]: categorySelected === null,
@@ -32,6 +33,7 @@ export const CategoriesList: React.FC<CategoriesListProp> = ({
       </Link>
       {categoriesList.map(category => (
         <Link
+          scroll={false}
           href={`/category/${category.name}?search_text=${search ?? ""}`}
           key={category.id}
           className={clsx(styles.categories__subcategories_item, {

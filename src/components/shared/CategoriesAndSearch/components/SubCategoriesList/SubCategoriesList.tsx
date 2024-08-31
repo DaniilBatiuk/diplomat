@@ -21,6 +21,7 @@ export const SubCategoriesList: React.FC<SubCategoriesListProp> = ({
   return (
     <>
       <Link
+        scroll={false}
         href={`/category/Всі`}
         className={clsx(
           styles.categories__subcategories_item,
