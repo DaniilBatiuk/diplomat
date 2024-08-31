@@ -18,6 +18,7 @@ export async function GET(req: NextRequest) {
         orderStatus: true,
         price: true,
         status: true,
+        createdAt: true,
         properties: {
           select: {
             id: true,

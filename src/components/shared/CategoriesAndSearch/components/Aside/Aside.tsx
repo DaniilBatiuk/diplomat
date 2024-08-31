@@ -13,19 +13,19 @@ import { useDebounceCallback } from "@siberiacancode/reactuse";
 import { useEffect, useState } from "react";
 
 import styles from "./Aside.module.scss";
+import { AsideSkeleton } from "./components/AsideSkeleton/AsideSkeleton";
+import { MIN_DISTANCE } from "./constants";
+import { transformToUniqueProperties } from "./helpers/transformToUniqueProperties";
+import { valuetext } from "./helpers/valuetext";
 import { useProductFilterStore } from "@/utils/lib/store/products";
-
-const minDistance = 1;
-
-function valuetext(value: number) {
-  return `${value}`;
-}
 
 export const Aside: React.FC = () => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [price, setPrice] = useState<number[]>([0, 0]);
+  const [properties, setProperties] = useState<UniqueProperty[]>([]);
 
+  const isLoading = useProductFilterStore(state => state.isLoading);
   const setFullFilteredProducts = useProductFilterStore(state => state.setFullFilteredProducts);
   const filteredProductsByCategoryAndSub = useProductFilterStore(
     state => state.filteredProductsByCategoryAndSub,
@@ -33,8 +33,42 @@ export const Aside: React.FC = () => {
 
   const filterProducts = () => {
     setFullFilteredProducts(
-      filteredProductsByCategoryAndSub.filter(
-        product => product.price >= price[0] && product.price <= price[1],
+      filteredProductsByCategoryAndSub.filter(product => {
+        // Filter by price range
+        const isWithinPriceRange = product.price >= price[0] && product.price <= price[1];
+
+        // Filter by selected properties
+        const isMatchingProperties = properties.every(property => {
+          // Get selected values for the property
+          const selectedValues = property.values
+            .filter(value => value.isSelected)
+            .map(value => value.value);
+
+          // If no values are selected, skip this property in filtering
+          if (selectedValues.length === 0) return true;
+
+          // Check if the product has a matching property with a selected value
+          return product.properties.some(
+            prodProp => prodProp.name === property.name && selectedValues.includes(prodProp.value),
+          );
+        });
+
+        return isWithinPriceRange && isMatchingProperties;
+      }),
+    );
+  };
+
+  const handleCheckboxChange = (propertyName: string, value: string) => {
+    setProperties(prevProperties =>
+      prevProperties.map(property =>
+        property.name === propertyName
+          ? {
+              ...property,
+              values: property.values.map(val =>
+                val.value === value ? { ...val, isSelected: !val.isSelected } : val,
+              ),
+            }
+          : property,
       ),
     );
   };
@@ -43,7 +77,7 @@ export const Aside: React.FC = () => {
 
   useEffect(() => {
     debouncedPrice();
-  }, [price]);
+  }, [price, properties]);
 
   useEffect(() => {
     if (filteredProductsByCategoryAndSub.length > 0) {
@@ -54,34 +88,9 @@ export const Aside: React.FC = () => {
       setMinPrice(Math.min(...filteredProductsByCategoryAndSub.map(product => product.price)));
       setMaxPrice(Math.max(...filteredProductsByCategoryAndSub.map(product => product.price)));
     }
+
+    setProperties(transformToUniqueProperties(filteredProductsByCategoryAndSub));
   }, [filteredProductsByCategoryAndSub]);
-
-  const [manufacturer, setManufacturer] = useState({
-    "Виробник 1": false,
-    "Виробник 2 длинный очень и очень длинный название": false,
-    "Виробник 3": false,
-  });
-
-  const [manufacturerCountry, setManufacturerCountry] = useState({
-    Китай: false,
-    Україна: false,
-    США: false,
-  });
-
-  const [materials, setMaterials] = useState({
-    Скло: false,
-    Пісок: false,
-    Цемент: false,
-  });
-
-  const [quantityInTheSet, setQuantityInTheSet] = useState({
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
-    6: false,
-  });
 
   const handleChangePrice = (event: Event, newValue: number | number[], activeThumb: number) => {
     if (!Array.isArray(newValue)) {
@@ -89,37 +98,15 @@ export const Aside: React.FC = () => {
     }
 
     if (activeThumb === 0) {
-      setPrice([Math.min(newValue[0], price[1] - minDistance), price[1]]);
+      setPrice([Math.min(newValue[0], price[1] - MIN_DISTANCE), price[1]]);
     } else {
-      setPrice([price[0], Math.max(newValue[1], price[0] + minDistance)]);
+      setPrice([price[0], Math.max(newValue[1], price[0] + MIN_DISTANCE)]);
     }
   };
 
-  const handleChangeManufacturer = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setManufacturer({
-      ...manufacturer,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-  const handleChangeManufacturerCountry = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setManufacturerCountry({
-      ...manufacturerCountry,
-      [event.target.name]: event.target.checked,
-    });
-  };
-  const handleChangeMaterials = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMaterials({
-      ...materials,
-      [event.target.name]: event.target.checked,
-    });
-  };
-  const handleChangeQuantityInTheSet = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuantityInTheSet({
-      ...quantityInTheSet,
-      [event.target.name]: event.target.checked,
-    });
-  };
+  if (isLoading) {
+    return <AsideSkeleton />;
+  }
 
   return (
     <aside className={styles.aside}>
@@ -134,7 +121,7 @@ export const Aside: React.FC = () => {
                   type="text"
                   onChange={e => {
                     if (+e.target.value <= maxPrice) {
-                      setPrice([Math.min(+e.target.value, price[1] - minDistance), price[1]]);
+                      setPrice([Math.min(+e.target.value, price[1] - MIN_DISTANCE), price[1]]);
                     }
                     if (+e.target.value === 0) {
                       setPrice([1, price[1]]);
@@ -147,7 +134,7 @@ export const Aside: React.FC = () => {
                   type="text"
                   onChange={e => {
                     if (+e.target.value <= maxPrice) {
-                      setPrice([Math.min(price[0], price[1] - minDistance), +e.target.value]);
+                      setPrice([Math.min(price[0], price[1] - MIN_DISTANCE), +e.target.value]);
                     }
                     if (+e.target.value === 0) {
                       setPrice([price[0], 100]);
@@ -168,64 +155,27 @@ export const Aside: React.FC = () => {
             </div>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>Виробник</AccordionSummary>
-          <AccordionDetails>
-            {Object.entries(manufacturer).map(([key, value]) => (
-              <FormControlLabel
-                className={styles.aside__check_label}
-                key={key}
-                control={
-                  <Checkbox checked={value} onChange={handleChangeManufacturer} name={key} />
-                }
-                label={key}
-              />
-            ))}
-          </AccordionDetails>
-        </Accordion>
-        <Accordion>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>Країна виробник</AccordionSummary>
-          <AccordionDetails>
-            {Object.entries(manufacturerCountry).map(([key, value]) => (
-              <FormControlLabel
-                className={styles.aside__check_label}
-                key={key}
-                control={
-                  <Checkbox checked={value} onChange={handleChangeManufacturerCountry} name={key} />
-                }
-                label={key}
-              />
-            ))}
-          </AccordionDetails>
-        </Accordion>
-        <Accordion>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>Матеріали</AccordionSummary>
-          <AccordionDetails>
-            {Object.entries(materials).map(([key, value]) => (
-              <FormControlLabel
-                className={styles.aside__check_label}
-                key={key}
-                control={<Checkbox checked={value} onChange={handleChangeMaterials} name={key} />}
-                label={key}
-              />
-            ))}
-          </AccordionDetails>
-        </Accordion>
-        <Accordion>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>Кількість в наборі</AccordionSummary>
-          <AccordionDetails>
-            {Object.entries(quantityInTheSet).map(([key, value]) => (
-              <FormControlLabel
-                className={styles.aside__check_label}
-                key={key}
-                control={
-                  <Checkbox checked={value} onChange={handleChangeQuantityInTheSet} name={key} />
-                }
-                label={key}
-              />
-            ))}
-          </AccordionDetails>
-        </Accordion>
+        {properties.map(property => (
+          <Accordion key={property.name}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>{property.name}</AccordionSummary>
+            <AccordionDetails>
+              {property.values.map(value => (
+                <FormControlLabel
+                  className={styles.aside__check_label}
+                  key={value.value}
+                  control={
+                    <Checkbox
+                      checked={value.isSelected}
+                      onChange={() => handleCheckboxChange(property.name, value.value)}
+                      name={value.value}
+                    />
+                  }
+                  label={value.value}
+                />
+              ))}
+            </AccordionDetails>
+          </Accordion>
+        ))}
       </div>
     </aside>
   );

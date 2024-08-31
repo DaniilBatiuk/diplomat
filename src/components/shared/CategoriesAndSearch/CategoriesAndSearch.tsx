@@ -25,11 +25,12 @@ export const CategoriesAndSearch: React.FC<CategoriesAndSearchProp> = ({
 
   const [categorySelected, setCategorySelected] = useState<Category | null>(category ?? null);
   const [subCategorySelected, setSubCategorySelected] = useState<SubcategorySearch | null>(null);
-  const [isLoaded, setIsLoaded] = useState(true);
 
   const setFilteredProductsByCategoryAndSub = useProductFilterStore(
     state => state.setFilteredProductsByCategoryAndSub,
   );
+
+  const setIsLoading = useProductFilterStore(state => state.setIsLoading);
   const setFullFilteredProducts = useProductFilterStore(state => state.setFullFilteredProducts);
 
   useLayoutEffect(() => {
@@ -45,7 +46,7 @@ export const CategoriesAndSearch: React.FC<CategoriesAndSearchProp> = ({
 
   useEffect(() => {
     setTimeout(() => {
-      setIsLoaded(isFetching);
+      setIsLoading(isFetching);
     }, 300);
   }, [isFetching]);
 
@@ -74,7 +75,7 @@ export const CategoriesAndSearch: React.FC<CategoriesAndSearchProp> = ({
   }, [categorySelected, subCategorySelected, products, search]);
 
   useEffect(() => {
-    setIsLoaded(true);
+    setIsLoading(true);
   }, [categorySelected]);
   return (
     <>
@@ -99,7 +100,7 @@ export const CategoriesAndSearch: React.FC<CategoriesAndSearchProp> = ({
               />
             )}
           </section>
-          <FiltersAndList isFetching={isLoaded} />
+          <FiltersAndList />
         </div>
       </div>
     </>

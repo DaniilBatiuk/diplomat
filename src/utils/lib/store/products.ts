@@ -5,6 +5,8 @@ type ProductFilterState = {
   filteredProductsByCategoryAndSub: Product[];
   setFilteredProductsByCategoryAndSub: (products: Product[]) => void;
   setFullFilteredProducts: (products: Product[]) => void;
+  isLoading: boolean;
+  setIsLoading: (isLoading: boolean) => void;
 };
 
 export const useProductFilterStore = create<ProductFilterState>(set => ({
@@ -13,4 +15,6 @@ export const useProductFilterStore = create<ProductFilterState>(set => ({
   setFilteredProductsByCategoryAndSub: (filteredProductsByCategoryAndSub: Product[]) =>
     set({ filteredProductsByCategoryAndSub }),
   setFullFilteredProducts: (fullFilteredProducts: Product[]) => set({ fullFilteredProducts }),
+  isLoading: true,
+  setIsLoading: (isLoading: boolean) => set({ isLoading }),
 }));

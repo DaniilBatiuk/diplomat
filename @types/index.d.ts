@@ -85,4 +85,13 @@ type Product = {
     name: string;
     categoryId: string;
   };
+  createdAt: Date;
+};
+
+type UniqueProperty = {
+  name: string;
+  values: {
+    value: string;
+    isSelected: boolean;
+  }[];
 };

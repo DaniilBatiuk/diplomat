@@ -1,7 +1,7 @@
 import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ICONS } from "@/utils/config/icons";
 
@@ -11,20 +11,34 @@ import { Aside } from "../Aside/Aside";
 import { Card, Search, SkeletonCard } from "@/components";
 import { useProductFilterStore } from "@/utils/lib/store/products";
 
-type FiltersAndListProp = {
-  isFetching: boolean;
-};
-
-export const FiltersAndList: React.FC<FiltersAndListProp> = ({
-  isFetching,
-}: FiltersAndListProp) => {
+export const FiltersAndList: React.FC = () => {
   const [sort, setSort] = useState("Новинки");
   const [categoryActive, setCategoryActive] = useState(false);
+
   const fullFilteredProducts = useProductFilterStore(state => state.fullFilteredProducts);
+  const isLoading = useProductFilterStore(state => state.isLoading);
+  const setFullFilteredProducts = useProductFilterStore(state => state.setFullFilteredProducts);
+
+  useEffect(() => {
+    let sortedProducts = [...fullFilteredProducts];
+
+    if (sort === "Новинки") {
+      sortedProducts.sort(
+        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
+    } else if (sort === "Дешевше") {
+      sortedProducts.sort((a, b) => a.price - b.price);
+    } else if (sort === "Дорожче") {
+      sortedProducts.sort((a, b) => b.price - a.price);
+    }
+
+    setFullFilteredProducts(sortedProducts);
+  }, [sort]);
 
   const handleChange = (event: SelectChangeEvent) => {
     setSort(event.target.value as string);
   };
+
   const categoryOpen = () => {
     setCategoryActive(prev => !prev);
     document.documentElement.classList.toggle("open_category");
@@ -54,11 +68,11 @@ export const FiltersAndList: React.FC<FiltersAndListProp> = ({
       </section>
       <div className={styles.categories__main}>
         <Aside />
-        {!isFetching && fullFilteredProducts.length <= 0 ? (
+        {!isLoading && fullFilteredProducts.length <= 0 ? (
           <div className={styles.categories__card_list_no_data}>
             На жаль, зараз товару з такою назвою немає.
           </div>
-        ) : !isFetching ? (
+        ) : !isLoading ? (
           <section className={styles.categories__card_list}>
             {fullFilteredProducts.map(product => (
               <Card product={product} key={product.id} />

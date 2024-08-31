@@ -9,6 +9,11 @@
     position: sticky;
   }
 
+  &__skeleton {
+    height: 48px !important;
+    margin-bottom: 3px;
+  }
+
   @media (max-width: 870px) {
     display: none !important;
   }
