@@ -35,7 +35,7 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
   const setFullFilteredProducts = useProductFilterStore(state => state.setFullFilteredProducts);
   const setIsLoading = useProductFilterStore(state => state.setIsLoading);
 
-  const { data: products, isFetching } = useQuery({
+  const { data: products } = useQuery({
     queryKey: ["products"],
     queryFn: ProductsService.getAllActiveProducts,
   });
@@ -147,6 +147,7 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
 
       setFullFilteredProducts(productsFilter);
     }
+    debouncedLoading();
   }, [products, searchParams]);
 
   const redirect = () => {
@@ -183,16 +184,11 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
   };
 
   const debounced = useDebounceCallback(redirect, 500);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(isFetching);
-    }, 700);
-  }, [isFetching]);
+  const debouncedLoading = useDebounceCallback(() => setIsLoading(false), 700);
 
   useEffect(() => {
     setIsLoading(true);
-  }, [categorySelected]);
+  }, []);
 
   return {
     price,
