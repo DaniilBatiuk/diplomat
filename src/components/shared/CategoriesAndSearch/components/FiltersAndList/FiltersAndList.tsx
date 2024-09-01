@@ -1,7 +1,7 @@
 import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 import { ICONS } from "@/utils/config/icons";
 
@@ -11,32 +11,37 @@ import { Aside } from "../Aside/Aside";
 import { Card, Search, SkeletonCard } from "@/components";
 import { useProductFilterStore } from "@/utils/lib/store/products";
 
-export const FiltersAndList: React.FC = () => {
-  const [sort, setSort] = useState("Новинки");
+type FiltersAndListProp = {
+  price: number[];
+  setSort: Dispatch<SetStateAction<string>>;
+  sort: string;
+  properties: UniqueProperty[];
+  setPrice: Dispatch<SetStateAction<number[]>>;
+  setProperties: Dispatch<SetStateAction<UniqueProperty[]>>;
+  minPrice: number;
+  maxPrice: number;
+  debounced: () => void;
+};
+
+export const FiltersAndList: React.FC<FiltersAndListProp> = ({
+  price,
+  setSort,
+  sort,
+  properties,
+  setPrice,
+  setProperties,
+  minPrice,
+  maxPrice,
+  debounced,
+}: FiltersAndListProp) => {
   const [categoryActive, setCategoryActive] = useState(false);
 
   const fullFilteredProducts = useProductFilterStore(state => state.fullFilteredProducts);
   const isLoading = useProductFilterStore(state => state.isLoading);
-  const setFullFilteredProducts = useProductFilterStore(state => state.setFullFilteredProducts);
-
-  useEffect(() => {
-    let sortedProducts = [...fullFilteredProducts];
-
-    if (sort === "Новинки") {
-      sortedProducts.sort(
-        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-      );
-    } else if (sort === "Дешевше") {
-      sortedProducts.sort((a, b) => a.price - b.price);
-    } else if (sort === "Дорожче") {
-      sortedProducts.sort((a, b) => b.price - a.price);
-    }
-
-    setFullFilteredProducts(sortedProducts);
-  }, [sort]);
 
   const handleChange = (event: SelectChangeEvent) => {
     setSort(event.target.value as string);
+    debounced();
   };
 
   const categoryOpen = () => {
@@ -67,7 +72,16 @@ export const FiltersAndList: React.FC = () => {
         </div>
       </section>
       <div className={styles.categories__main}>
-        <Aside />
+        <Aside
+          sort={sort}
+          properties={properties}
+          price={price}
+          setPrice={setPrice}
+          setProperties={setProperties}
+          maxPrice={maxPrice}
+          minPrice={minPrice}
+          debounced={debounced}
+        />
         {!isLoading && fullFilteredProducts.length <= 0 ? (
           <div className={styles.categories__card_list_no_data}>
             На жаль, зараз товару з такою назвою немає.
@@ -92,7 +106,16 @@ export const FiltersAndList: React.FC = () => {
           {ICONS.close({ onClick: () => categoryOpen() })}
         </div>
         <div className={styles.open_category__content}>
-          <Aside />
+          <Aside
+            sort={sort}
+            properties={properties}
+            price={price}
+            setPrice={setPrice}
+            setProperties={setProperties}
+            maxPrice={maxPrice}
+            minPrice={minPrice}
+            debounced={debounced}
+          />
         </div>
       </div>
     </>

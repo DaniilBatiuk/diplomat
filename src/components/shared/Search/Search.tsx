@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import styles from "./Search.module.scss";
 
@@ -23,12 +23,14 @@ export const Search: React.FC<SearchProp> = ({ className, classNameInput }: Sear
     }
   }, [pathname]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const search_text = searchParams.get("search_text");
     if (inputRef.current && search_text) {
       inputRef.current.value = search_text;
+    } else if (inputRef.current) {
+      inputRef.current.value = "";
     }
-  }, []);
+  }, [searchParams]);
 
   return (
     <form

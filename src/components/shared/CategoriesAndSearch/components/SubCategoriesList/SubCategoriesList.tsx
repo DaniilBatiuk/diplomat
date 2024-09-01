@@ -1,6 +1,7 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import clsx from "clsx";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 
 import styles from "../../CategoriesAndSearch.module.scss";
@@ -18,6 +19,8 @@ export const SubCategoriesList: React.FC<SubCategoriesListProp> = ({
   subCategorySelected,
   categorySelected,
 }: SubCategoriesListProp) => {
+  const pathname = usePathname();
+
   return (
     <>
       <Link
@@ -31,26 +34,28 @@ export const SubCategoriesList: React.FC<SubCategoriesListProp> = ({
       >
         <ArrowBackIcon sx={{ fontSize: 19 }} />
       </Link>
-      <div
+      <Link
+        href={`${pathname}?subcategory=Всі`}
         className={clsx(styles.categories__subcategories_item, {
           [styles.active]: subCategorySelected === null,
         })}
         onClick={() => setSubCategorySelected(null)}
       >
         Всі
-      </div>
+      </Link>
 
       {categorySelected &&
         categorySelected.subcategories.map(subcategory => (
-          <div
+          <Link
+            href={`${pathname}?subcategory=${subcategory.name}`}
             key={subcategory.id}
             className={clsx(styles.categories__subcategories_item, {
-              [styles.active]: subCategorySelected === subcategory,
+              [styles.active]: subCategorySelected?.id === subcategory.id,
             })}
             onClick={() => setSubCategorySelected(subcategory)}
           >
             {subcategory.name}
-          </div>
+          </Link>
         ))}
     </>
   );

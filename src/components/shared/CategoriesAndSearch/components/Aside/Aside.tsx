@@ -9,54 +9,36 @@ import {
   FormControlLabel,
   Slider,
 } from "@mui/material";
-import { useDebounceCallback } from "@siberiacancode/reactuse";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import styles from "./Aside.module.scss";
 import { AsideSkeleton } from "./components/AsideSkeleton/AsideSkeleton";
 import { MIN_DISTANCE } from "./constants";
-import { transformToUniqueProperties } from "./helpers/transformToUniqueProperties";
 import { valuetext } from "./helpers/valuetext";
 import { useProductFilterStore } from "@/utils/lib/store/products";
 
-export const Aside: React.FC = () => {
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [price, setPrice] = useState<number[]>([0, 0]);
-  const [properties, setProperties] = useState<UniqueProperty[]>([]);
+type AsideProp = {
+  sort: string;
+  price: number[];
+  properties: UniqueProperty[];
+  setPrice: Dispatch<SetStateAction<number[]>>;
+  setProperties: Dispatch<SetStateAction<UniqueProperty[]>>;
+  minPrice: number;
+  maxPrice: number;
+  debounced: () => void;
+};
 
+export const Aside: React.FC<AsideProp> = ({
+  sort,
+  price,
+  properties,
+  setPrice,
+  setProperties,
+  minPrice,
+  maxPrice,
+  debounced,
+}: AsideProp) => {
   const isLoading = useProductFilterStore(state => state.isLoading);
-  const setFullFilteredProducts = useProductFilterStore(state => state.setFullFilteredProducts);
-  const filteredProductsByCategoryAndSub = useProductFilterStore(
-    state => state.filteredProductsByCategoryAndSub,
-  );
-
-  const filterProducts = () => {
-    setFullFilteredProducts(
-      filteredProductsByCategoryAndSub.filter(product => {
-        // Filter by price range
-        const isWithinPriceRange = product.price >= price[0] && product.price <= price[1];
-
-        // Filter by selected properties
-        const isMatchingProperties = properties.every(property => {
-          // Get selected values for the property
-          const selectedValues = property.values
-            .filter(value => value.isSelected)
-            .map(value => value.value);
-
-          // If no values are selected, skip this property in filtering
-          if (selectedValues.length === 0) return true;
-
-          // Check if the product has a matching property with a selected value
-          return product.properties.some(
-            prodProp => prodProp.name === property.name && selectedValues.includes(prodProp.value),
-          );
-        });
-
-        return isWithinPriceRange && isMatchingProperties;
-      }),
-    );
-  };
 
   const handleCheckboxChange = (propertyName: string, value: string) => {
     setProperties(prevProperties =>
@@ -71,26 +53,8 @@ export const Aside: React.FC = () => {
           : property,
       ),
     );
+    debounced();
   };
-
-  const debouncedPrice = useDebounceCallback(filterProducts, 500);
-
-  useEffect(() => {
-    debouncedPrice();
-  }, [price, properties]);
-
-  useEffect(() => {
-    if (filteredProductsByCategoryAndSub.length > 0) {
-      setPrice([
-        Math.min(...filteredProductsByCategoryAndSub.map(product => product.price)),
-        Math.max(...filteredProductsByCategoryAndSub.map(product => product.price)),
-      ]);
-      setMinPrice(Math.min(...filteredProductsByCategoryAndSub.map(product => product.price)));
-      setMaxPrice(Math.max(...filteredProductsByCategoryAndSub.map(product => product.price)));
-    }
-
-    setProperties(transformToUniqueProperties(filteredProductsByCategoryAndSub));
-  }, [filteredProductsByCategoryAndSub]);
 
   const handleChangePrice = (event: Event, newValue: number | number[], activeThumb: number) => {
     if (!Array.isArray(newValue)) {
@@ -102,6 +66,7 @@ export const Aside: React.FC = () => {
     } else {
       setPrice([price[0], Math.max(newValue[1], price[0] + MIN_DISTANCE)]);
     }
+    debounced();
   };
 
   if (isLoading) {
