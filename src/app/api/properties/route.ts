@@ -23,6 +23,6 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(allProperties);
   } catch (error) {
     console.log("Error finding allProperties: ", error);
-    return NextResponse.json({ error: `Error finding allProperties: ${error}`, status: 500 });
+    return NextResponse.json({ message: `Не вдалось отримати значення`, status: 500 });
   }
 }

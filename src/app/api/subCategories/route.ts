@@ -18,6 +18,6 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(allSubcategories);
   } catch (error) {
     console.log("Error finding allSubcategories: ", error);
-    return NextResponse.json({ error: `Error finding allSubcategories: ${error}`, status: 500 });
+    return NextResponse.json({ message: `Не вдалось отримати підкатегорії`, status: 500 });
   }
 }

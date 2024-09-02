@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(allProducts);
   } catch (error) {
     console.log("Error finding allProducts: ", error);
-    return NextResponse.json({ error: `Error finding allProducts: ${error}`, status: 500 });
+    return NextResponse.json({ message: `Не вдалось отритати товар`, status: 500 });
   }
 }
 
@@ -59,6 +59,6 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ message: "Product successfully deleted" });
   } catch (error) {
     console.log("Error deleting product: ", error);
-    return NextResponse.json({ error: `Error deleting product: ${error}` }, { status: 500 });
+    return NextResponse.json({ message: `Не вдалось отримати товар` }, { status: 500 });
   }
 }

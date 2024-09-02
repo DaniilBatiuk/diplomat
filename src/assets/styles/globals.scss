@@ -222,6 +222,7 @@ main {
   align-items: center;
   height: 400px;
   width: 100%;
+  @extend %inter_500_19_20;
 }
 
 .MuiSkeleton-root {

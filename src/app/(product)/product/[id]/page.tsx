@@ -3,10 +3,11 @@
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { OrderStatus } from "@prisma/client";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -21,13 +22,29 @@ import { ProductSkeleton } from "../components/ProductSkeleton/ProductSkeleton";
 import styles from "./Product.module.scss";
 import { ProductList } from "@/app/components/ProductList/ProductList";
 import { Counter, MyButton } from "@/components";
+import { CartItemService } from "@/utils/services/cart-item";
 import { ProductsService } from "@/utils/services/products";
 
 export default function Product({ params }: { params: { id: string } }) {
   const [countSelect, setCountSelect] = useState(1);
+  const queryClient = useQueryClient();
+
   const { data: product, isFetching } = useQuery({
     queryKey: ["product"],
     queryFn: () => ProductsService.getOneProduct(params.id),
+  });
+
+  const { isPending, mutate } = useMutation({
+    mutationFn: CartItemService.createCartItem,
+    onSuccess: () => {
+      toast.success("Товар був успішно доданий до кошику.");
+      queryClient.invalidateQueries({
+        queryKey: ["cart"],
+      });
+    },
+    onError: error => {
+      toast.error(error.message);
+    },
   });
 
   return (
@@ -125,7 +142,13 @@ export default function Product({ params }: { params: { id: string } }) {
               <p>Загалом: {product.price * countSelect} грн</p>
             </div>
 
-            <MyButton className={styles.product__button}>ДОДАТИ В КОШИК</MyButton>
+            <MyButton
+              className={styles.product__button}
+              onClick={() => mutate({ productId: product.id, quantity: countSelect })}
+              disabled={isPending}
+            >
+              ДОДАТИ В КОШИК
+            </MyButton>
           </div>
         </section>
       )}

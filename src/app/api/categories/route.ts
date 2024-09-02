@@ -8,6 +8,6 @@ export async function GET() {
     return NextResponse.json(allCategories);
   } catch (error) {
     console.log("Error finding categories: ", error);
-    return NextResponse.json({ error: `Error finding categories: ${error}`, status: 500 });
+    return NextResponse.json({ message: `Не вдалось отримати категорії`, status: 500 });
   }
 }

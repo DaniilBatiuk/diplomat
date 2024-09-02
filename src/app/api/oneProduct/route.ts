@@ -43,6 +43,6 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(oneProduct);
   } catch (error) {
     console.log("Error finding product: ", error);
-    return NextResponse.json({ error: `Error finding product: ${error}`, status: 500 });
+    return NextResponse.json({ message: `Не вдалось отримати товар`, status: 500 });
   }
 }

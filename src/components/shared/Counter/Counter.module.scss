@@ -24,8 +24,21 @@
     }
   }
 
+  &__disable {
+    cursor: not-allowed;
+    border: 1px solid $grayLight;
+    background-color: $grayLight2;
+    color: $grayLight3;
+
+    &:hover {
+      border: 1px solid $grayLight;
+      background-color: rgb(238, 236, 236);
+      color: $grayLight3;
+    }
+  }
+
   &__field {
-    width: 31px;
+    width: 33px;
     background-color: inherit;
     text-align: center;
     outline: none;

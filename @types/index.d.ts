@@ -95,3 +95,33 @@ type UniqueProperty = {
     isSelected: boolean;
   }[];
 };
+
+type Cart = {
+  id: string;
+  token: string;
+  totalPrice: number;
+  items: Item[];
+};
+
+type Item = {
+  id: string;
+  quantity: number;
+  product: {
+    id: string;
+    name: string;
+    price: number;
+    count: number;
+    imageUrls: string[];
+  };
+};
+
+type CartItemCreate = {
+  quantity: number;
+  productId: string;
+  cartId?: string;
+};
+
+type IsReadyPriceState = {
+  fetchingCart: boolean;
+  patchCartItem: boolean;
+};

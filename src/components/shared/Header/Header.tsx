@@ -3,6 +3,7 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Badge } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -16,6 +17,7 @@ import { RegisterOrLogin } from "../RegisterOrLogin/RegisterOrLogin";
 import { Search } from "../Search/Search";
 
 import "./Header.scss";
+import { CartService } from "@/utils/services/cart";
 
 export const Header: React.FC = () => {
   const [menuActive, setMenuActive] = useState<boolean>(false);
@@ -28,6 +30,11 @@ export const Header: React.FC = () => {
     setMenuActive(prev => !prev);
     document.documentElement.classList.toggle("open-menu");
   };
+
+  const { data: cart } = useQuery({
+    queryKey: ["cart"],
+    queryFn: () => CartService.getCart(),
+  });
 
   useEffect(() => {
     loginActive || registerActive
@@ -68,7 +75,7 @@ export const Header: React.FC = () => {
                   Зареєструватись
                 </MyButton>
                 <Link href={LINKS.BASKET}>
-                  <Badge color="error" badgeContent={1}>
+                  <Badge color="error" badgeContent={cart?.items.length ?? 0}>
                     <ShoppingCartOutlinedIcon sx={{ fontSize: 28 }} />
                   </Badge>
                 </Link>

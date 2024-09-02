@@ -1,11 +1,18 @@
 @import "@/assets/styles/variables.scss";
 .basket {
+  &__skeleton {
+    &_item {
+      height: 100px !important;
+      border-radius: 10px;
+    }
+  }
   &__container {
     margin-top: clamp(15px, 4vw, 70px);
     max-width: 1000px;
   }
   &__title {
     @extend %inter_500_23_25;
+    text-wrap: nowrap;
 
     cursor: pointer;
 
@@ -62,6 +69,7 @@
     background-color: rgb(255, 243, 226);
     border-radius: 10px;
     position: relative;
+    transition: all 0.15s ease-in-out;
 
     &__content {
       display: flex;
@@ -76,6 +84,10 @@
         row-gap: 10px;
         margin-left: 15px;
       }
+    }
+
+    &__pending {
+      color: $grayLight3;
     }
 
     &__title {
