@@ -16,6 +16,7 @@ import { patchProductStatus } from "@/utils/lib/actions/product";
 import styles from "./Card.module.scss";
 import { rgbDataURL } from "./helpers/photoHelper";
 import { MyButton } from "@/components";
+import { CartItemService } from "@/utils/services/cart-item";
 import { ProductsService } from "@/utils/services/products";
 
 type CardProp = {
@@ -47,6 +48,19 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
       toast.success("Статут був успішно змінений.");
       queryClient.invalidateQueries({
         queryKey: ["products"],
+      });
+    },
+    onError: error => {
+      toast.error(error.message);
+    },
+  });
+
+  const { isPending, mutate: addToBasket } = useMutation({
+    mutationFn: CartItemService.createCartItem,
+    onSuccess: () => {
+      toast.success("Товар був успішно доданий до кошику.");
+      queryClient.invalidateQueries({
+        queryKey: ["cart"],
       });
     },
     onError: error => {
@@ -91,7 +105,18 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
               {product.status === Status.ACTIVE ? "ДЕАКТИВУВАТИ" : "АКТИВУВАТИ"}
             </MyButton>
           ) : (
-            <MyButton className={styles.card__button}>КУПИТИ</MyButton>
+            <MyButton
+              className={clsx(styles.card__button, {
+                [styles.card__button_disable]: isPending,
+              })}
+              disabled={isPending}
+              onClick={e => {
+                e.stopPropagation();
+                addToBasket({ productId: product.id, quantity: 1 });
+              }}
+            >
+              КУПИТИ
+            </MyButton>
           )}
         </div>
       </figcaption>

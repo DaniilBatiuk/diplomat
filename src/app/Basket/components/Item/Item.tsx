@@ -38,7 +38,7 @@ export const Item: React.FC<ItemProp> = ({
   const queryClient = useQueryClient();
   const [count, setCount] = useState(item.quantity);
 
-  const { mutate: deleteCartItem } = useMutation({
+  const { mutate: deleteCartItem, isPending: isDeleting } = useMutation({
     mutationFn: CartItemService.deleteCartItem,
     onSuccess: () => {
       toast.success("Товар був успішно видалений з кошику.");
@@ -63,7 +63,7 @@ export const Item: React.FC<ItemProp> = ({
   );
 
   return (
-    <div className={styles.basket__item}>
+    <div className={clsx(styles.basket__item, { [styles.basket__item_deleting]: isDeleting })}>
       <Link href={`/Product/${item.product.id}`}>
         <div className={styles.basket__img}>
           <Image

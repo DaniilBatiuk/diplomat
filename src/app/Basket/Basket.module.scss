@@ -86,6 +86,10 @@
       }
     }
 
+    &_deleting {
+      background-color: $grayLoading;
+    }
+
     &__pending {
       color: $grayLight3;
     }

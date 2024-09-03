@@ -3,11 +3,15 @@
 import { Skeleton } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+import { rgbDataURL } from "@/components/shared/Card/helpers/photoHelper";
+
 import styles from "./Basket.module.scss";
 import { Item } from "./components/Item/Item";
+import image from "@/assets/images/empty-box.png";
 import { MyButton } from "@/components";
 import { CartService } from "@/utils/services/cart";
 import { CartItemService } from "@/utils/services/cart-item";
@@ -103,7 +107,18 @@ export default function Basket() {
               </div>
             </>
           ) : (
-            <div className="loader">Кошик порожній</div>
+            <div className="nodata">
+              <Image
+                width={150}
+                height={150}
+                priority={true}
+                src={image}
+                alt={`Image`}
+                placeholder="blur"
+                blurDataURL={rgbDataURL(255, 237, 212)}
+              />
+              Кошик порожній
+            </div>
           )
         ) : (
           <div> ОПЛАТА І ДОСТАВКА</div>

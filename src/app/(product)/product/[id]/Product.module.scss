@@ -131,6 +131,10 @@
     margin-top: clamp(15px, 3vw, 20px);
     width: 100%;
     padding: clamp(10px, 1.8vw, 13px) 10px !important;
+
+    &_disable {
+      @extend %disableButton;
+    }
   }
 
   &__result {

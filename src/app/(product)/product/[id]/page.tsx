@@ -143,7 +143,9 @@ export default function Product({ params }: { params: { id: string } }) {
             </div>
 
             <MyButton
-              className={styles.product__button}
+              className={clsx(styles.product__button, {
+                [styles.product__button_disable]: isPending,
+              })}
               onClick={() => mutate({ productId: product.id, quantity: countSelect })}
               disabled={isPending}
             >
