@@ -158,7 +158,7 @@ export default function UpdateProduct({ params }: { params: { id: string } }) {
   const { isPending, mutate } = useMutation({
     mutationFn: patchProduct,
     onSuccess: () => {
-      toast.success("Продукт був успішно змінений.");
+      toast.success("Товар був успішно змінений.");
       queryClient.invalidateQueries({
         queryKey: ["products"],
       });

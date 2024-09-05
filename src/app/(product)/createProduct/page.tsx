@@ -126,7 +126,7 @@ export default function CreateProduct() {
   const { isPending, mutate } = useMutation({
     mutationFn: createProduct,
     onSuccess: () => {
-      toast.success("Продукт був успішно створений.");
+      toast.success("Товар був успішно створений.");
       queryClient.invalidateQueries({
         queryKey: ["products"],
       });

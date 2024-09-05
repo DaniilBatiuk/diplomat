@@ -32,7 +32,7 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
   const { mutate: deletePr } = useMutation({
     mutationFn: ProductsService.deleteOneProduct,
     onSuccess: () => {
-      toast.success("Продукт був успішно видалено.");
+      toast.success("Товар був успішно видалено.");
       queryClient.invalidateQueries({
         queryKey: ["products"],
       });
@@ -45,7 +45,7 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
   const { mutate: changeStatus } = useMutation({
     mutationFn: patchProductStatus,
     onSuccess: () => {
-      toast.success("Статут був успішно змінений.");
+      toast.success("Статус був успішно змінений.");
       queryClient.invalidateQueries({
         queryKey: ["products"],
       });
