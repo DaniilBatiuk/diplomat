@@ -88,6 +88,7 @@ export async function getAllActiveProducts(): Promise<Product[]> {
         orderStatus: true,
         price: true,
         status: true,
+        createdAt: true,
         properties: {
           select: {
             id: true,

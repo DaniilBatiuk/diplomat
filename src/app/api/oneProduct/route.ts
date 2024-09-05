@@ -46,3 +46,5 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ message: `Не вдалось отримати товар`, status: 500 });
   }
 }
+
+export async function POST(req: NextRequest) {}

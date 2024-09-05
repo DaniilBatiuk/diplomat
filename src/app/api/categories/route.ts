@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "../../../../prisma/prisma-client";
 
@@ -11,3 +11,5 @@ export async function GET() {
     return NextResponse.json({ message: `Не вдалось отримати категорії`, status: 500 });
   }
 }
+
+export async function POST(req: NextRequest) {}

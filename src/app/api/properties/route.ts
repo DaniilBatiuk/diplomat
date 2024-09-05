@@ -26,3 +26,4 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ message: `Не вдалось отримати значення`, status: 500 });
   }
 }
+export async function POST(req: NextRequest) {}
