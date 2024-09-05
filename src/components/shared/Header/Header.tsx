@@ -3,9 +3,12 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Badge } from "@mui/material";
+import { UserRole } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { MyButton } from "@/components/ui/MyButton/MyButton";
@@ -19,12 +22,20 @@ import { Search } from "../Search/Search";
 import "./Header.scss";
 import { CartService } from "@/utils/services/cart";
 
-export const Header: React.FC = () => {
+type HeaderProp = {
+  userFromServer: UserAuth;
+};
+
+export const Header: React.FC<HeaderProp> = ({ userFromServer }: HeaderProp) => {
+  const { data } = useSession();
+  const [user, setUser] = useState<UserAuth>(userFromServer);
+
   const [menuActive, setMenuActive] = useState<boolean>(false);
-  const [isSignIn, setIsSignIn] = useState<boolean>(false);
 
   const [loginActive, setLoginActive] = useState<boolean>(false);
   const [registerActive, setRegisterActive] = useState<boolean>(false);
+
+  const router = useRouter();
 
   const menuOpen = () => {
     setMenuActive(prev => !prev);
@@ -42,6 +53,12 @@ export const Header: React.FC = () => {
       : document.documentElement.classList.remove("open-left");
   }, [loginActive, registerActive]);
 
+  useEffect(() => {
+    if (!user) {
+      setUser(data ? data.user : null);
+    }
+  }, [data]);
+
   return (
     <>
       <header className="header">
@@ -54,13 +71,13 @@ export const Header: React.FC = () => {
           <Search className="header__search" classNameInput="header__search_input" />
 
           <div className="header__list">
-            {isSignIn ? (
-              <div className="header__icon"></div>
-            ) : (
+            {user && user.role === UserRole.ADMIN && (
+              <Link href={LINKS.ADMIN} className="header__admin">
+                Адмін
+              </Link>
+            )}
+            {!user ? (
               <>
-                <Link href={LINKS.ADMIN} className="header__admin">
-                  Адмін
-                </Link>
                 <button
                   className="header__signin"
                   onClick={() => {
@@ -74,16 +91,20 @@ export const Header: React.FC = () => {
                 <MyButton className="header__signup" onClick={() => setRegisterActive(true)}>
                   Зареєструватись
                 </MyButton>
-                <Link href={LINKS.BASKET}>
-                  <Badge color="error" badgeContent={cart?.items.length ?? 0}>
-                    <ShoppingCartOutlinedIcon sx={{ fontSize: 28 }} />
-                  </Badge>
-                </Link>
-                <Link href={LINKS.SAVED}>
-                  <FavoriteBorderIcon sx={{ fontSize: 28 }} />
-                </Link>
               </>
+            ) : (
+              <MyButton className="header__signup" onClick={() => signOut()}>
+                Вийти
+              </MyButton>
             )}
+            <Link href={LINKS.BASKET}>
+              <Badge color="error" badgeContent={cart?.items.length ?? 0}>
+                <ShoppingCartOutlinedIcon sx={{ fontSize: 28 }} />
+              </Badge>
+            </Link>
+            <Link href={LINKS.SAVED}>
+              <FavoriteBorderIcon sx={{ fontSize: 28 }} />
+            </Link>
           </div>
           <button className="icon-menu" type="button" onClick={menuOpen}>
             {menuActive ? ICONS.close({ className: "svg-open" }) : ICONS.menuOpen()}
@@ -95,13 +116,33 @@ export const Header: React.FC = () => {
               <div className="list__item">Кожа</div>
               <div className="list__item">Картини</div>
             </nav>
+
             <div className="header__menu-buttons">
-              <MyButton className="header__signup-menu" onClick={() => setLoginActive(true)}>
-                Увійти
-              </MyButton>
-              <MyButton className="header__signup-menu" onClick={() => setRegisterActive(true)}>
-                Зареєструватись
-              </MyButton>
+              {user && user.role === UserRole.ADMIN && (
+                <MyButton
+                  className="header__signup-menu"
+                  onClick={() => {
+                    router.push("/admin");
+                    setMenuActive(false);
+                  }}
+                >
+                  Адмін
+                </MyButton>
+              )}
+              {!user ? (
+                <>
+                  <MyButton className="header__signup-menu" onClick={() => setLoginActive(true)}>
+                    Увійти
+                  </MyButton>
+                  <MyButton className="header__signup-menu" onClick={() => setRegisterActive(true)}>
+                    Зареєструватись
+                  </MyButton>
+                </>
+              ) : (
+                <MyButton className="header__signup-menu" onClick={() => signOut()}>
+                  Вийти
+                </MyButton>
+              )}
             </div>
           </div>
         </div>
@@ -111,6 +152,7 @@ export const Header: React.FC = () => {
         setRegisterActive={setRegisterActive}
         setLoginActive={setLoginActive}
         loginActive={loginActive}
+        menuOpen={menuOpen}
       />
       <div
         className={clsx("dark", { ["active"]: loginActive || registerActive })}

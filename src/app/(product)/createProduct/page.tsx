@@ -37,6 +37,7 @@ export default function CreateProduct() {
   const [activeModalSubCreateCategory, setActiveModalSubCreateCategory] = useState(false);
   const router = useRouter();
   const queryClient = useQueryClient();
+
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: CategoriesService.getAllCategories,

@@ -125,3 +125,9 @@ type IsReadyPriceState = {
   fetchingCart: boolean;
   patchCartItem: boolean;
 };
+
+type UserAuth = {
+  id: string;
+  role: UserRole;
+  name: string;
+} | null;

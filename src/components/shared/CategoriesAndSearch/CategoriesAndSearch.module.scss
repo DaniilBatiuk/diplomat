@@ -40,6 +40,10 @@
     @media (max-width: 600px) {
       flex: 1 1 auto;
     }
+
+    &_disable {
+      @extend %disableButton;
+    }
   }
 
   &__search {

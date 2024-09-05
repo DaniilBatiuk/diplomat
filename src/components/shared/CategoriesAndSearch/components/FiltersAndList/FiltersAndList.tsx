@@ -54,7 +54,13 @@ export const FiltersAndList: React.FC<FiltersAndListProp> = ({
       <section className={styles.categories__filters}>
         <Search className={styles.categories__search} />
         <div className={styles.categories__selects}>
-          <button className={styles.categories__filter_button} onClick={categoryOpen}>
+          <button
+            className={clsx(styles.categories__filter_button, {
+              [styles.categories__filter_button_disable]: fullFilteredProducts.length < 2,
+            })}
+            onClick={categoryOpen}
+            disabled={fullFilteredProducts.length < 2}
+          >
             <TuneOutlinedIcon /> Фільтр
           </button>
           <FormControl
@@ -72,16 +78,18 @@ export const FiltersAndList: React.FC<FiltersAndListProp> = ({
         </div>
       </section>
       <div className={styles.categories__main}>
-        <Aside
-          sort={sort}
-          properties={properties}
-          price={price}
-          setPrice={setPrice}
-          setProperties={setProperties}
-          maxPrice={maxPrice}
-          minPrice={minPrice}
-          debounced={debounced}
-        />
+        {fullFilteredProducts.length > 0 && (
+          <Aside
+            sort={sort}
+            properties={properties}
+            price={price}
+            setPrice={setPrice}
+            setProperties={setProperties}
+            maxPrice={maxPrice}
+            minPrice={minPrice}
+            debounced={debounced}
+          />
+        )}
         {!isLoading && fullFilteredProducts.length <= 0 ? (
           <div className={styles.categories__card_list_no_data}>
             На жаль, зараз товару з такою назвою немає.
@@ -106,16 +114,18 @@ export const FiltersAndList: React.FC<FiltersAndListProp> = ({
           {ICONS.close({ onClick: () => categoryOpen() })}
         </div>
         <div className={styles.open_category__content}>
-          <Aside
-            sort={sort}
-            properties={properties}
-            price={price}
-            setPrice={setPrice}
-            setProperties={setProperties}
-            maxPrice={maxPrice}
-            minPrice={minPrice}
-            debounced={debounced}
-          />
+          {fullFilteredProducts.length > 0 && (
+            <Aside
+              sort={sort}
+              properties={properties}
+              price={price}
+              setPrice={setPrice}
+              setProperties={setProperties}
+              maxPrice={maxPrice}
+              minPrice={minPrice}
+              debounced={debounced}
+            />
+          )}
         </div>
       </div>
     </>

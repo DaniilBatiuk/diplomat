@@ -238,3 +238,17 @@ main {
 .MuiSkeleton-root {
   background-color: rgba(0, 0, 0, 0.11) !important;
 }
+
+#nprogress .bar {
+  background-color: $accent !important;
+}
+
+#nprogress .peg {
+  box-shadow:
+    0 0 10px $accent,
+    0 0 5px $accent !important;
+}
+
+#nprogress .spinner-icon {
+  display: none;
+}
