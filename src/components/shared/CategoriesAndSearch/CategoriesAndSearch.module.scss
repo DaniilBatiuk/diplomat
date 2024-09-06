@@ -211,3 +211,25 @@
     }
   }
 }
+
+.skeleton {
+  &__title {
+    height: clamp(25px, 2.5vw, 35px) !important;
+  }
+
+  &__subcategory {
+    width: 100%;
+    height: clamp(33px, 2.5vw, 35px) !important;
+  }
+
+  &__search {
+    width: 100%;
+    height: 32px !important;
+    @media (min-width: 870px) {
+      height: 38px !important;
+    }
+    @media (max-width: 600px) {
+      height: 90px !important;
+    }
+  }
+}

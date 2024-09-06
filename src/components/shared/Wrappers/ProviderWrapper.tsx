@@ -1,5 +1,6 @@
 "use client";
 
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider } from "next-auth/react";
@@ -26,11 +27,33 @@ export const ProviderWrapper = ({ children }: { children: React.ReactNode }) => 
       }),
   );
 
+  const theme = createTheme({
+    components: {
+      MuiInput: {
+        styleOverrides: {
+          root: {
+            "&:before": {
+              borderBottom: "1px solid rgb(234, 171, 83)",
+            },
+            "&:hover:not(.Mui-disabled):before": {
+              borderBottom: "1px solid rgb(234, 171, 83)",
+            },
+            "&:after": {
+              borderBottom: "2px solid rgb(234, 171, 83)",
+            },
+          },
+        },
+      },
+    },
+  });
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <SessionProvider>{children}</SessionProvider> <ToastContainer />
-      <NextTopLoader />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <ThemeProvider theme={theme}>
+      <QueryClientProvider client={queryClient}>
+        <SessionProvider>{children}</SessionProvider> <ToastContainer />
+        <NextTopLoader />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 };
