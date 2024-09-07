@@ -27,6 +27,7 @@
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
     "install": "^0.13.0",
+    "js-cookie": "^3.0.5",
     "next": "14.2.5",
     "next-auth": "^4.24.7",
     "nextjs-toploader": "^3.6.15",
@@ -47,6 +48,7 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

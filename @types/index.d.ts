@@ -131,3 +131,14 @@ type UserAuth = {
   role: UserRole;
   name: string;
 } | null;
+
+type User = {
+  id: string;
+  role: UserRole;
+  fullName: string;
+  cartId: string | null;
+  cart: {
+    id: string;
+    token: true;
+  };
+};

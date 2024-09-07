@@ -49,6 +49,7 @@ export const authOptions: AuthOptions = {
           email: findUser.email,
           name: findUser.fullName,
           role: findUser.role,
+          cartId: findUser.cartId,
         };
       },
     }),
@@ -76,8 +77,6 @@ export const authOptions: AuthOptions = {
             ],
           },
         });
-
-        console.log(findUser);
 
         if (findUser) {
           await prisma.user.update({
@@ -126,6 +125,7 @@ export const authOptions: AuthOptions = {
         token.email = findUser.email;
         token.fullName = findUser.fullName;
         token.role = findUser.role;
+        token.cartId = findUser.cartId;
       }
 
       return token;
@@ -134,6 +134,7 @@ export const authOptions: AuthOptions = {
       if (session?.user) {
         session.user.id = token.id;
         session.user.role = token.role;
+        session.user.cartId = token.cartId;
       }
 
       return session;

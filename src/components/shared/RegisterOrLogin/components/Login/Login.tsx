@@ -1,8 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TextField } from "@mui/material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
-import { signIn } from "next-auth/react";
-import { Dispatch, SetStateAction } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -11,6 +12,8 @@ import { MyButton } from "@/components/ui/MyButton/MyButton";
 import { LoginType, formLoginSchema } from "@/utils/lib/validators/login-and-regirter-validartor";
 
 import styles from "../../RegisterOrLogin.module.scss";
+
+import { UserService } from "@/utils/services/user";
 
 type LoginProp = {
   closeAllAuthMenu: () => void;
@@ -39,6 +42,23 @@ export const Login: React.FC<LoginProp> = ({
       password: "",
     },
   });
+  const { data: user } = useSession();
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: UserService.updateUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["cart"],
+      });
+    },
+  });
+
+  useEffect(() => {
+    if (user) {
+      mutate(user.user.id);
+    }
+  }, [user]);
 
   const onSubmit: SubmitHandler<LoginType> = async data => {
     try {

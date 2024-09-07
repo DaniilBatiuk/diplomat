@@ -6,6 +6,7 @@ import { Badge } from "@mui/material";
 import { UserRole } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
+import Cookies from "js-cookie";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -29,7 +30,6 @@ type HeaderProp = {
 export const Header: React.FC<HeaderProp> = ({ userFromServer }: HeaderProp) => {
   const { data } = useSession();
   const [user, setUser] = useState<UserAuth>(userFromServer);
-
   const [menuActive, setMenuActive] = useState<boolean>(false);
 
   const [loginActive, setLoginActive] = useState<boolean>(false);
@@ -93,7 +93,13 @@ export const Header: React.FC<HeaderProp> = ({ userFromServer }: HeaderProp) => 
                 </MyButton>
               </>
             ) : (
-              <MyButton className="header__signup" onClick={() => signOut()}>
+              <MyButton
+                className="header__signup"
+                onClick={() => {
+                  Cookies.remove("cartToken");
+                  signOut();
+                }}
+              >
                 Вийти
               </MyButton>
             )}
@@ -139,7 +145,13 @@ export const Header: React.FC<HeaderProp> = ({ userFromServer }: HeaderProp) => 
                   </MyButton>
                 </>
               ) : (
-                <MyButton className="header__signup-menu" onClick={() => signOut()}>
+                <MyButton
+                  className="header__signup-menu"
+                  onClick={() => {
+                    Cookies.remove("cartToken");
+                    signOut();
+                  }}
+                >
                   Вийти
                 </MyButton>
               )}
