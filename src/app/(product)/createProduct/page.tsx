@@ -138,7 +138,7 @@ export default function CreateProduct() {
   });
 
   return (
-    <div className={styles.create}>
+    <section className={styles.create}>
       <div className={styles.create__container}>
         <h1>СТВОРИТИ ПРОДУКТ</h1>
 
@@ -305,6 +305,6 @@ export default function CreateProduct() {
         activeModal={activeModalSubCreateCategory}
         setActiveModal={setActiveModalSubCreateCategory}
       />
-    </div>
+    </section>
   );
 }

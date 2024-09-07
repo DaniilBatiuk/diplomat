@@ -17,9 +17,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { ICONS } from "@/utils/config/icons";
 
-import { ProductSkeleton } from "../components/ProductSkeleton/ProductSkeleton";
-
 import styles from "./Product.module.scss";
+import { ProductSkeleton } from "./components/ProductSkeleton/ProductSkeleton";
 import { ProductList } from "@/app/components/ProductList/ProductList";
 import { Counter, MyButton } from "@/components";
 import { CartItemService } from "@/utils/services/cart-item";
@@ -130,10 +129,10 @@ export default function Product({ params }: { params: { id: string } }) {
                 <p className={styles.product__accordion_subtitle}>
                   Зв'яжіться з менеджером у чаті або за телефоном:
                 </p>
-                <div className={styles.product__accordion_contacts}>
+                <address className={styles.product__accordion_contacts}>
                   {ICONS.telegram()}{" "}
                   <div className={styles.product__accordion_tel}>+ 38 (067) 535 05 85</div>
-                </div>
+                </address>
               </AccordionDetails>
             </Accordion>
 

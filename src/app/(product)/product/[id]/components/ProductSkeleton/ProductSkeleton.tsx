@@ -2,7 +2,7 @@ import { Skeleton } from "@mui/material";
 import clsx from "clsx";
 import Image from "next/image";
 
-import styles from "../../[id]/Product.module.scss";
+import styles from "../../Product.module.scss";
 
 import image from "@/assets/images/nobg.png";
 

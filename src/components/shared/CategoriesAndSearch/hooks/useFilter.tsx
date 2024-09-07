@@ -76,8 +76,12 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
         productsFilter = products;
       }
 
-      setMinPrice(Math.min(...productsFilter.map(product => product.price)));
-      setMaxPrice(Math.max(...productsFilter.map(product => product.price)));
+      setMinPrice(
+        productsFilter.length > 0 ? Math.min(...productsFilter.map(product => product.price)) : 0,
+      );
+      setMaxPrice(
+        productsFilter.length > 0 ? Math.max(...productsFilter.map(product => product.price)) : 0,
+      );
 
       const resProp = transformToUniqueProperties(productsFilter).map(property => {
         const selectedValues = searchParams
@@ -138,8 +142,8 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
 
       if (!priceFrom && !priceTo) {
         setPrice([
-          Math.min(...productsFilter.map(product => product.price)),
-          Math.max(...productsFilter.map(product => product.price)),
+          productsFilter.length > 0 ? Math.min(...productsFilter.map(product => product.price)) : 0,
+          productsFilter.length > 0 ? Math.max(...productsFilter.map(product => product.price)) : 0,
         ]);
       } else if (priceFrom && priceTo) {
         setPrice([+priceFrom, +priceTo]);
@@ -147,7 +151,10 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
 
       setFullFilteredProducts(productsFilter);
     }
-    debouncedLoading();
+
+    if (products !== undefined) {
+      debouncedLoading();
+    }
   }, [products, searchParams]);
 
   const redirect = () => {

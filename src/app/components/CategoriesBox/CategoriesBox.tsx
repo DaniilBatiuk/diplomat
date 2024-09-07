@@ -9,7 +9,7 @@ import styles from "./CategoriesBox.module.scss";
 export const CategoriesBox: React.FC = () => {
   return (
     <section className={styles.categories} id="categories">
-      <h1>КАТЕГОРІЇ</h1>
+      <h2>КАТЕГОРІЇ</h2>
       <div className={styles.categories__list}>
         <Link
           href="/category/VIP Подарунки?subcategory=Всі"

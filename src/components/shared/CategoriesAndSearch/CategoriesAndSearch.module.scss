@@ -215,18 +215,24 @@
 .skeleton {
   &__title {
     height: clamp(25px, 2.5vw, 35px) !important;
+    width: 200px;
+    margin: 0 auto;
   }
 
   &__subcategory {
     width: 100%;
     height: clamp(33px, 2.5vw, 35px) !important;
+    width: 500px;
   }
 
   &__search {
-    width: 100%;
+    width: 140px;
     height: 32px !important;
     @media (min-width: 870px) {
       height: 38px !important;
+    }
+    @media (max-width: 870px) {
+      width: 100%;
     }
     @media (max-width: 600px) {
       height: 90px !important;

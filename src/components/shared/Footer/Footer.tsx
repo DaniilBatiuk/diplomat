@@ -14,10 +14,10 @@ export const Footer: React.FC = () => {
           <div className={styles.footer__list}>
             <div className={styles.footer__column}>
               <p className={styles.footer__column_title}>Контакти</p>
-              <ul className={styles.footer__column_list}>
-                <li className={styles.footer__column_item}>+ 38 (067) 535 05 85</li>
-                <li className={styles.footer__column_item}>diplomat@gmail.com</li>
-              </ul>
+              <address className={styles.footer__column_list}>
+                <p className={styles.footer__column_item}>+ 38 (067) 535 05 85</p>
+                <p className={styles.footer__column_item}>diplomat@gmail.com</p>
+              </address>
             </div>
             <div className={styles.footer__column}>
               <p className={styles.footer__column_title}>Категорії</p>
