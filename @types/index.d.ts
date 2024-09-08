@@ -91,7 +91,7 @@ type Product = {
     saved: {
       id: string;
       token: string;
-    };
+    } | null;
   }[];
 };
 

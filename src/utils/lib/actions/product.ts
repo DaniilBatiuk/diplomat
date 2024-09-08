@@ -103,6 +103,17 @@ export async function getAllActiveProducts(): Promise<Product[]> {
             categoryId: true,
           },
         },
+        savedItem: {
+          select: {
+            id: true,
+            saved: {
+              select: {
+                id: true,
+                token: true,
+              },
+            },
+          },
+        },
       },
     });
     return allProducts;
