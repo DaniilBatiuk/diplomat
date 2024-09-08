@@ -18,7 +18,6 @@ import { valuetext } from "./helpers/valuetext";
 import { useProductFilterStore } from "@/utils/lib/store/products";
 
 type AsideProp = {
-  sort: string;
   price: number[];
   properties: UniqueProperty[];
   setPrice: Dispatch<SetStateAction<number[]>>;
@@ -26,10 +25,10 @@ type AsideProp = {
   minPrice: number;
   maxPrice: number;
   debounced: () => void;
+  seIsLoadingProducts: Dispatch<SetStateAction<boolean>>;
 };
 
 export const Aside: React.FC<AsideProp> = ({
-  sort,
   price,
   properties,
   setPrice,
@@ -37,10 +36,12 @@ export const Aside: React.FC<AsideProp> = ({
   minPrice,
   maxPrice,
   debounced,
+  seIsLoadingProducts,
 }: AsideProp) => {
   const isLoading = useProductFilterStore(state => state.isLoading);
 
   const handleCheckboxChange = (propertyName: string, value: string) => {
+    seIsLoadingProducts(true);
     setProperties(prevProperties =>
       prevProperties.map(property =>
         property.name === propertyName
@@ -57,6 +58,7 @@ export const Aside: React.FC<AsideProp> = ({
   };
 
   const handleChangePrice = (event: Event, newValue: number | number[], activeThumb: number) => {
+    seIsLoadingProducts(true);
     if (!Array.isArray(newValue)) {
       return;
     }
@@ -85,12 +87,14 @@ export const Aside: React.FC<AsideProp> = ({
                   className={styles.aside__price_input}
                   type="text"
                   onChange={e => {
+                    seIsLoadingProducts(true);
                     if (+e.target.value <= maxPrice) {
                       setPrice([Math.min(+e.target.value, price[1] - MIN_DISTANCE), price[1]]);
                     }
                     if (+e.target.value === 0) {
                       setPrice([1, price[1]]);
                     }
+                    debounced();
                   }}
                   value={price[0]}
                 ></input>
@@ -98,12 +102,14 @@ export const Aside: React.FC<AsideProp> = ({
                   className={styles.aside__price_input}
                   type="text"
                   onChange={e => {
+                    seIsLoadingProducts(true);
                     if (+e.target.value <= maxPrice) {
                       setPrice([Math.min(price[0], price[1] - MIN_DISTANCE), +e.target.value]);
                     }
                     if (+e.target.value === 0) {
                       setPrice([price[0], 100]);
                     }
+                    debounced();
                   }}
                   value={price[1]}
                 ></input>

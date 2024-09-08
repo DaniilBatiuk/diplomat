@@ -22,6 +22,7 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
   const [sort, setSort] = useState("Новинки");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
+  const [isLoadingProducts, seIsLoadingProducts] = useState(true);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -191,7 +192,10 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
   };
 
   const debounced = useDebounceCallback(redirect, 500);
-  const debouncedLoading = useDebounceCallback(() => setIsLoading(false), 700);
+  const debouncedLoading = useDebounceCallback(() => {
+    setIsLoading(false);
+    seIsLoadingProducts(false);
+  }, 700);
 
   useEffect(() => {
     setIsLoading(true);
@@ -211,5 +215,7 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
     minPrice,
     maxPrice,
     debounced,
+    isLoadingProducts,
+    seIsLoadingProducts,
   };
 };

@@ -23,8 +23,6 @@ export const ProductList: React.FC<ProductListProp> = ({ title }: ProductListPro
     queryFn: ProductsService.getAllActiveProducts,
   });
 
-  console.log(products);
-
   return (
     <section className={clsx("home__list_item", { ["home__list_item_margin"]: title })}>
       <h2>{title ? title : "РЕКОМЕНДОВАНЕ"}</h2>

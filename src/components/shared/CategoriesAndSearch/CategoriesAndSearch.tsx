@@ -29,6 +29,8 @@ export const CategoriesAndSearch: React.FC<CategoriesAndSearchProp> = ({
     maxPrice,
     minPrice,
     debounced,
+    isLoadingProducts,
+    seIsLoadingProducts,
   } = useFilter({
     category,
     categoriesList,
@@ -66,6 +68,8 @@ export const CategoriesAndSearch: React.FC<CategoriesAndSearchProp> = ({
           maxPrice={maxPrice}
           minPrice={minPrice}
           debounced={debounced}
+          isLoadingProducts={isLoadingProducts}
+          seIsLoadingProducts={seIsLoadingProducts}
         />
       </div>
     </div>

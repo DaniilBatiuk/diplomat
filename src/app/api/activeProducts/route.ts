@@ -19,6 +19,17 @@ export async function GET(req: NextRequest) {
         price: true,
         status: true,
         createdAt: true,
+        savedItem: {
+          select: {
+            id: true,
+            saved: {
+              select: {
+                id: true,
+                token: true,
+              },
+            },
+          },
+        },
         properties: {
           select: {
             id: true,

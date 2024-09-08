@@ -11,6 +11,10 @@
 
   animation: fadeIn 0.5s ease-out forwards;
 
+  &__save {
+    color: red;
+  }
+
   &__icons {
     display: flex;
     align-items: center;

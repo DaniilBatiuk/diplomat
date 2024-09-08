@@ -6,6 +6,7 @@ import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import { Status } from "@prisma/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
+import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -18,6 +19,7 @@ import { rgbDataURL } from "./helpers/photoHelper";
 import { MyButton } from "@/components";
 import { CartItemService } from "@/utils/services/cart-item";
 import { ProductsService } from "@/utils/services/products";
+import { SavedService } from "@/utils/services/saved";
 
 type CardProp = {
   imgClassName?: string;
@@ -61,6 +63,22 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
       toast.success("Товар був успішно доданий до кошику.");
       queryClient.invalidateQueries({
         queryKey: ["cart"],
+      });
+    },
+    onError: error => {
+      toast.error(error.message);
+    },
+  });
+
+  const { isPending: isPendingSaved, mutate: addToSaved } = useMutation({
+    mutationFn: SavedService.createSaved,
+    onSuccess: () => {
+      toast.success("Товар був успішно збережений.");
+      queryClient.invalidateQueries({
+        queryKey: ["saved"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["products"],
       });
     },
     onError: error => {
@@ -138,8 +156,21 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
         </div>
       ) : (
         <FavoriteBorderIcon
-          sx={{ fontSize: 28, color: "rgb(234, 171, 83)" }}
-          onClick={e => e.stopPropagation()}
+          sx={{
+            fontSize: 28,
+            color: "rgb(234, 171, 83)",
+          }}
+          className={clsx({
+            [styles.card__save]: product.savedItem.find(
+              save => save.saved.token === Cookies.get("savedToken"),
+            ),
+          })}
+          onClick={e => {
+            e.stopPropagation();
+            if (!isPendingSaved) {
+              addToSaved(product.id);
+            }
+          }}
         />
       )}
     </figure>

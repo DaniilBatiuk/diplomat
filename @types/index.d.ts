@@ -86,6 +86,13 @@ type Product = {
     categoryId: string;
   };
   createdAt: Date;
+  savedItem: {
+    id: string;
+    saved: {
+      id: string;
+      token: string;
+    };
+  }[];
 };
 
 type UniqueProperty = {
@@ -141,4 +148,15 @@ type User = {
     id: string;
     token: true;
   };
+};
+
+type Saved = {
+  id: string;
+  token: string;
+  savedItems: SavedItem[];
+};
+
+type SavedItem = {
+  id: string;
+  product: Product;
 };
