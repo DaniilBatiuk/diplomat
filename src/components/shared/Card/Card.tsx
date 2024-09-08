@@ -10,6 +10,7 @@ import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 import { patchProductStatus } from "@/utils/lib/actions/product";
@@ -30,6 +31,9 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
   const router = useRouter();
   const pathname = usePathname();
   const queryClient = useQueryClient();
+  const [isInSaved, setIsInSaved] = useState(
+    product.savedItem.find(save => save?.saved?.token === Cookies.get("savedToken")) ? true : false,
+  );
 
   const { mutate: deletePr } = useMutation({
     mutationFn: ProductsService.deleteOneProduct,
@@ -82,6 +86,7 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
       });
     },
     onError: error => {
+      setIsInSaved(prev => !prev);
       toast.error(error.message);
     },
   });
@@ -161,13 +166,12 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
             color: "rgb(234, 171, 83)",
           }}
           className={clsx({
-            [styles.card__save]: product.savedItem.find(
-              save => save?.saved?.token === Cookies.get("savedToken"),
-            ),
+            [styles.card__save]: isInSaved,
           })}
           onClick={e => {
             e.stopPropagation();
             if (!isPendingSaved) {
+              setIsInSaved(prev => !prev);
               addToSaved(product.id);
             }
           }}

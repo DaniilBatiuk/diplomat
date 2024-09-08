@@ -1,7 +1,7 @@
 @import "@/assets/styles/variables.scss";
 
 .categories {
-  & > h1 {
+  & > h2 {
     @extend %inter_700_25_35;
     text-align: center;
   }
