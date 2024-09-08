@@ -51,6 +51,9 @@ export const Login: React.FC<LoginProp> = ({
       queryClient.invalidateQueries({
         queryKey: ["cart"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["saved"],
+      });
     },
   });
 

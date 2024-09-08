@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
     const token = req.cookies.get("savedToken")?.value;
 
     if (!token) {
-      return NextResponse.json({ products: [] });
+      return NextResponse.json({ savedItems: [] });
     }
 
     const savedList = await prisma.saved.findFirst({

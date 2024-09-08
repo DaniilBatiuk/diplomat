@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 import { ICONS } from "@/utils/config/icons";
 
@@ -9,19 +10,22 @@ import { Card, SkeletonCard } from "@/components";
 import { SavedService } from "@/utils/services/saved";
 
 export default function Saved() {
-  const { data: saved, isFetching } = useQuery({
+  const [savedItems, setSavedItems] = useState<Saved | undefined | null>(null);
+  const { data: saved } = useQuery({
     queryKey: ["saved"],
     queryFn: () => SavedService.getSaved(),
   });
 
-  console.log(saved);
+  useEffect(() => {
+    setSavedItems(saved);
+  }, [saved]);
 
   return (
     <section className={styles.saved}>
       <div className={styles.saved__container}>
         <h1>ЗБЕРЕЖЕНІ</h1>
 
-        {!isFetching && saved && saved.savedItems.length <= 0 ? (
+        {savedItems !== null && savedItems && savedItems.savedItems.length <= 0 ? (
           <div className={styles.saved__no_data}>
             <div className={styles.saved__icon}>{ICONS.savedMenu()}</div>
             <p>
@@ -30,7 +34,7 @@ export default function Saved() {
               товари будуть відображатися в цьому розділі.
             </p>
           </div>
-        ) : isFetching ? (
+        ) : savedItems === null ? (
           <div className={styles.saved__card_list}>
             {Array.from({ length: 8 }).map((_, index) => (
               <SkeletonCard key={index} />
@@ -38,8 +42,10 @@ export default function Saved() {
           </div>
         ) : (
           <div className={styles.saved__card_list}>
-            {saved &&
-              saved.savedItems.map(product => <Card product={product.product} key={product.id} />)}
+            {savedItems &&
+              savedItems.savedItems.map(product => (
+                <Card product={product.product} key={product.id} />
+              ))}
           </div>
         )}
       </div>

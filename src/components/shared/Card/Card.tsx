@@ -161,9 +161,9 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
             color: "rgb(234, 171, 83)",
           }}
           className={clsx({
-            [styles.card__save]:
-              product.savedItem.find(save => save?.saved?.token === Cookies.get("savedToken")) ||
-              isPendingSaved,
+            [styles.card__save]: product.savedItem.find(
+              save => save?.saved?.token === Cookies.get("savedToken"),
+            ),
           })}
           onClick={e => {
             e.stopPropagation();

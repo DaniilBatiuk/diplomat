@@ -97,6 +97,7 @@ export const Header: React.FC<HeaderProp> = ({ userFromServer }: HeaderProp) => 
                 className="header__signup"
                 onClick={() => {
                   Cookies.remove("cartToken");
+                  Cookies.remove("savedToken");
                   signOut();
                 }}
               >
@@ -149,6 +150,7 @@ export const Header: React.FC<HeaderProp> = ({ userFromServer }: HeaderProp) => 
                   className="header__signup-menu"
                   onClick={() => {
                     Cookies.remove("cartToken");
+                    Cookies.remove("savedToken");
                     signOut();
                   }}
                 >
