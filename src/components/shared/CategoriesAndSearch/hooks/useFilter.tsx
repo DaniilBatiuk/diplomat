@@ -6,6 +6,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 
 import { transformToUniqueProperties } from "../components/Aside/helpers/transformToUniqueProperties";
 
+import { usePriceStore } from "@/utils/lib/store/price";
 import { useProductFilterStore } from "@/utils/lib/store/products";
 import { ProductsService } from "@/utils/services/products";
 
@@ -17,7 +18,6 @@ type useFilterProp = {
 export const useFilter = ({ category, categoriesList }: useFilterProp) => {
   const [categorySelected, setCategorySelected] = useState<Category | null>(category ?? null);
   const [subCategorySelected, setSubCategorySelected] = useState<SubcategorySearch | null>(null);
-  const [price, setPrice] = useState<number[]>([0, 0]);
   const [properties, setProperties] = useState<UniqueProperty[]>([]);
   const [sort, setSort] = useState("Новинки");
   const [minPrice, setMinPrice] = useState(0);
@@ -35,6 +35,9 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
 
   const setFullFilteredProducts = useProductFilterStore(state => state.setFullFilteredProducts);
   const setIsLoading = useProductFilterStore(state => state.setIsLoading);
+
+  const price = usePriceStore(state => state.price);
+  const setPrice = usePriceStore(state => state.setPrice);
 
   const { data: products } = useQuery({
     queryKey: ["products"],
@@ -202,9 +205,7 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
   }, []);
 
   return {
-    price,
     properties,
-    setPrice,
     categorySelected,
     setCategorySelected,
     subCategorySelected,

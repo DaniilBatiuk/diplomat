@@ -10,34 +10,36 @@ type CategoriesListProp = {
   categoriesList: Category[];
 };
 
-export const CategoriesList: React.FC<CategoriesListProp> = React.memo(
-  ({ categorySelected, setCategorySelected, categoriesList }: CategoriesListProp) => {
-    return (
-      <>
+export const CategoriesList: React.FC<CategoriesListProp> = ({
+  categorySelected,
+  setCategorySelected,
+  categoriesList,
+}: CategoriesListProp) => {
+  return (
+    <>
+      <Link
+        scroll={false}
+        href={`/category/Всі}`}
+        className={clsx(styles.categories__subcategories_item, {
+          [styles.active]: categorySelected === null,
+        })}
+        onClick={() => setCategorySelected(null)}
+      >
+        Всі
+      </Link>
+      {categoriesList.map(category => (
         <Link
           scroll={false}
-          href={`/category/Всі}`}
+          href={`/category/${category.name}?subcategory=Всі`}
+          key={category.id}
           className={clsx(styles.categories__subcategories_item, {
-            [styles.active]: categorySelected === null,
+            [styles.active]: categorySelected === category,
           })}
-          onClick={() => setCategorySelected(null)}
+          onClick={() => setCategorySelected(category)}
         >
-          Всі
+          {category.name}
         </Link>
-        {categoriesList.map(category => (
-          <Link
-            scroll={false}
-            href={`/category/${category.name}?subcategory=Всі`}
-            key={category.id}
-            className={clsx(styles.categories__subcategories_item, {
-              [styles.active]: categorySelected === category,
-            })}
-            onClick={() => setCategorySelected(category)}
-          >
-            {category.name}
-          </Link>
-        ))}
-      </>
-    );
-  },
-);
+      ))}
+    </>
+  );
+};

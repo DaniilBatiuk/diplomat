@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import { ICONS } from "@/utils/config/icons";
 
@@ -11,11 +11,9 @@ import { Card, SkeletonCard } from "@/components";
 import { useProductFilterStore } from "@/utils/lib/store/products";
 
 type FiltersAndListProp = {
-  price: number[];
   setSort: Dispatch<SetStateAction<string>>;
   sort: string;
   properties: UniqueProperty[];
-  setPrice: Dispatch<SetStateAction<number[]>>;
   setProperties: Dispatch<SetStateAction<UniqueProperty[]>>;
   minPrice: number;
   maxPrice: number;
@@ -25,11 +23,9 @@ type FiltersAndListProp = {
 };
 
 export const FiltersAndList: React.FC<FiltersAndListProp> = ({
-  price,
   setSort,
   sort,
   properties,
-  setPrice,
   setProperties,
   minPrice,
   maxPrice,
@@ -59,8 +55,6 @@ export const FiltersAndList: React.FC<FiltersAndListProp> = ({
       <div className={styles.categories__main}>
         <Aside
           properties={properties}
-          price={price}
-          setPrice={setPrice}
           setProperties={setProperties}
           maxPrice={maxPrice}
           minPrice={minPrice}
@@ -93,8 +87,6 @@ export const FiltersAndList: React.FC<FiltersAndListProp> = ({
         <div className={styles.open_category__content}>
           <Aside
             properties={properties}
-            price={price}
-            setPrice={setPrice}
             setProperties={setProperties}
             maxPrice={maxPrice}
             minPrice={minPrice}
