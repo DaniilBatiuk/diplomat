@@ -64,14 +64,22 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
     if (products) {
       let productsFilter: Product[] = [];
 
+      let subcategoryFind: SubcategorySearch | null = null;
+      categoriesList.forEach(category => {
+        const foundSubCategory = category.subcategories.find(
+          subcategory => subcategory.name === subcategoryName,
+        );
+        if (foundSubCategory) {
+          subcategoryFind = foundSubCategory;
+        }
+      });
+
       if (search) {
         productsFilter = products.filter(product =>
           product.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
         );
-      } else if (subCategorySelected) {
-        productsFilter = products.filter(
-          product => product.subcategory.id === subCategorySelected.id,
-        );
+      } else if (subcategoryFind) {
+        productsFilter = products.filter(product => product.subcategory.id === subcategoryFind?.id);
       } else if (categorySelected) {
         productsFilter = products.filter(
           product => product.subcategory.categoryId === categorySelected.id,

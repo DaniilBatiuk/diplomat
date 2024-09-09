@@ -154,7 +154,7 @@ export default function Product({ params }: { params: { id: string } }) {
         </section>
       )}
       <div className={styles.sms__container}>
-        <ProductList title="СХОЖІ ТОВАРИ" />
+        <ProductList title="СХОЖІ ТОВАРИ" id={params.id} />
       </div>
     </div>
   );

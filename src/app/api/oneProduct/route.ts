@@ -5,7 +5,6 @@ import { prisma } from "../../../../prisma/prisma-client";
 export async function GET(req: NextRequest) {
   try {
     const productId = req.nextUrl.searchParams.get("productId");
-    console.log(productId);
 
     if (productId === null) {
       return NextResponse.json({ error: "Error no id exist", status: 404 });

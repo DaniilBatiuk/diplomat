@@ -15,14 +15,18 @@ import { ProductsService } from "@/utils/services/products";
 
 type ProductListProp = {
   title?: string;
+  id: string;
 };
 
-export const ProductList: React.FC<ProductListProp> = ({ title }: ProductListProp) => {
+export const ProductList: React.FC<ProductListProp> = ({ title, id }: ProductListProp) => {
   const { data: products, isFetching } = useQuery({
-    queryKey: ["products"],
-    queryFn: ProductsService.getAllActiveProducts,
+    queryKey: ["similarProducts"],
+    queryFn: () => ProductsService.getSimilarProducts(id),
   });
 
+  if (products && products.length === 0) {
+    return <></>;
+  }
   return (
     <section className={clsx("home__list_item", { ["home__list_item_margin"]: title })}>
       <h2>{title ? title : "РЕКОМЕНДОВАНЕ"}</h2>

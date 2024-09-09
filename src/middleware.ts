@@ -7,12 +7,10 @@ const adminPages = ["/createProduct", "/admin", "/updateProduct"];
 
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl.pathname;
-  console.log("url");
 
   if (adminPages.includes(url)) {
     const token = await getToken({ req, secret: process.env.SECRET });
     if (!token || token.role !== UserRole.ADMIN) {
-      console.log("session");
       return NextResponse.redirect(new URL("/", req.url));
     }
   }

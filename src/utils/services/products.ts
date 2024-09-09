@@ -10,6 +10,9 @@ export const ProductsService = {
   async getOneProduct(productId: string): Promise<Product> {
     return (await axiosClassic.get<Product>(`/api/oneProduct?productId=${productId}`)).data;
   },
+  async getSimilarProducts(id: string): Promise<Product[]> {
+    return (await axiosClassic.get<Product[]>(`/api/similarProducts/${id}`)).data;
+  },
   async deleteOneProduct(productId: string): Promise<Product> {
     return (
       await axiosClassic.delete<Product>(`/api/products`, {
