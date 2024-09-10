@@ -3,6 +3,7 @@
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
+import { CircularProgress } from "@mui/material";
 import { Status } from "@prisma/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
@@ -138,7 +139,7 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
                 addToBasket({ productId: product.id, quantity: 1 });
               }}
             >
-              КУПИТИ
+              {!isPending ? "КУПИТИ" : <CircularProgress className={styles.card__button_loading} />}
             </MyButton>
           )}
         </div>

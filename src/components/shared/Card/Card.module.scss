@@ -97,13 +97,25 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+
   &__button {
     margin-top: 10px;
     width: 100%;
     padding: clamp(5px, 1.4vw, 10px) 10px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(38px, 6.5vw, 49px);
+
+    &_loading {
+      width: clamp(23px, 1.4vw, 25px) !important;
+      height: clamp(23px, 1.4vw, 25px) !important;
+      color: $grayLight;
+    }
 
     &_disable {
       @extend %disableButton;
+      border: 2px solid $grayLight !important;
     }
 
     &_active {

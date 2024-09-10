@@ -252,3 +252,9 @@ main {
 #nprogress .spinner-icon {
   display: none;
 }
+
+.gray_circle {
+  width: 25px !important;
+  height: 25px !important;
+  color: $grayLight;
+}

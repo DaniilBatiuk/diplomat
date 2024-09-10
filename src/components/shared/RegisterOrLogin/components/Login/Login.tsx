@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TextField } from "@mui/material";
+import { CircularProgress, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
 import { signIn, useSession } from "next-auth/react";
@@ -119,7 +119,7 @@ export const Login: React.FC<LoginProp> = ({
         type="submit"
         disabled={isSubmitting}
       >
-        Увійти
+        {!isSubmitting ? "Увійти" : <CircularProgress className="gray_circle" />}
       </MyButton>
       <div className={styles.login__no_profile}>
         Немає профілю?{" "}

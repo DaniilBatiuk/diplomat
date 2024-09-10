@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TextField } from "@mui/material";
+import { CircularProgress, TextField } from "@mui/material";
 import clsx from "clsx";
 import { signIn } from "next-auth/react";
 import { Dispatch, SetStateAction } from "react";
@@ -125,7 +125,7 @@ export const Register: React.FC<RegisterProp> = ({
         type="submit"
         disabled={isSubmitting}
       >
-        Зареєструватись
+        {!isSubmitting ? "Зареєструватись" : <CircularProgress className="gray_circle" />}
       </MyButton>
       <div className={styles.login__no_profile}>
         Вже є профіль?{" "}
