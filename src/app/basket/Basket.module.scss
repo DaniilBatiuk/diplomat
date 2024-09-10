@@ -55,6 +55,13 @@
   &__list_steps {
     display: flex;
     column-gap: 40px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+    &::-webkit-scrollbar {
+      height: 0px;
+    }
+
     margin-bottom: clamp(25px, 4vw, 30px);
 
     @media (max-width: 844px) {

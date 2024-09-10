@@ -118,7 +118,12 @@ export default function CreateProduct() {
     const res = {
       ...data,
       imageUrls: photos.map(photo => photo.url),
-      properties: data.properties.filter(el => el.value !== ""),
+      properties: data.properties
+        .filter(el => el.value !== "")
+        .map(el => ({
+          name: el.name.trim().charAt(0).toUpperCase() + el.name.trim().slice(1),
+          value: el.value.trim().charAt(0).toUpperCase() + el.value.trim().slice(1),
+        })),
     };
     mutate(res);
   };
