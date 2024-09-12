@@ -63,6 +63,7 @@ export const FiltersAndList: React.FC<FiltersAndListProp> = ({
         />
         {!isLoading && fullFilteredProducts.length <= 0 ? (
           <div className={styles.categories__card_list_no_data}>
+            {ICONS.sad()}
             На жаль, зараз товару з такою назвою немає.
           </div>
         ) : !isLoading && !isLoadingProducts ? (

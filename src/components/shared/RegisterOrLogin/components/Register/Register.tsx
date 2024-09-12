@@ -97,7 +97,7 @@ export const Register: React.FC<RegisterProp> = ({
           className={styles.login__field}
           {...register("email")}
           error={Boolean(errors.email?.message)}
-          label={errors.email?.message || "Введіть свою почту"}
+          label={errors.email?.message || "Введіть свою пошту"}
         />
         <TextField
           variant="standard"

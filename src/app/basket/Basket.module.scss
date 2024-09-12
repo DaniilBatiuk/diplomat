@@ -6,6 +6,36 @@
       border-radius: 10px;
     }
   }
+
+  &__buttons_list {
+    margin-top: clamp(40px, 2.5vw, 50px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & > button {
+      @extend %buttonStyles2;
+
+      width: 120px;
+      padding: 6px 20px;
+      font-weight: 500;
+      border-radius: 5px;
+    }
+
+    &_next {
+      background-color: $accent !important;
+      color: $background !important;
+      border-color: $accent !important;
+      transition: all 0.1s ease-in-out;
+
+      &:hover {
+        color: $background !important;
+        background-color: $hover !important;
+        border-color: $hover !important;
+      }
+    }
+  }
+
   &__container {
     margin-top: clamp(15px, 4vw, 70px);
     max-width: 1000px;
@@ -106,7 +136,6 @@
       margin-left: 20px;
       margin-right: clamp(20px, 4.5vw, 50px);
       width: clamp(200px, 43vw, 450px);
-      padding-bottom: 1px;
       //   overflow: hidden;
       //   white-space: nowrap;
       //   text-overflow: ellipsis;
@@ -206,17 +235,28 @@
 
   &__button {
     border-radius: 6px;
-    padding: 7px 10px;
     transition: all 0.1s ease-in-out;
     font-weight: 600;
     font-size: 20px;
 
-    padding: clamp(10px, 1.8vw, 13px) 10px !important;
+    padding: clamp(8px, 1.8vw, 9px) 15px !important;
 
     &_div {
-      margin-top: clamp(20px, 2.5vw, 40px);
+      margin-top: clamp(40px, 2.5vw, 50px);
       display: flex;
       justify-content: flex-end;
     }
+  }
+}
+
+.second {
+  & h2 {
+    @extend %inter_500_23_25;
+  }
+  &__fields {
+    margin-top: clamp(10px, 2.5vw, 20px);
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
   }
 }

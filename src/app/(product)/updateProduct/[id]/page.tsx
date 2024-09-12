@@ -148,6 +148,8 @@ export default function UpdateProduct({ params }: { params: { id: string } }) {
     const res = {
       id,
       ...data,
+      name: data.name.trim().replace(/\.$/, ""),
+      description: data.description.trim().replace(/\.$/, "") + ".",
       imageUrls: photos.map(photo => photo.url),
       properties: data.properties
         .filter(el => el.value !== "")
@@ -206,6 +208,8 @@ export default function UpdateProduct({ params }: { params: { id: string } }) {
           <TextField
             variant="standard"
             fullWidth
+            multiline
+            rows={4}
             className={styles.create__field}
             {...register(`description`)}
             error={Boolean(errors.description?.message)}
