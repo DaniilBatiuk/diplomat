@@ -103,7 +103,7 @@
     height: 100px;
     display: flex;
     // background-color: $grayLight2;
-    background-color: rgb(255, 243, 226);
+    background-color: $secondaryLight;
     border-radius: 10px;
     position: relative;
     transition: all 0.15s ease-in-out;
@@ -199,7 +199,7 @@
   }
 
   &__img {
-    background-color: $secondary;
+    background-color: $secondaryLight;
     min-width: 100px;
     width: 100px;
     height: 100px;

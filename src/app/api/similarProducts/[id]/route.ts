@@ -60,6 +60,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
           },
         },
       },
+      take: 20,
     });
 
     return NextResponse.json(allSimilarProducts);
