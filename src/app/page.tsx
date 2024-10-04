@@ -5,12 +5,10 @@ import { HeaderSection } from "./components/HeaderSection/HeaderSection";
 
 export default function Home() {
   return (
-    <>
-      <div className={styles.home__container}>
-        <HeaderSection />
-        <CategoriesBox />
-        <Faq />
-      </div>
-    </>
+    <div className={styles.home__container}>
+      <HeaderSection />
+      <CategoriesBox />
+      <Faq />
+    </div>
   );
 }

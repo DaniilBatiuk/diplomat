@@ -202,11 +202,11 @@ export const useFilter = ({ category, categoriesList }: useFilterProp) => {
     });
   };
 
-  const debounced = useDebounceCallback(redirect, 500);
+  const debounced = useDebounceCallback(redirect, 200);
   const debouncedLoading = useDebounceCallback(() => {
     setIsLoading(false);
     seIsLoadingProducts(false);
-  }, 700);
+  }, 200);
 
   useEffect(() => {
     setIsLoading(true);

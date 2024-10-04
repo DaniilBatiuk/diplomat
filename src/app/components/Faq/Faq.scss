@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-around;
   column-gap: 20px;
+  @include appear(25%);
 
   @media (max-width: 750.98px) {
     flex-direction: column;

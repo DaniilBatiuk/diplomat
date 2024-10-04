@@ -20,6 +20,23 @@ $primary: rgb(210, 143, 50);
 $accent: rgb(234, 171, 83);
 $hover: rgb(228, 159, 62);
 
+@mixin appear($percent) {
+  @keyframes appear {
+    from {
+      opacity: 0;
+      scale: 0.5;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover $percent;
+}
+
 %disableButton {
   cursor: not-allowed !important;
   border: 1px solid $grayLight !important;
@@ -43,6 +60,7 @@ $hover: rgb(228, 159, 62);
     border-color: $hover;
   }
 }
+
 %buttonStyles2 {
   background-color: $background;
   color: $accent;
