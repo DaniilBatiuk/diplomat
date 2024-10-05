@@ -9,6 +9,16 @@
   top: 0;
   z-index: 2;
 
+  &__skeleton {
+    width: 178px;
+    height: 37px !important;
+    border-radius: 5px;
+
+    @media (max-width: 1000px) {
+      display: none !important;
+    }
+  }
+
   &__search {
     flex: 0 1 1000px;
     padding-inline: 40px;

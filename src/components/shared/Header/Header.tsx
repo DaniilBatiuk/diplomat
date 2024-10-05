@@ -2,7 +2,7 @@
 
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { Badge } from "@mui/material";
+import { Badge, Skeleton } from "@mui/material";
 import { UserRole } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
@@ -10,7 +10,7 @@ import Cookies from "js-cookie";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { MyButton } from "@/components/ui/MyButton/MyButton";
 
@@ -23,13 +23,14 @@ import { Search } from "../Search/Search";
 import "./Header.scss";
 import { CartService } from "@/utils/services/cart";
 
-type HeaderProp = {
-  userFromServer: UserAuth;
-};
+// type HeaderProp = {
+//   userFromServer: UserAuth;
+// };
 
-export const Header: React.FC<HeaderProp> = ({ userFromServer }: HeaderProp) => {
+export const Header: React.FC = () => {
   const { data } = useSession();
-  const [user, setUser] = useState<UserAuth>(userFromServer);
+
+  // const [user, setUser] = useState<UserAuth>(userFromServer);
   const [menuActive, setMenuActive] = useState<boolean>(false);
 
   const [loginActive, setLoginActive] = useState<boolean>(false);
@@ -53,11 +54,11 @@ export const Header: React.FC<HeaderProp> = ({ userFromServer }: HeaderProp) => 
       : document.documentElement.classList.remove("open-left");
   }, [loginActive, registerActive]);
 
-  useEffect(() => {
-    if (!user) {
-      setUser(data ? data.user : null);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     setUser(data ? data.user : null);
+  //   }
+  // }, [data]);
 
   return (
     <>
@@ -71,12 +72,17 @@ export const Header: React.FC<HeaderProp> = ({ userFromServer }: HeaderProp) => 
           <Search className="header__search" classNameInput="header__search_input" />
 
           <div className="header__list">
-            {user && user.role === UserRole.ADMIN && (
+            {data && data.user.role === UserRole.ADMIN && (
               <Link href={LINKS.ADMIN} className="header__admin">
                 Адмін
               </Link>
             )}
-            {!user ? (
+            {data === undefined ? (
+              <>
+                <Skeleton variant="rectangular" className="header__skeleton" width={57} />
+                <Skeleton variant="rectangular" className="header__skeleton" />
+              </>
+            ) : data === null ? (
               <>
                 <button
                   className="header__signin"
@@ -125,7 +131,7 @@ export const Header: React.FC<HeaderProp> = ({ userFromServer }: HeaderProp) => 
             </nav>
 
             <div className="header__menu-buttons">
-              {user && user.role === UserRole.ADMIN && (
+              {data && data.user.role === UserRole.ADMIN && (
                 <MyButton
                   className="header__signup-menu"
                   onClick={() => {
@@ -136,7 +142,7 @@ export const Header: React.FC<HeaderProp> = ({ userFromServer }: HeaderProp) => 
                   Адмін
                 </MyButton>
               )}
-              {!user ? (
+              {data === null ? (
                 <>
                   <MyButton className="header__signup-menu" onClick={() => setLoginActive(true)}>
                     Увійти

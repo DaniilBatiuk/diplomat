@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 import styles from "./Search.module.scss";
@@ -15,7 +15,6 @@ export const Search: React.FC<SearchProp> = ({ className, classNameInput }: Sear
   const router = useRouter();
   const pathname = usePathname();
   const inputRef = useRef<HTMLInputElement>(null);
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (inputRef.current && !pathname.includes("/category")) {
@@ -24,13 +23,15 @@ export const Search: React.FC<SearchProp> = ({ className, classNameInput }: Sear
   }, [pathname]);
 
   useEffect(() => {
-    const search_text = searchParams.get("search_text");
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const search_text = urlSearchParams.get("search_text");
+
     if (inputRef.current && search_text) {
       inputRef.current.value = search_text;
     } else if (inputRef.current) {
       inputRef.current.value = "";
     }
-  }, [searchParams]);
+  }, []);
 
   return (
     <form

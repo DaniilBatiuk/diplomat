@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "react-toastify/dist/ReactToastify.css";
 
-import { getUserSession } from "@/utils/lib/helpers/getUserSession";
-
 import "@/assets/styles/globals.scss";
 import { Footer, Header, ProviderWrapper } from "@/components";
 import { WEB_NAME } from "@/utils/constants";
@@ -27,21 +25,19 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getUserSession();
+  // const session = await getUserSession();
 
   return (
-    <>
-      <html lang="en">
-        <body className={inter.className}>
-          <div className="wrapper" id="wrapper">
-            <ProviderWrapper>
-              <Header userFromServer={session} />
-              <main>{children}</main>
-              <Footer />
-            </ProviderWrapper>
-          </div>
-        </body>
-      </html>
-    </>
+    <html lang="en">
+      <body className={inter.className}>
+        <div className="wrapper" id="wrapper">
+          <ProviderWrapper>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </ProviderWrapper>
+        </div>
+      </body>
+    </html>
   );
 }

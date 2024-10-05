@@ -1,7 +1,6 @@
 @import "@/assets/styles/variables.scss";
 
 .categories {
-  @include appear(25%);
   & > h2 {
     @extend %inter_700_25_35;
     text-align: center;
