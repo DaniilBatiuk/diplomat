@@ -70,27 +70,29 @@ export const Aside: React.FC<AsideProp> = ({
             />
           </AccordionDetails>
         </Accordion>
-        {properties.map(property => (
-          <Accordion key={property.name}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>{property.name}</AccordionSummary>
-            <AccordionDetails>
-              {property.values.map(value => (
-                <FormControlLabel
-                  className={styles.aside__check_label}
-                  key={value.value}
-                  control={
-                    <Checkbox
-                      checked={value.isSelected}
-                      onChange={() => handleCheckboxChange(property.name, value.value)}
-                      name={value.value}
-                    />
-                  }
-                  label={value.value}
-                />
-              ))}
-            </AccordionDetails>
-          </Accordion>
-        ))}
+        {properties
+          .filter(el => el.name !== "Висота (см)")
+          .map(property => (
+            <Accordion key={property.name}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>{property.name}</AccordionSummary>
+              <AccordionDetails>
+                {property.values.map(value => (
+                  <FormControlLabel
+                    className={styles.aside__check_label}
+                    key={value.value}
+                    control={
+                      <Checkbox
+                        checked={value.isSelected}
+                        onChange={() => handleCheckboxChange(property.name, value.value)}
+                        name={value.value}
+                      />
+                    }
+                    label={value.value}
+                  />
+                ))}
+              </AccordionDetails>
+            </Accordion>
+          ))}
       </div>
     </aside>
   );
