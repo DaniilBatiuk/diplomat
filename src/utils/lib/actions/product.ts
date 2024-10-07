@@ -122,3 +122,58 @@ export async function getAllActiveProducts(): Promise<Product[]> {
     redirect("/not-found");
   }
 }
+
+export async function getProduct(id: string): Promise<Product> {
+  try {
+    const product = await prisma.product.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        count: true,
+        imageUrls: true,
+        orderStatus: true,
+        price: true,
+        status: true,
+        createdAt: true,
+        properties: {
+          select: {
+            id: true,
+            name: true,
+            value: true,
+          },
+        },
+        subcategory: {
+          select: {
+            id: true,
+            name: true,
+            categoryId: true,
+          },
+        },
+        savedItem: {
+          select: {
+            id: true,
+            saved: {
+              select: {
+                id: true,
+                token: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    if (!product) {
+      redirect("/not-found");
+    }
+
+    return product;
+  } catch (error) {
+    console.log("Error fetching Product: ", error);
+    redirect("/not-found");
+  }
+}
