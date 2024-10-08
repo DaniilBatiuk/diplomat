@@ -110,12 +110,12 @@ export const Header: React.FC = () => {
                 Вийти
               </MyButton>
             )}
-            <Link href={LINKS.BASKET}>
+            <Link href={LINKS.BASKET} className="link">
               <Badge color="error" badgeContent={cart?.items.length ?? 0}>
                 <ShoppingCartOutlinedIcon sx={{ fontSize: 28 }} />
               </Badge>
             </Link>
-            <Link href={LINKS.SAVED}>
+            <Link href={LINKS.SAVED} className="link">
               <FavoriteBorderIcon sx={{ fontSize: 28 }} />
             </Link>
           </div>

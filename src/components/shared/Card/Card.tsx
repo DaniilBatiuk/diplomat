@@ -107,7 +107,7 @@ export const Card: React.FC<CardProp> = ({ imgClassName, product }: CardProp) =>
       </div>
       <figcaption>
         <div className={styles.card__main}>
-          <h3 className={styles.card__title}>{product.name}</h3>
+          <p className={styles.card__title}>{product.name}</p>
           <p className={styles.card__category}>{product.subcategory.name}</p>
           <p className={styles.card__price}>{product.price} грн</p>
 

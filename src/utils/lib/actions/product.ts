@@ -177,3 +177,69 @@ export async function getProduct(id: string): Promise<Product> {
     redirect("/not-found");
   }
 }
+
+export async function getSimilarProducts(id: string): Promise<Product[]> {
+  try {
+    const findProduct = await prisma.product.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!findProduct) {
+      redirect("/not-found");
+    }
+
+    const allSimilarProducts = await prisma.product.findMany({
+      where: {
+        status: Status.ACTIVE,
+        subcategoryId: findProduct.subcategoryId,
+        NOT: {
+          id: findProduct.id,
+        },
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        count: true,
+        imageUrls: true,
+        orderStatus: true,
+        price: true,
+        status: true,
+        createdAt: true,
+        savedItem: {
+          select: {
+            id: true,
+            saved: {
+              select: {
+                id: true,
+                token: true,
+              },
+            },
+          },
+        },
+        properties: {
+          select: {
+            id: true,
+            name: true,
+            value: true,
+          },
+        },
+        subcategory: {
+          select: {
+            id: true,
+            name: true,
+            categoryId: true,
+          },
+        },
+      },
+      take: 20,
+    });
+
+    return allSimilarProducts;
+  } catch (error) {
+    console.log("Error fetching Product: ", error);
+    redirect("/not-found");
+  }
+}

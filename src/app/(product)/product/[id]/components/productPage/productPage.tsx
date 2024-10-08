@@ -25,9 +25,10 @@ import { CartItemService } from "@/utils/services/cart-item";
 
 type ProductProp = {
   product: Product;
+  similarProducts: Product[];
 };
 
-export const ProductPage: FC<ProductProp> = ({ product }: ProductProp) => {
+export const ProductPage: FC<ProductProp> = ({ product, similarProducts }: ProductProp) => {
   const [countSelect, setCountSelect] = useState(1);
   const queryClient = useQueryClient();
 
@@ -147,7 +148,7 @@ export const ProductPage: FC<ProductProp> = ({ product }: ProductProp) => {
         </div>
       </section>
       <div className={styles.sms__container}>
-        <ProductList title="СХОЖІ ТОВАРИ" id={product.id} />
+        <ProductList title="СХОЖІ ТОВАРИ" similarProducts={similarProducts} />
       </div>
     </div>
   );

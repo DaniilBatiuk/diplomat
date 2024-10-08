@@ -1,6 +1,5 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -10,21 +9,18 @@ import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { breakPoints } from "./constants";
-import { Card, SkeletonCard } from "@/components";
-import { ProductsService } from "@/utils/services/products";
+import { Card } from "@/components";
 
 type ProductListProp = {
   title?: string;
-  id: string;
+  similarProducts: Product[];
 };
 
-export const ProductList: React.FC<ProductListProp> = ({ title, id }: ProductListProp) => {
-  const { data: products, isFetching } = useQuery({
-    queryKey: ["similarProducts"],
-    queryFn: () => ProductsService.getSimilarProducts(id),
-  });
-
-  if (products && products.length === 0) {
+export const ProductList: React.FC<ProductListProp> = ({
+  title,
+  similarProducts,
+}: ProductListProp) => {
+  if (similarProducts.length === 0) {
     return <></>;
   }
   return (
@@ -42,18 +38,11 @@ export const ProductList: React.FC<ProductListProp> = ({ title, id }: ProductLis
         spaceBetween={30}
         breakpoints={breakPoints}
       >
-        {isFetching
-          ? Array.from({ length: 8 }).map((_, index) => (
-              <SwiperSlide key={index}>
-                <SkeletonCard />
-              </SwiperSlide>
-            ))
-          : products &&
-            products.map(product => (
-              <SwiperSlide key={product.id}>
-                <Card product={product} />
-              </SwiperSlide>
-            ))}
+        {similarProducts.map(product => (
+          <SwiperSlide key={product.id}>
+            <Card product={product} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </section>
   );
