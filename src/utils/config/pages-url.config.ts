@@ -4,4 +4,5 @@ export const LINKS = {
   BASKET: "/basket",
   ADMIN: "/admin",
   CREATEPRODUCT: "/createProduct",
+  ABOUTUS: "/about-us",
 };

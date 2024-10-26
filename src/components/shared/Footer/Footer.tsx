@@ -1,4 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
+
+import { LINKS } from "@/utils/config/pages-url.config";
 
 import styles from "./Footer.module.scss";
 import logo from "@/assets/images/logo.png";
@@ -33,7 +36,9 @@ export const Footer: React.FC = () => {
             <div className={styles.footer__column}>
               <p className={styles.footer__column_title}>Додатково</p>
               <ul className={styles.footer__column_list}>
-                <li className={styles.footer__column_item}>Про нас</li>
+                <Link href={LINKS.ABOUTUS} className={styles.footer__column_item}>
+                  Про нас
+                </Link>
                 <li className={styles.footer__column_item}>Політика конфіденційності</li>
                 <li className={styles.footer__column_item}>Правила та умови</li>
               </ul>

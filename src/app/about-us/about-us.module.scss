@@ -1,0 +1,18 @@
+@import "@/assets/styles/variables.scss";
+
+.about {
+  margin-top: clamp(15px, 2.5vw, 30px);
+  &__container {
+    color: black;
+  }
+
+  &__title {
+    @extend %inter_700_25_35;
+    text-align: center;
+    margin-bottom: clamp(20px, 2.5vw, 40px);
+  }
+
+  &__text {
+    line-height: 1.3;
+  }
+}
