@@ -5,4 +5,5 @@ export const LINKS = {
   ADMIN: "/admin",
   CREATEPRODUCT: "/createProduct",
   ABOUTUS: "/about-us",
+  PAYMENTANDDELIVERY: "/payment-and-delivery",
 };

@@ -39,6 +39,15 @@ export const Footer: React.FC = () => {
                 <Link href={LINKS.ABOUTUS} className={styles.footer__column_item}>
                   Про нас
                 </Link>
+                <Link href={LINKS.PAYMENTANDDELIVERY} className={styles.footer__column_item}>
+                  Оплата та доставка
+                </Link>
+                <Link
+                  href={`${LINKS.PAYMENTANDDELIVERY}#return`}
+                  className={styles.footer__column_item}
+                >
+                  Повернення товару
+                </Link>
                 <li className={styles.footer__column_item}>Політика конфіденційності</li>
                 <li className={styles.footer__column_item}>Правила та умови</li>
               </ul>

@@ -1,0 +1,85 @@
+@import "@/assets/styles/variables.scss";
+
+.payment {
+  margin-top: clamp(15px, 2.5vw, 30px);
+  &__container {
+    display: flex;
+    flex-direction: column;
+    row-gap: clamp(40px, 2.5vw, 60px);
+  }
+
+  &__title {
+    @extend %inter_700_25_35;
+    text-align: center;
+    margin-bottom: clamp(10px, 2.5vw, 20px);
+  }
+
+  &__text {
+    line-height: 1.3;
+
+    &_bold {
+      font-weight: 700;
+    }
+  }
+  &__text2 {
+    line-height: 1.3;
+    // margin-bottom: clamp(30px, 2.5vw, 50px);
+  }
+
+  &__subtitle {
+    @extend %inter_600_22_23;
+    margin-top: clamp(20px, 2.5vw, 30px);
+    margin-bottom: 10px;
+  }
+
+  &__section {
+  }
+
+  &__select {
+    margin-top: clamp(20px, 2.5vw, 30px);
+    color: $primary;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  &__ul {
+    margin-top: 5px;
+    margin-left: clamp(40px, 4vw, 80px);
+    margin-bottom: clamp(20px, 2.5vw, 30px);
+    & li {
+      list-style: disc;
+      line-height: 1.5;
+    }
+
+    &_number {
+      margin-top: 10px;
+      margin-bottom: 15px;
+      margin-left: clamp(40px, 4vw, 80px);
+      & li {
+        list-style: decimal;
+        line-height: 1.5;
+      }
+    }
+    &_dash {
+      margin-top: 10px;
+      margin-bottom: 15px;
+      margin-left: clamp(40px, 4vw, 80px);
+      & li {
+        list-style-type: "- ";
+        line-height: 1.5;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: clamp(20px, 2.5vw, 25px);
+  }
+}
+
+.margin__top20 {
+  margin-top: 20px;
+}

@@ -2,7 +2,7 @@ import { Skeleton } from "@mui/material";
 
 import { AsideSkeleton } from "@/components/shared/CategoriesAndSearch/components/Aside/components/AsideSkeleton/AsideSkeleton";
 
-import styles from "../../../components/shared/CategoriesAndSearch/CategoriesAndSearch.module.scss";
+import styles from "../../../../components/shared/CategoriesAndSearch/CategoriesAndSearch.module.scss";
 
 import { SkeletonCard } from "@/components";
 
